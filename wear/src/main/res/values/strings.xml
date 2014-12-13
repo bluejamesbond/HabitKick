@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Nail Biter</string>
+    <string name="hello_round">Hello Round World!</string>
+    <string name="hello_square">Hello Square World!</string>
+    <string name="calibrate_message">Calibrating</string>
+    <string name="calibrate">Calibrate</string>
+    <string name="calibrate_finished">Calibration successful</string>
+    <string name="monitor">Monitor</string>
+    <string name="monitor_stop">Stop</string>
+    <string name="monitor_message">Monitoring</string>
+    <string name="monitor_error">Error</string>
+    <string name="monitor_stopped">Monitoring stopped</string>
+    <string name="alert_message">Stop putting your hand there!</string>
+    <string name="hello">Hello World!</string>
+    <string name="title">Hello Notification!</string>
+    <string name="notification_posted">Notification posted</string>
+
+</resources>
