@@ -1,18 +1,14 @@
 package com.fiftyeightmorris.nailbiter;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.NumberPicker;
 
 
 public class MainActivity extends Activity {
     public static final String PREFS_NAME = "NailBiterPrefs";
-    private int timeout=0;
+    private int timeout = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,18 +17,18 @@ public class MainActivity extends Activity {
 
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
     @Override
     protected void onPause() {
         super.onPause();
-
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

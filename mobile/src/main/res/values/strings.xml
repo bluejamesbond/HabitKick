@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Nail Biter</string>
+    <string name="app_name">NailSafe</string>
     <string name="action_settings">Settings</string>
     <string name="intro">Hi! This app will help you to stop biting your nails,
     touching your face or playing with your hair.</string>

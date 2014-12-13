@@ -2,42 +2,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
     <TextView
-        android:text="@string/intro"
+        android:id="@+id/textViewIntro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:password="false"
-        android:id="@+id/textViewIntro"
-        android:textSize="20sp"
-        android:textIsSelectable="false" />
+        android:text="@string/intro"
+        android:textIsSelectable="false"
+        android:textSize="20sp" />
 
     <TextView
+        android:id="@+id/textViewCalibrate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/intro_calibrate"
-        android:id="@+id/textViewCalibrate"
-        android:layout_below="@+id/textViewIntro"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/textViewIntro"
         android:layout_marginTop="43dp"
-        android:textSize="20sp"
-        android:textIsSelectable="true" />
+        android:text="@string/intro_calibrate"
+        android:textIsSelectable="true"
+        android:textSize="20sp" />
 
     <TextView
+        android:id="@+id/textViewTimeout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/timeout"
-        android:id="@+id/textViewTimeout"
-        android:layout_marginTop="64dp"
-        android:textSize="20sp"
-        android:layout_below="@+id/textViewCalibrate"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textViewCalibrate"
+        android:layout_marginTop="64dp"
+        android:text="@string/timeout"
+        android:textSize="20sp" />
 
 </RelativeLayout>

@@ -13,17 +13,17 @@ import android.os.Vibrator;
 import android.util.Log;
 
 /**
+ * Created by dmitriyblok on 10/12/14.
+ */
+
+
+/**
  * PositionMonitor class helps track hand motion. During calibration, the class first uses the system
  * sensor to get the rotation matrix which is used to find the azimuth/pitch/roll of the device. A
  * combination of getRotationMatrix and getOrientation does the trick. The calibration phase stores
  * these readings or "angle-pathways" from resting position to the face. The watch does not store the
  * X, Y, Z; instead it stores a series of rotations. During the monitoring phase, the sensor data is
  * checked to see if it matches any of these "angle-pathways."
- */
-
-
-/**
- * Created by dmitriyblok on 10/12/14.
  */
 public class PositionMonitor implements SensorEventListener {
 
@@ -98,7 +98,7 @@ public class PositionMonitor implements SensorEventListener {
 
                 // Get the rotation matrix from the ground to the watch - all the information on how
                 // the watch is oriented from the ground
-                mSensorManager.getRotationMatrixFromVector(mRotationMatrix, event.values);
+                SensorManager.getRotationMatrixFromVector(mRotationMatrix, event.values);
 
                 // store the rotation during calibration
                 if (isCalibrate()) {
@@ -126,6 +126,7 @@ public class PositionMonitor implements SensorEventListener {
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
+    @SuppressWarnings("unused")
     private void logRotationMatrix() {
         Log.d(TAG, "=======================");
         for (int i = 0; i < 16; i++) {
@@ -165,7 +166,7 @@ public class PositionMonitor implements SensorEventListener {
     private synchronized void calculateRotation() {
 
         // get the orientation of the watch azimuth/roll/pitch
-        mSensorManager.getOrientation(mRotationMatrix, mSavedOrientation);
+        SensorManager.getOrientation(mRotationMatrix, mSavedOrientation);
 
         if (System.currentTimeMillis() - mLastVibrateTime > 1000) {
             mVibratorService.vibrate(100);
@@ -188,7 +189,7 @@ public class PositionMonitor implements SensorEventListener {
     private synchronized boolean isPositionReached() {
 
         // get the orientation of the watch azimuth/roll/pitch
-        mSensorManager.getOrientation(mRotationMatrix, mOrientation);
+        SensorManager.getOrientation(mRotationMatrix, mOrientation);
 
         // check if any "angle-pathways" match up
         for (int j = 0; j < MAX_POSITIONS; j++) {

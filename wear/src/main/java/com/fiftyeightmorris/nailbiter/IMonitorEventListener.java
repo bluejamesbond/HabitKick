@@ -9,8 +9,8 @@ import java.util.EventListener;
 /**
  * Created by dmitriyblok on 10/25/14.
  */
-public interface IMonitorEventListener extends EventListener{
+public interface IMonitorEventListener extends EventListener {
     public void onError();
-    public void onMonitorAlert();
 
+    public void onMonitorAlert();
 }

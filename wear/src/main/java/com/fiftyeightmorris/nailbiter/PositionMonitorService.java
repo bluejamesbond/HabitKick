@@ -15,26 +15,24 @@ public class PositionMonitorService extends Service {
     private static PositionMonitor mPositionMonitor;
     private Timer timer = new Timer();
 
-    public static void setPositionMonitor (PositionMonitor positionMonitor) {
+    public PositionMonitorService() {
+    }
+
+    public static void setPositionMonitor(PositionMonitor positionMonitor) {
         mPositionMonitor = positionMonitor;
     }
-    public PositionMonitorService() {
 
-    }
-
-
-    @Override public void onCreate() {
+    @Override
+    public void onCreate() {
         super.onCreate();
         timer.scheduleAtFixedRate(
                 new TimerTask() {
                     public void run() {
-
                     }
-                },
-                0,
-                1000);
+                }, 0, 1000);
     }
-        @Override
+
+    @Override
     public IBinder onBind(Intent intent) {
         return null;
     }

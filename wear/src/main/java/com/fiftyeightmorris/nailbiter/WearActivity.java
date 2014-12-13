@@ -36,19 +36,18 @@ public class WearActivity extends Activity implements IMonitorEventListener {
     };
 
     // construct SOS pattern
-    private final Context context = this;
+    private long mCalibrationDuration = 18;
+    private long mMeasurementDuration = 3;
+    private long mStartCalibrateTime;
+    private long mLastVibrateTime = 0;
+
     private TextView mTextView;
     private PositionMonitor mPositionMonitor;
-    private long mCalibrationDuration = 18;
-
-    // private Intent mPositionMonitorSvc;
-    private long mMeasurementDuration = 3;
     private Vibrator mVibratorService;
     private View mCalibrateButton;
     private Button mMonitorButton;
-    private long mStartCalibrateTime;
-    private long mLastVibrateTime = 0;
     private CalibrateTask mCalibrateTask;
+    private final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,16 +181,15 @@ public class WearActivity extends Activity implements IMonitorEventListener {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
-
+                // ignore
             }
 
             mPositionMonitor.setState(PositionMonitor.CALIBRATING_STATE);
             mPositionMonitor.registerListeners();
             mStartCalibrateTime = System.currentTimeMillis();
 
-
             // wait for calibration to finish
-            while ((System.currentTimeMillis() - mStartCalibrateTime < mCalibrationDuration * 1000)) {
+            while ((System.currentTimeMillis() - mStartCalibrateTime) < (mCalibrationDuration * 1000)) {
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
