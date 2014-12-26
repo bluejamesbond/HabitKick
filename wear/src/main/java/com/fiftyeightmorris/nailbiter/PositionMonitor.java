@@ -21,9 +21,8 @@ import android.util.Log;
  * PositionMonitor class helps track hand motion. During calibration, the class first uses the system
  * sensor to get the rotation matrix which is used to find the azimuth/pitch/roll of the device. A
  * combination of getRotationMatrix and getOrientation does the trick. The calibration phase stores
- * these readings or "angle-pathways" from resting position to the face. The watch does not store the
- * X, Y, Z; instead it stores a series of rotations. During the monitoring phase, the sensor data is
- * checked to see if it matches any of these "angle-pathways."
+ * these readings or "device-angles". During the monitoring phase, the sensor data is checked to see
+ * if it matches any of these "device-angles."
  */
 public class PositionMonitor implements SensorEventListener {
 
@@ -108,7 +107,7 @@ public class PositionMonitor implements SensorEventListener {
                         if (mPositionSetTime == 0) {
                             mPositionSetTime = System.currentTimeMillis();
                         } else {
-                            if (System.currentTimeMillis() - mPositionSetTime >= mMeasurementDuration) {
+                            if (System.currentTimeMillis() - mPositionSetTime >= getMeasurementDuration()) {
                                 mMonitorEventListener.onMonitorAlert();
                             }
                         }
@@ -191,7 +190,7 @@ public class PositionMonitor implements SensorEventListener {
         // get the orientation of the watch azimuth/roll/pitch
         SensorManager.getOrientation(mRotationMatrix, mOrientation);
 
-        // check if any "angle-pathways" match up
+        // check if any "device-angles" match up
         for (int j = 0; j < MAX_POSITIONS; j++) {
             int diffCounter = 0;
             for (int i = 1; i < 3; i++) {
