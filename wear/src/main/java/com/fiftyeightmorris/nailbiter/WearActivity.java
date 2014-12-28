@@ -3,10 +3,19 @@ package com.fiftyeightmorris.nailbiter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PixelFormat;
+import android.graphics.Typeface;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.wearable.view.WatchViewStub;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -14,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 
 
 public class WearActivity extends Activity implements IMonitorEventListener {
@@ -50,11 +60,38 @@ public class WearActivity extends Activity implements IMonitorEventListener {
     private final Context context = this;
 
     @Override
+    public void onAttachedToWindow() {
+        getWindow().setFormat(PixelFormat.RGBA_8888);
+    }
+
+    public void setGoal(WatchViewStub stub, int value) {
+        String before = "GOAL";
+        String main = Integer.toString(Math.max(0, value));
+        Spannable label = new SpannableString(String.format("%s %s", before, main));
+        label.setSpan(new ForegroundColorSpan(Color.RED), 0, before.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
+        Log.d("TEST", Html.toHtml(label));
+        ((TextView) stub.findViewById(R.id.goal_label)).setText(label);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         // show the layout
         setContentView(R.layout.activity_wear);
+
+        // get context
+        final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
+
+        // wait until layout is ready
+        stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
+            @Override
+            public void onLayoutInflated(WatchViewStub stub) {
+                // set goal
+                setGoal(stub, 498);
+            }
+        });
 
         // get system sensor service
         SensorManager sensorManager =
@@ -72,58 +109,56 @@ public class WearActivity extends Activity implements IMonitorEventListener {
         // create a calibration task
         mCalibrateTask = new CalibrateTask(this);
 
-        final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
-
-        // register listeners for the buttons
-        stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
-            @Override
-            public void onLayoutInflated(WatchViewStub stub) {
-
-                mTextView = (TextView) stub.findViewById(R.id.text);
-                mTextView.setText("");
-                mCalibrateButton = stub.findViewById(R.id.calibrateButton);
-                mCalibrateButton.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View view) {
-
-                        mTextView.setText(R.string.calibrate_message);
-                        mMonitorButton.setText(R.string.monitor);
-                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-                        try {
-                            mCalibrateTask.start();
-                        } catch (IOException e) {
-                            mPositionMonitor.unregisterListeners();
-                        }
-                    }
-                });
-
-                mMonitorButton = (Button) stub.findViewById(R.id.monitorButton);
-                mMonitorButton.setText(R.string.monitor);
-                mMonitorButton.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View view) {
-                        if (mPositionMonitor.isMonitor()) {
-                            mPositionMonitor.setState(PositionMonitor.NO_STATE);
-                            mPositionMonitor.unregisterListeners();
-                            mTextView.setText(R.string.monitor_stopped);
-                            mMonitorButton.setText(R.string.monitor);
-                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                        } else {
-                            mPositionMonitor.setState(PositionMonitor.MONITORING_STATE);
-                            mMonitorButton.setText(R.string.monitor_stop);
-                            mPositionMonitor.registerListeners();
-                            mTextView.setText(R.string.monitor_message);
-                            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                        }
-
-                    }
-                });
-
-            }
-        });
+//        // register listeners for the buttons
+//        stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
+//            @Override
+//            public void onLayoutInflated(WatchViewStub stub) {
+//
+//                mTextView = (TextView) stub.findViewById(R.id.text);
+//                mTextView.setText("");
+//                mCalibrateButton = stub.findViewById(R.id.calibrateButton);
+//                mCalibrateButton.setOnClickListener(new View.OnClickListener() {
+//
+//                    @Override
+//                    public void onClick(View view) {
+//
+//                        mTextView.setText(R.string.calibrate_message);
+//                        mMonitorButton.setText(R.string.monitor);
+//                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+//
+//                        try {
+//                            mCalibrateTask.start();
+//                        } catch (IOException e) {
+//                            mPositionMonitor.unregisterListeners();
+//                        }
+//                    }
+//                });
+//
+//                mMonitorButton = (Button) stub.findViewById(R.id.monitorButton);
+//                mMonitorButton.setText(R.string.monitor);
+//                mMonitorButton.setOnClickListener(new View.OnClickListener() {
+//
+//                    @Override
+//                    public void onClick(View view) {
+//                        if (mPositionMonitor.isMonitor()) {
+//                            mPositionMonitor.setState(PositionMonitor.NO_STATE);
+//                            mPositionMonitor.unregisterListeners();
+//                            mTextView.setText(R.string.monitor_stopped);
+//                            mMonitorButton.setText(R.string.monitor);
+//                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+//                        } else {
+//                            mPositionMonitor.setState(PositionMonitor.MONITORING_STATE);
+//                            mMonitorButton.setText(R.string.monitor_stop);
+//                            mPositionMonitor.registerListeners();
+//                            mTextView.setText(R.string.monitor_message);
+//                            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+//                        }
+//
+//                    }
+//                });
+//
+//            }
+//        });
 
     }
 

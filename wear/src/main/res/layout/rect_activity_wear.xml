@@ -4,8 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/bg_gradient"
     tools:context=".WearActivity"
     tools:deviceIds="wear_square">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/today_value"
+        android:gravity="center_vertical|center_horizontal"
+        android:textSize="@dimen/today_value"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -21,7 +33,7 @@
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_square"
+        android:text="@string/today_label"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 

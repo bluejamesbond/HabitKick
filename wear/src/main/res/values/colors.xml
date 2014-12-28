@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_gradient_startColor">#471e35</color>
+    <color name="bg_gradient_centerColor">#551c12</color>
+    <color name="bg_gradient_endColor">#555227</color>
+    <color name="theme_color">#e02812</color>
+    <color name="white">#ffffffff</color>
+    <color name="translucent_white">#33ffffff</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="shadow">#55000000</color>
+</resources>

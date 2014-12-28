@@ -2,12 +2,14 @@
 <resources>
 
     <string name="app_name">Nail Biter</string>
-    <string name="hello_round">Hello Round World!</string>
-    <string name="hello_square">Hello Square World!</string>
+    <string name="today_value">250</string>
+    <string name="today_label">Today</string>
     <string name="calibrate_message">Calibrating</string>
-    <string name="calibrate">Calibrate</string>
+    <string name="calibrate"></string>
+    <string name="left_label"></string>
+    <string name="right_label"></string>
     <string name="calibrate_finished">Calibration successful</string>
-    <string name="monitor">Monitor</string>
+    <string name="monitor">Goal 500</string>
     <string name="monitor_stop">Stop</string>
     <string name="monitor_message">Monitoring</string>
     <string name="monitor_error">Error</string>
