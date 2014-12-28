@@ -13,7 +13,7 @@
     <string name="left_label"></string>
     <string name="right_label"></string>
     <string name="last_time_icon"></string>
-    <string name="silence_icon"></string>
+    <string name="silence_icon"></string>
     <string name="calibrate_finished">Calibration successful</string>
     <string name="monitor">Goal 500</string>
     <string name="monitor_stop">Stop</string>

@@ -6,6 +6,7 @@
     <color name="theme_color">#e02812</color>
     <color name="white">#ffffffff</color>
     <color name="translucent_white">#33ffffff</color>
+    <color name="bg_translucent_white">#bbffffff</color>
     <color name="translucent_black">#50000000</color>
     <color name="transparent">#00ffffff</color>
     <color name="shadow">#55000000</color>

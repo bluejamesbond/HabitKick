@@ -81,20 +81,16 @@
                 android:id="@+id/calibrateButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignTop="@+id/monitorButton"
                 android:layout_marginLeft="5dp"
                 android:background="@drawable/rnd_button_theme"
                 android:gravity="center"
                 android:text="@string/calibrate"
                 android:textAlignment="center"
-                android:textSize="15dp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="235dp"
                 android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
                 android:layout_marginLeft="2dp"
                 android:background="@drawable/rnd_button_theme"
                 android:gravity="center_vertical|left"
@@ -130,15 +126,14 @@
             android:layout_marginTop="-3dp"
             android:layout_weight="50"
             android:orientation="horizontal"
+            android:layout_gravity="left"
             android:weightSum="100">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="40"
-                android:background="@color/white"
-                android:paddingRight="6dp"
+                android:layout_weight="45"
                 android:weightSum="100">
 
                 <LinearLayout
@@ -156,6 +151,7 @@
                         android:textAllCaps="true"
                         android:textColor="@color/dark_gray"
                         android:textSize="8dp"
+                        android:paddingRight="10dp"
                         android:textStyle="bold" />
 
                     <com.fiftyeightmorris.nailbiter.helper.ProximaNovaBoldTextView
@@ -167,6 +163,7 @@
                         android:textAllCaps="true"
                         android:textColor="@color/theme_color"
                         android:textSize="18dp"
+                        android:paddingRight="10dp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
@@ -174,24 +171,26 @@
             <com.fiftyeightmorris.nailbiter.helper.FontelloTextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_weight="20"
-                android:background="@drawable/inner_shadow"
+                android:layout_weight="25"
+                android:background="@drawable/inner_glow_button"
                 android:gravity="center_vertical|center"
                 android:text="@string/last_time_icon"
                 android:textAllCaps="true"
-                android:textColor="@color/dark_gray"
+                android:textColor="#333333"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
             <com.fiftyeightmorris.nailbiter.helper.FontelloTextView
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_weight="25"
-                android:gravity="center_vertical|center"
+                android:layout_weight="30"
+                android:paddingLeft="12dp"
+                android:gravity="center_vertical|left"
                 android:text="@string/silence_icon"
                 android:textAllCaps="true"
                 android:textColor="@color/dark_gray"
-                android:textSize="15dp"
+                android:background="@color/bg_translucent_white"
+                android:textSize="16dp"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>

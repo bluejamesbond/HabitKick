@@ -3,7 +3,13 @@
     <item android:top="25dp" android:right="-26dp" android:left="-26dp" android:bottom="-26dp">
         <shape>
             <solid android:color="@android:color/transparent" />
-            <stroke android:width="24dp" android:color="#ffffff" />
+            <stroke android:width="20dp" android:color="#ffffff" />
+        </shape>
+    </item>
+
+    <item android:right="150px" android:top="25dp">
+        <shape>
+            <solid android:color="@android:color/white" />
         </shape>
     </item>
 </layer-list>

@@ -6,28 +6,28 @@
         <shape>
             <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
             <corners android:radius="900dp" />
-            <solid android:color="#00555555" />
+            <solid android:color="#00000000" />
         </shape>
     </item>
     <item>
         <shape>
             <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
             <corners android:radius="900dp" />
-            <solid android:color="#20555555" />
+            <solid android:color="#10000000" />
         </shape>
     </item>
     <item>
         <shape>
             <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
             <corners android:radius="900dp" />
-            <solid android:color="#30555555" />
+            <solid android:color="#15000000" />
         </shape>
     </item>
     <item>
         <shape>
             <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
             <corners android:radius="900dp" />
-            <solid android:color="#50555555" />
+            <solid android:color="#20000000" />
         </shape>
     </item>
 
