@@ -64,15 +64,6 @@ public class WearActivity extends Activity implements IMonitorEventListener {
         getWindow().setFormat(PixelFormat.RGBA_8888);
     }
 
-    public void setGoal(WatchViewStub stub, int value) {
-        String before = "GOAL";
-        String main = Integer.toString(Math.max(0, value));
-        Spannable label = new SpannableString(String.format("%s %s", before, main));
-        label.setSpan(new ForegroundColorSpan(Color.RED), 0, before.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-        Log.d("TEST", Html.toHtml(label));
-        ((TextView) stub.findViewById(R.id.goal_label)).setText(label);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -88,8 +79,7 @@ public class WearActivity extends Activity implements IMonitorEventListener {
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
-                // set goal
-                setGoal(stub, 498);
+
             }
         });
 

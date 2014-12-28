@@ -12,9 +12,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="25">
+        android:layout_weight="40">
 
-        <com.fiftyeightmorris.nailbiter.helper.ProximaNovaSemiBold
+        <com.fiftyeightmorris.nailbiter.helper.ProximaNovaSemiBoldTextView
             android:id="@+id/today_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             android:textSize="@dimen/today_value"
             android:textStyle="bold" />
 
-        <com.fiftyeightmorris.nailbiter.helper.ProximaNovaBold
+        <com.fiftyeightmorris.nailbiter.helper.ProximaNovaBoldTextView
             android:id="@+id/today_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,73 +39,160 @@
             android:textSize="@dimen/today_label"
             android:textStyle="bold" />
 
-        <com.fiftyeightmorris.nailbiter.helper.Fontello
+        <com.fiftyeightmorris.nailbiter.helper.FontelloTextView
             android:id="@+id/textView"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_alignBottom="@+id/today_value"
+            android:layout_marginEnd="13dp"
+            android:layout_toStartOf="@+id/today_value"
             android:background="@drawable/rnd_button_translucent_white"
             android:gravity="center"
             android:text="@string/left_label"
-            android:textSize="8dp"
-            android:layout_marginEnd="13dp"
-            android:layout_alignBottom="@+id/today_value"
-            android:layout_toStartOf="@+id/today_value" />
+            android:textSize="8dp" />
 
-        <com.fiftyeightmorris.nailbiter.helper.Fontello
+        <com.fiftyeightmorris.nailbiter.helper.FontelloTextView
             android:id="@+id/textView2"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:textSize="8dp"
+            android:layout_alignTop="@+id/textView"
+            android:layout_marginStart="13dp"
+            android:layout_toEndOf="@+id/today_value"
             android:background="@drawable/rnd_button_translucent_white"
             android:gravity="center"
             android:text="@string/right_label"
-            android:layout_marginStart="13dp"
-            android:layout_alignTop="@+id/textView"
-            android:layout_toEndOf="@+id/today_value" />
+            android:textSize="8dp" />
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-10dp"
-        android:layout_weight="10"
+        android:layout_weight="30"
         android:background="@drawable/bg_center"
-        android:weightSum="100">
+        android:orientation="vertical">
 
-        <com.fiftyeightmorris.nailbiter.helper.Fontello
-            android:id="@+id/calibrateButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/monitorButton"
-            android:layout_marginLeft="5dp"
-            android:background="@drawable/rnd_button_theme"
-            android:gravity="center"
-            android:text="@string/calibrate"
-            android:textAlignment="center"
-            android:textSize="15dp"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="100">
 
-        <com.fiftyeightmorris.nailbiter.helper.ProximaNovaBold
-            android:id="@+id/goal_label"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginLeft="2dp"
-            android:layout_weight="194.59"
-            android:background="@drawable/rnd_button_theme"
-            android:gravity="center_vertical|left"
-            android:paddingLeft="15dp"
-            android:text="@string/monitor"
-            android:textAllCaps="true"
-            android:textSize="21dp"
-            android:textStyle="bold" />
+            <com.fiftyeightmorris.nailbiter.helper.FontelloTextView
+                android:id="@+id/calibrateButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignTop="@+id/monitorButton"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/rnd_button_theme"
+                android:gravity="center"
+                android:text="@string/calibrate"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="235dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/rnd_button_theme"
+                android:gravity="center_vertical|left"
+                android:paddingLeft="15dp">
+
+                <com.fiftyeightmorris.nailbiter.helper.ProximaNovaBoldTextView
+                    android:id="@+id/goal_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="2dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/goal_label"
+                    android:textAllCaps="true"
+                    android:textColor="@color/translucent_black"
+                    android:textSize="21dp"
+                    android:textStyle="bold" />
+
+                <com.fiftyeightmorris.nailbiter.helper.ProximaNovaBoldTextView
+                    android:id="@+id/goal_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="3dp"
+                    android:gravity="center_vertical|left"
+                    android:text="@string/goal_value"
+                    android:textSize="21dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-3dp"
+            android:layout_weight="50"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="40"
+                android:background="@color/white"
+                android:paddingRight="6dp"
+                android:weightSum="100">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:orientation="vertical">
+
+                    <com.fiftyeightmorris.nailbiter.helper.ProximaNovaSemiBoldTextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center_vertical|right"
+                        android:text="@string/detail_label"
+                        android:textAllCaps="true"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="8dp"
+                        android:textStyle="bold" />
+
+                    <com.fiftyeightmorris.nailbiter.helper.ProximaNovaBoldTextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-4dp"
+                        android:gravity="center_vertical|right"
+                        android:text="@string/detail_value"
+                        android:textAllCaps="true"
+                        android:textColor="@color/theme_color"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.fiftyeightmorris.nailbiter.helper.FontelloTextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="20"
+                android:background="@drawable/inner_shadow"
+                android:gravity="center_vertical|center"
+                android:text="@string/last_time_icon"
+                android:textAllCaps="true"
+                android:textColor="@color/dark_gray"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <com.fiftyeightmorris.nailbiter.helper.FontelloTextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="25"
+                android:gravity="center_vertical|center"
+                android:text="@string/silence_icon"
+                android:textAllCaps="true"
+                android:textColor="@color/dark_gray"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="70"
-        android:background="#FFFFFF"></RelativeLayout>
-
 </LinearLayout>

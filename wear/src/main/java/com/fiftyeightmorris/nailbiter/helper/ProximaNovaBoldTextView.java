@@ -6,17 +6,17 @@ import android.util.AttributeSet;
 /**
  * Created by Mathew on 12/27/2014.
  */
-public class ProximaNovaBold extends ITypefaceTextView {
+public class ProximaNovaBoldTextView extends ITypefaceTextView {
 
-    public ProximaNovaBold(Context context) {
+    public ProximaNovaBoldTextView(Context context) {
         super(context);
     }
 
-    public ProximaNovaBold(Context context, AttributeSet attrs) {
+    public ProximaNovaBoldTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ProximaNovaBold(Context context, AttributeSet attrs, int defStyle) {
+    public ProximaNovaBoldTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
