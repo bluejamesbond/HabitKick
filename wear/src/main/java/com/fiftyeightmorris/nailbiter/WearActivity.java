@@ -3,38 +3,17 @@ package com.fiftyeightmorris.nailbiter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.PixelFormat;
-import android.graphics.PorterDuff;
-import android.graphics.RadialGradient;
-import android.graphics.Shader;
-import android.graphics.Typeface;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.wearable.view.WatchViewStub;
-import android.text.Html;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
-import java.lang.reflect.Field;
 
 
 public class WearActivity extends Activity implements IMonitorEventListener {
@@ -80,23 +59,15 @@ public class WearActivity extends Activity implements IMonitorEventListener {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
-        // show the layout
         setContentView(R.layout.activity_wear);
-
-        // ui communication
-        ui = new UIAdapter();
 
         // get context
         WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
 
-        // wait until layout is ready
-        stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
-            @Override
-            public void onLayoutInflated(WatchViewStub stub) {
-                ui.setHue(stub, 120);
-            }
-        });
+        // ui communication
+        ui = new UIAdapter(true);
+        ui.init(stub);
+        ui.setHue(stub, UIAdapter.Theme.RANDOM);
 
         // get system sensor service
         SensorManager sensorManager =
@@ -111,7 +82,7 @@ public class WearActivity extends Activity implements IMonitorEventListener {
         mPositionMonitor.setState(PositionMonitor.NO_STATE);
         mPositionMonitor.setVibratorService(mVibratorService);
 
-        // create a calibration task
+        // init a calibration task
         mCalibrateTask = new CalibrateTask(this);
 
 //        // register listeners for the buttons
