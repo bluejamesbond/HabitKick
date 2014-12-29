@@ -17,6 +17,7 @@ import com.fiftyeightmorris.nailbiter.alert.AlertNotificationReceiver;
 import com.fiftyeightmorris.nailbiter.IMonitorEventListener;
 import com.fiftyeightmorris.nailbiter.PositionMonitor;
 import com.fiftyeightmorris.nailbiter.R;
+import com.fiftyeightmorris.nailbiter.IUserInterface;
 
 import java.io.IOException;
 
@@ -69,9 +70,9 @@ public class HomeActivity extends Activity implements IMonitorEventListener {
         WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
 
         // ui communication
-        ui = HomeUI.getInstance();
+        ui = new HomeUI(stub);
         ui.create(stub);
-        ui.setHue(stub, HomeUI.Theme.RANDOM);
+        ui.setTheme(stub, IUserInterface.Theme.RANDOM);
 
         // get system sensor service
         SensorManager sensorManager =

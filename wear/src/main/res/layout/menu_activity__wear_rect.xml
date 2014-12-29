@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app__background"
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context=".WearActivity"
+    tools:deviceIds="wear_round">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="25">
+
+        <com.fiftyeightmorris.nailbiter.helper.FontelloTextView
+            android:id="@+id/home_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal|top"
+            android:background="@drawable/big_button__background"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/icon_home"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="75"
+        android:orientation="vertical"
+        android:weightSum="100">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:background="@drawable/list_button__background"
+            android:clickable="true">
+
+            <com.fiftyeightmorris.nailbiter.helper.FontelloTextView
+                android:id="@+id/calibrate_button_icon"
+                android:layout_width="60dp"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical|right"
+                android:text="@string/icon_calibrate"
+                android:textColor="@color/universal__appcolor"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <com.fiftyeightmorris.nailbiter.helper.ProximaNovaBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical|left"
+                android:paddingLeft="10dp"
+                android:text="Calibrate"
+                android:textAllCaps="true"
+                android:textColor="@color/dark_grey"
+                android:textSize="13dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_weight="1"
+            android:background="#ddffffff" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:background="@drawable/list_button__background"
+            android:clickable="true">
+
+            <com.fiftyeightmorris.nailbiter.helper.FontelloTextView
+                android:id="@+id/mobile_button_icon"
+                android:layout_width="60dp"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical|right"
+                android:text="@string/icon_mobile"
+                android:textColor="@color/universal__appcolor"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <com.fiftyeightmorris.nailbiter.helper.ProximaNovaBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical|left"
+                android:paddingLeft="10dp"
+                android:text="Mobile"
+                android:textAllCaps="true"
+                android:textColor="@color/dark_grey"
+                android:textSize="13dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

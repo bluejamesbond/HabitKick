@@ -17,7 +17,10 @@
     <string name="icon_left"></string>
     <string name="icon_right"></string>
     <string name="icon_lasttime"></string>
+    <string name="icon_home"></string>
     <string name="icon_silent"></string>
+    <string name="icon_calibrate"></string>
+    <string name="icon_mobile"></string>
 
     <string name="calibrate_message">Calibrating</string>
     <string name="calibrate_finished">Calibration successful</string>

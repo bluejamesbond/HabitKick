@@ -2,9 +2,6 @@ package com.fiftyeightmorris.nailbiter.helper;
 
 import android.graphics.Color;
 
-/**
- * Created by Mathew on 12/29/2014.
- */
 public class Utils {
 
     @SuppressWarnings("unused")
