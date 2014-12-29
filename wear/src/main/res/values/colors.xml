@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bg_gradient_startColor">#1d5435</color>
-    <color name="bg_gradient_centerColor">#224743</color>
-    <color name="bg_gradient_endColor">#252d47</color>
-    <color name="theme_color">#12cae0</color>
-    <color name="white">#ffffffff</color>
-    <color name="translucent_white">#33ffffff</color>
-    <color name="bg_translucent_white">#bbffffff</color>
-    <color name="translucent_black">#50000000</color>
-    <color name="transparent">#00ffffff</color>
-    <color name="shadow">#55000000</color>
-    <color name="dark_gray">#ff777777</color>
+    <color name="app__background_startcolor">#1d5435</color>
+    <color name="app__background_centercolor">#224743</color>
+    <color name="app__background_endcolor">#252d47</color>
+    <color name="universal__appcolor">#12cae0</color>
+    <color name="trans_button_background_default_backgroundcolor">#33ffffff</color>
+    <color name="sub_button__background_default_backgroundcolor">#bbffffff</color>
+    <color name="goal_label__textcolor">#50000000</color>
+    <color name="sub_button__textcolor_default">#ff777777</color>
+    <color name="sub_button__textcolor_pressed">#FF333333</color>
 </resources>

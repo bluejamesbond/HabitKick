@@ -34,21 +34,19 @@ public class WearActivity extends Activity implements IMonitorEventListener {
             dot, short_gap, dot, short_gap, dot,    // s
             long_gap
     };
-
+    private final Context context = this;
     // construct SOS pattern
     private long mCalibrationDuration = 18;
     private long mMeasurementDuration = 3;
     private long mStartCalibrateTime;
     private long mLastVibrateTime = 0;
-
     private TextView mTextView;
     private PositionMonitor mPositionMonitor;
     private Vibrator mVibratorService;
     private View mCalibrateButton;
     private Button mMonitorButton;
     private CalibrateTask mCalibrateTask;
-    private final Context context = this;
-    private UIAdapter ui;
+    private UIManager ui;
 
     @Override
     public void onAttachedToWindow() {
@@ -65,9 +63,9 @@ public class WearActivity extends Activity implements IMonitorEventListener {
         WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
 
         // ui communication
-        ui = new UIAdapter(true);
+        ui = new UIManager(true);
         ui.init(stub);
-        ui.setHue(stub, UIAdapter.Theme.RANDOM);
+        ui.setHue(stub, UIManager.Theme.RANDOM);
 
         // get system sensor service
         SensorManager sensorManager =

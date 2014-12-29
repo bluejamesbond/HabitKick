@@ -2,7 +2,7 @@
 <resources>
     <dimen name="today_value">42dp</dimen>
     <dimen name="today_label">10dp</dimen>
-    <fraction name="bg_gradient_centerX">10%p</fraction>
-    <fraction name="bg_gradient_centerY">40%p</fraction>
-    <fraction name="bg_gradient_gradientRadius">95%p</fraction>
+    <fraction name="app__background_centerx">10%p</fraction>
+    <fraction name="app__background_centery">40%p</fraction>
+    <fraction name="app__background_radius">95%p</fraction>
 </resources>

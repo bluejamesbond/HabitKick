@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/bg"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
+    android:background="@drawable/app__background"
     android:orientation="vertical"
     android:weightSum="100"
     tools:context=".WearActivity"
@@ -23,7 +23,7 @@
             android:layout_centerVertical="true"
             android:gravity="center_vertical|center_horizontal"
             android:text="@string/today_value"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:textSize="@dimen/today_value"
             android:textStyle="bold" />
 
@@ -36,7 +36,7 @@
             android:gravity="center_vertical"
             android:text="@string/today_label"
             android:textAllCaps="true"
-            android:textColor="@color/theme_color"
+            android:textColor="@color/universal__appcolor"
             android:textSize="@dimen/today_label"
             android:textStyle="bold" />
 
@@ -47,10 +47,11 @@
             android:layout_alignBottom="@+id/today_value"
             android:layout_marginEnd="13dp"
             android:layout_toStartOf="@+id/today_value"
-            android:background="@drawable/rnd_button_translucent_white"
+            android:background="@drawable/trans_button__background"
+            android:clickable="true"
             android:gravity="center"
-            android:text="@string/left_label"
-            android:textSize="8dp" />
+            android:text="@string/icon_left"
+            android:textSize="12dp" />
 
         <com.fiftyeightmorris.nailbiter.helper.FontelloTextView
             android:id="@+id/textView2"
@@ -59,10 +60,11 @@
             android:layout_alignTop="@+id/textView"
             android:layout_marginStart="13dp"
             android:layout_toEndOf="@+id/today_value"
-            android:background="@drawable/rnd_button_translucent_white"
+            android:background="@drawable/trans_button__background"
+            android:clickable="true"
             android:gravity="center"
-            android:text="@string/right_label"
-            android:textSize="8dp" />
+            android:text="@string/icon_right"
+            android:textSize="12dp" />
     </RelativeLayout>
 
     <LinearLayout
@@ -70,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-10dp"
         android:layout_weight="30"
-        android:background="@drawable/bg_center"
+        android:background="@drawable/app__midsection_round"
         android:orientation="vertical">
 
         <LinearLayout
@@ -83,20 +85,21 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="5dp"
-                android:background="@drawable/rnd_button_theme"
+                android:background="@drawable/big_button__background"
+                android:clickable="true"
                 android:gravity="center"
-                android:text="@string/calibrate"
+                android:text="@string/icon_menu"
                 android:textAlignment="center"
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/goal_container"
                 android:layout_width="235dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="2dp"
-                android:background="@drawable/rnd_button_theme"
+                android:background="@drawable/big_button__background_default"
                 android:gravity="center_vertical|left"
-                android:paddingLeft="15dp"
-                android:id="@+id/goal_container">
+                android:paddingLeft="15dp">
 
                 <com.fiftyeightmorris.nailbiter.helper.ProximaNovaBoldTextView
                     android:id="@+id/goal_label"
@@ -106,7 +109,7 @@
                     android:gravity="center_vertical|left"
                     android:text="@string/goal_label"
                     android:textAllCaps="true"
-                    android:textColor="@color/translucent_black"
+                    android:textColor="@color/goal_label__textcolor"
                     android:textSize="21dp"
                     android:textStyle="bold" />
 
@@ -125,10 +128,10 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:layout_marginTop="-3dp"
             android:layout_weight="50"
             android:orientation="horizontal"
-            android:layout_gravity="left"
             android:weightSum="100">
 
             <LinearLayout
@@ -149,11 +152,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:gravity="center_vertical|right"
+                        android:paddingRight="10dp"
                         android:text="@string/detail_label"
                         android:textAllCaps="true"
-                        android:textColor="@color/dark_gray"
+                        android:textColor="@color/sub_button__textcolor_default"
                         android:textSize="8dp"
-                        android:paddingRight="10dp"
                         android:textStyle="bold" />
 
                     <com.fiftyeightmorris.nailbiter.helper.ProximaNovaBoldTextView
@@ -162,11 +165,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="-4dp"
                         android:gravity="center_vertical|right"
+                        android:paddingRight="10dp"
                         android:text="@string/detail_value"
                         android:textAllCaps="true"
-                        android:textColor="@color/theme_color"
+                        android:textColor="@color/universal__appcolor"
                         android:textSize="18dp"
-                        android:paddingRight="10dp"
                         android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
@@ -175,11 +178,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_weight="25"
-                android:background="@drawable/sub_button_down"
+                android:background="@drawable/sub_button_rborder__background"
+                android:clickable="true"
                 android:gravity="center_vertical|center"
-                android:text="@string/last_time_icon"
+                android:text="@string/icon_lasttime"
                 android:textAllCaps="true"
-                android:textColor="#333333"
+                android:textColor="@color/sub_button__textcolor"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
@@ -187,12 +191,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_weight="30"
-                android:paddingLeft="12dp"
+                android:background="@drawable/sub_button__background"
+                android:clickable="true"
                 android:gravity="center_vertical|left"
-                android:text="@string/silence_icon"
+                android:paddingLeft="12dp"
+                android:text="@string/icon_silent"
                 android:textAllCaps="true"
-                android:textColor="@color/dark_gray"
-                android:background="@drawable/sub_button_up"
+                android:textColor="@color/sub_button__textcolor"
                 android:textSize="16dp"
                 android:textStyle="bold" />
         </LinearLayout>

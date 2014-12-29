@@ -26,27 +26,23 @@ import android.util.Log;
  */
 public class PositionMonitor implements SensorEventListener {
 
-    private static final int updateFrequency = 100 * 1000 * 10;
-
     public static final int NO_STATE = 0;
     public static final int CALIBRATING_STATE = 1;
     public static final int MONITORING_STATE = 2;
     public static final int MAX_POSITIONS = 40;
+    private final float[][] mSavedOrientationMatrix = new float[MAX_POSITIONS][3];
     public static final float NO_VALUE = 180;
     public static final String TAG = PositionMonitor.class.getSimpleName();
-
+    private static final int updateFrequency = 100 * 1000 * 10;
     private static float EPSILON = 0.3f;
     private final float[] mRotationMatrix = new float[16];
-
+    private final float[] mSavedOrientation = new float[3];
+    private final float[] mOrientation = new float[3];
     private int mState;
     private int mCurrPos;
     private long mMeasurementDuration;
     private long mPositionSetTime = 0;
     private long mLastVibrateTime;
-    private final float[] mSavedOrientation = new float[3];
-    private final float[][] mSavedOrientationMatrix = new float[MAX_POSITIONS][3];
-    private final float[] mOrientation = new float[3];
-
     private SensorManager mSensorManager;
     private Sensor mRotationVectorSensor;
     private IMonitorEventListener mMonitorEventListener = null;

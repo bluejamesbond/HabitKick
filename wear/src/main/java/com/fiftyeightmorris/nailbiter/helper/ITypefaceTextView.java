@@ -8,24 +8,24 @@ import android.widget.TextView;
 /**
  * Created by Mathew on 12/27/2014.
  */
-public abstract  class ITypefaceTextView extends TextView {
+public abstract class ITypefaceTextView extends TextView {
     public ITypefaceTextView(Context context) {
         super(context);
-        if(!this.isInEditMode()) {
+        if (!this.isInEditMode()) {
             setTypeface(Typeface.createFromAsset(context.getAssets(), getTypefacePath()));
         }
     }
 
     public ITypefaceTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        if(!this.isInEditMode()) {
+        if (!this.isInEditMode()) {
             setTypeface(Typeface.createFromAsset(context.getAssets(), getTypefacePath()));
         }
     }
 
     public ITypefaceTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        if(!this.isInEditMode()) {
+        if (!this.isInEditMode()) {
             setTypeface(Typeface.createFromAsset(context.getAssets(), getTypefacePath()));
         }
     }

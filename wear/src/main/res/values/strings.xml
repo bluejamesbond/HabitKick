@@ -2,25 +2,34 @@
 <resources>
 
     <string name="app_name">Nail Biter</string>
+
     <string name="today_value">250</string>
     <string name="today_label">Today</string>
+
     <string name="goal_value">500</string>
     <string name="goal_label">Goal</string>
+
     <string name="detail_value">6 Hrs</string>
     <string name="detail_label">Last Time</string>
+
+    <!-- icons -->
+    <string name="icon_menu"></string>
+    <string name="icon_left"></string>
+    <string name="icon_right"></string>
+    <string name="icon_lasttime"></string>
+    <string name="icon_silent"></string>
+
     <string name="calibrate_message">Calibrating</string>
-    <string name="calibrate"></string>
-    <string name="left_label"></string>
-    <string name="right_label"></string>
-    <string name="last_time_icon"></string>
-    <string name="silence_icon"></string>
     <string name="calibrate_finished">Calibration successful</string>
+
     <string name="monitor">Goal 500</string>
     <string name="monitor_stop">Stop</string>
     <string name="monitor_message">Monitoring</string>
     <string name="monitor_error">Error</string>
     <string name="monitor_stopped">Monitoring stopped</string>
+
     <string name="alert_message">Stop putting your hand there!</string>
+
     <string name="hello">Hello World!</string>
     <string name="title">Hello Notification!</string>
     <string name="notification_posted">Notification posted</string>
