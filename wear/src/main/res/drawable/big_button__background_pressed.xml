@@ -55,10 +55,9 @@
         </shape>
     </item>
 
-    <!-- Darken -->
     <item>
         <shape>
-            <solid android:color="#11000000" />
+            <solid android:color="#33000000" />
             <corners android:radius="900dp" />
         </shape>
     </item>
