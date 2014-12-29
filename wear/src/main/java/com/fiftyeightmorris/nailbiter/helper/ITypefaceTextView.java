@@ -11,17 +11,23 @@ import android.widget.TextView;
 public abstract  class ITypefaceTextView extends TextView {
     public ITypefaceTextView(Context context) {
         super(context);
-        setTypeface(Typeface.createFromAsset(context.getAssets(), getTypefacePath()));
+        if(!this.isInEditMode()) {
+            setTypeface(Typeface.createFromAsset(context.getAssets(), getTypefacePath()));
+        }
     }
 
     public ITypefaceTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setTypeface(Typeface.createFromAsset(context.getAssets(), getTypefacePath()));
+        if(!this.isInEditMode()) {
+            setTypeface(Typeface.createFromAsset(context.getAssets(), getTypefacePath()));
+        }
     }
 
     public ITypefaceTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        setTypeface(Typeface.createFromAsset(context.getAssets(), getTypefacePath()));
+        if(!this.isInEditMode()) {
+            setTypeface(Typeface.createFromAsset(context.getAssets(), getTypefacePath()));
+        }
     }
 
     public abstract String getTypefacePath();

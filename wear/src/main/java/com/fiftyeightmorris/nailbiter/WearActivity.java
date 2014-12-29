@@ -4,8 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.PixelFormat;
+import android.graphics.PorterDuff;
+import android.graphics.RadialGradient;
+import android.graphics.Shader;
 import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -15,12 +22,16 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -58,6 +69,7 @@ public class WearActivity extends Activity implements IMonitorEventListener {
     private Button mMonitorButton;
     private CalibrateTask mCalibrateTask;
     private final Context context = this;
+    private UIAdapter ui;
 
     @Override
     public void onAttachedToWindow() {
@@ -72,14 +84,17 @@ public class WearActivity extends Activity implements IMonitorEventListener {
         // show the layout
         setContentView(R.layout.activity_wear);
 
+        // ui communication
+        ui = new UIAdapter();
+
         // get context
-        final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
+        WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
 
         // wait until layout is ready
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
-
+                ui.setHue(stub, 120);
             }
         });
 

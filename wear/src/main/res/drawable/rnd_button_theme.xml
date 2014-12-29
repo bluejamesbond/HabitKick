@@ -32,9 +32,9 @@
     </item>
 
     <!-- Background -->
-    <item>
+    <item android:id="@+id/rnd_button_theme_background">
         <shape>
-            <solid android:color="@color/theme_color" />
+            <solid android:color="@color/theme_color"/>
             <corners android:radius="900dp" />
         </shape>
     </item>
