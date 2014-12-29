@@ -1,5 +1,6 @@
 package com.fiftyeightmorris.nailbiter.home;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
@@ -39,7 +40,7 @@ public class HomeUI extends IUserInterface {
         });
     }
 
-    protected void onCreate(final WatchViewStub stub) {
+    protected void onCreate(final Activity activity, final WatchViewStub stub) {
 
         final Context context = stub.getContext();
         final Intent menuIntent = new Intent(context, MenuActivity.class);

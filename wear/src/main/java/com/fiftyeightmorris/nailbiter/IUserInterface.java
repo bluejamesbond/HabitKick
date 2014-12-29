@@ -1,5 +1,6 @@
 package com.fiftyeightmorris.nailbiter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -107,9 +108,9 @@ public abstract class IUserInterface {
 
     protected abstract void onThemeChange(final WatchViewStub stub, final int appColor, final float hue);
 
-    protected abstract void onCreate(final WatchViewStub stub);
+    protected abstract void onCreate(final Activity activity, final WatchViewStub stub);
 
-    public void create(final WatchViewStub stub) {
+    public void create(final Activity activity, final WatchViewStub stub) {
 
         if (mMetrics == null) {
             mMetrics = new DisplayMetrics();
@@ -131,7 +132,7 @@ public abstract class IUserInterface {
             }
         });
 
-        onCreate(stub);
+        onCreate(activity, stub);
     }
 
     public final void runOnUiThread(Runnable action) {

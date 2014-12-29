@@ -30,7 +30,7 @@ public class MenuActivity extends Activity {
 
         // ui communication
         ui = new MenuUI(stub);
-        ui.create(stub);
+        ui.create(this, stub);
         ui.setTheme(stub, IUserInterface.Theme.RANDOM);
     }
 }

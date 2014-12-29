@@ -1,14 +1,12 @@
 package com.fiftyeightmorris.nailbiter.menu;
 
-import android.content.Context;
-import android.content.Intent;
+import android.app.Activity;
 import android.support.wearable.view.WatchViewStub;
 import android.view.View;
 import android.widget.TextView;
 
 import com.fiftyeightmorris.nailbiter.IUserInterface;
 import com.fiftyeightmorris.nailbiter.R;
-import com.fiftyeightmorris.nailbiter.home.HomeActivity;
 
 public class MenuUI extends IUserInterface {
     public MenuUI(WatchViewStub stub) {
@@ -33,10 +31,7 @@ public class MenuUI extends IUserInterface {
     }
 
     @Override
-    protected void onCreate(final WatchViewStub stub) {
-
-        final Context context = stub.getContext();
-        final Intent homeIntent = new Intent(context, HomeActivity.class);
+    protected void onCreate(final Activity activity, final WatchViewStub stub) {
 
         runOnUiThread(new Runnable() {
 
@@ -45,7 +40,7 @@ public class MenuUI extends IUserInterface {
                 stub.findViewById(R.id.home_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        stub.getApp
+                        activity.finish();
                     }
                 });
             }

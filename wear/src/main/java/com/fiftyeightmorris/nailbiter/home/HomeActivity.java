@@ -71,7 +71,7 @@ public class HomeActivity extends Activity implements IMonitorEventListener {
 
         // ui communication
         ui = new HomeUI(stub);
-        ui.create(stub);
+        ui.create(this, stub);
         ui.setTheme(stub, IUserInterface.Theme.RANDOM);
 
         // get system sensor service
