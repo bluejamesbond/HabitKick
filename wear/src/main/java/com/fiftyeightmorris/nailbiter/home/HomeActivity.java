@@ -1,4 +1,4 @@
-package com.fiftyeightmorris.nailbiter;
+package com.fiftyeightmorris.nailbiter.home;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,10 +13,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fiftyeightmorris.nailbiter.alert.AlertNotificationReceiver;
+import com.fiftyeightmorris.nailbiter.IMonitorEventListener;
+import com.fiftyeightmorris.nailbiter.PositionMonitor;
+import com.fiftyeightmorris.nailbiter.R;
+
 import java.io.IOException;
 
 
-public class WearActivity extends Activity implements IMonitorEventListener {
+public class HomeActivity extends Activity implements IMonitorEventListener {
 
     public static final String PREFS_NAME = "NailBiterPrefs";
 
@@ -46,7 +51,7 @@ public class WearActivity extends Activity implements IMonitorEventListener {
     private View mCalibrateButton;
     private Button mMonitorButton;
     private CalibrateTask mCalibrateTask;
-    private UIManager ui;
+    private HomeUI ui;
 
     @Override
     public void onAttachedToWindow() {
@@ -57,15 +62,16 @@ public class WearActivity extends Activity implements IMonitorEventListener {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wear);
+
+        setContentView(R.layout.home_activity);
 
         // get context
         WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
 
         // ui communication
-        ui = new UIManager(true);
-        ui.init(stub);
-        ui.setHue(stub, UIManager.Theme.RANDOM);
+        ui = HomeUI.getInstance();
+        ui.create(stub);
+        ui.setHue(stub, HomeUI.Theme.RANDOM);
 
         // get system sensor service
         SensorManager sensorManager =
@@ -80,7 +86,7 @@ public class WearActivity extends Activity implements IMonitorEventListener {
         mPositionMonitor.setState(PositionMonitor.NO_STATE);
         mPositionMonitor.setVibratorService(mVibratorService);
 
-        // init a calibration task
+        // create a calibration task
         mCalibrateTask = new CalibrateTask(this);
 
 //        // register listeners for the buttons

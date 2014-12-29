@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Nail Biter</string>
+    <string name="app_name">HabitKick</string>
 
     <string name="today_value">250</string>
     <string name="today_label">Today</string>
