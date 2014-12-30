@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app__background"
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context=".WearActivity"
+    tools:deviceIds="wear_round">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="80"
+        android:paddingLeft="50dp"
+        android:paddingTop="50dp">
+
+        <com.fiftyeightmorris.habitkick.helper.ProximaNovaBoldTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="Welcome"
+            android:textAllCaps="true"
+            android:textColor="#44FFFFFF"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <com.fiftyeightmorris.habitkick.helper.ProximaNovaBoldTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="Open\nHabitKick on\nYour Handheld"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="78dp"
+        android:background="@drawable/calibrate_activity__midsection"
+        android:layout_marginTop="5dp">
+
+        <com.fiftyeightmorris.habitkick.helper.FontelloTextView
+            android:id="@+id/mobile_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:background="@drawable/big_button__background"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/icon_mobile"
+            android:textAllCaps="true"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</LinearLayout>

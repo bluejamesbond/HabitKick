@@ -189,7 +189,7 @@
                 android:textStyle="bold" />
 
             <com.fiftyeightmorris.habitkick.helper.FontelloTextView
-                android:id="@+id/silent_button"
+                android:id="@+id/uptime_button"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_weight="30"
@@ -197,7 +197,7 @@
                 android:clickable="true"
                 android:gravity="center_vertical|left"
                 android:paddingLeft="12dp"
-                android:text="@string/icon_silent"
+                android:text="@string/icon_info"
                 android:textAllCaps="true"
                 android:textColor="@color/sub_button__textcolor"
                 android:textSize="16dp"

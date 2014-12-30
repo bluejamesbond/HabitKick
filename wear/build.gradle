@@ -6,7 +6,7 @@ android {
     buildToolsVersion '21.1.2'
 
     defaultConfig {
-        applicationId "com.fiftyeightmorris.nailbiter"
+        applicationId "com.habitkick"
         minSdkVersion 20
         targetSdkVersion 20
         versionCode 1
