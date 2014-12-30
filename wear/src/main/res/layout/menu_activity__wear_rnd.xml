@@ -44,6 +44,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="50"
+            android:id="@+id/calibrate_button"
             android:background="@drawable/list_button__background"
             android:clickable="true">
 
@@ -75,6 +76,7 @@
             android:background="#ddffffff" />
 
         <LinearLayout
+            android:id="@+id/mobile_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="50"

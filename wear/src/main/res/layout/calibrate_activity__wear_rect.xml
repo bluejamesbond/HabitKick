@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app__background"
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context=".WearActivity"
+    tools:deviceIds="wear_round">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="40">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <com.fiftyeightmorris.nailbiter.helper.ProximaNovaSemiBoldTextView
+                android:id="@+id/position_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/detail_value"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="Position"
+                android:textAllCaps="true"
+                android:textColor="@color/universal__appcolor"
+                android:textSize="9dp"
+                android:textStyle="bold" />
+
+            <com.fiftyeightmorris.nailbiter.helper.ProximaNovaSemiBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/detail_value"
+                android:layout_alignBottom="@+id/detail_value"
+                android:layout_marginStart="-10dp"
+                android:layout_marginTop="-2dp"
+                android:layout_toEndOf="@+id/detail_value"
+                android:gravity="center"
+                android:text="/3"
+                android:textAllCaps="true"
+                android:textColor="#88ffffff"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <com.fiftyeightmorris.nailbiter.helper.ProximaNovaBoldTextView
+                android:id="@+id/detail_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/position_label"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="-5dp"
+                android:gravity="center"
+                android:paddingRight="12dp"
+                android:text="0"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="40dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="80.85"
+        android:background="@drawable/calibrate_activity__midsection"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <com.fiftyeightmorris.nailbiter.helper.ProximaNovaBoldTextView
+                android:id="@+id/start_button"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@drawable/big_button__background"
+                android:clickable="true"
+                android:gravity="center_vertical|left"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="Start"
+                android:textAllCaps="true"
+                android:textSize="21dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <com.fiftyeightmorris.nailbiter.helper.ProximaNovaSemiBoldTextView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal|top"
+            android:paddingTop="15dp"
+            android:text="Press the start button and move your hand to a point on your face. When the watch vibrates come back."
+            android:textColor="#999999"
+            android:textSize="8dp" />
+    </LinearLayout>
+</LinearLayout>

@@ -26,7 +26,7 @@ public class HomeUI extends IUserInterface {
             public void run() {
 
                 // ---
-                stub.findViewById(R.id.menu_button).setBackground(getBigButtonStateList(stub, appColor));
+                stub.findViewById(R.id.menu_button).setBackground(createBigButtonStateList(stub, appColor));
 
                 // ---
                 LayerDrawable layerDrawable = (LayerDrawable) stub.findViewById(R.id.goal_container).getBackground();
