@@ -48,6 +48,7 @@ public class PositionMonitor implements SensorEventListener {
     private IMonitorEventListener mMonitorEventListener = null;
     private SharedPreferences mSettings;
     private Vibrator mVibratorService;
+    private int mLastPos = 0;
 
     public PositionMonitor(SensorManager sensorManager, SharedPreferences settings,
                            IMonitorEventListener monitorEventListener) {
@@ -85,6 +86,22 @@ public class PositionMonitor implements SensorEventListener {
         mSensorManager.registerListener(this, mRotationVectorSensor, updateFrequency);
     }
 
+    public void resetPosition() {
+        mCurrPos = 0;
+    }
+
+    public void nextPosition() {
+        mCurrPos++;
+    }
+
+    public int getPosition() {
+        return mCurrPos;
+    }
+
+    public boolean hasNextPosition() {
+        return mCurrPos + 1 < MAX_POSITIONS && (mLastPos != mCurrPos || mLastPos == 0);
+    }
+
     @Override
     public void onSensorChanged(SensorEvent event) {
 
@@ -97,7 +114,11 @@ public class PositionMonitor implements SensorEventListener {
 
                 // store the rotation during calibration
                 if (isCalibrate()) {
-                    calculateRotation();
+                    if (mLastPos != mCurrPos || mLastPos == 0) {
+                        calculateRotation();
+                        mLastPos = mCurrPos;
+                        mMonitorEventListener.onPositionStored();
+                    }
                 } else {
                     if (isPositionReached()) {
                         if (mPositionSetTime == 0) {
@@ -177,8 +198,6 @@ public class PositionMonitor implements SensorEventListener {
         for (int i = 0; i < 3; i++) {
             mSavedOrientationMatrix[mCurrPos][i] = mSavedOrientation[i];
         }
-
-        mCurrPos++;
     }
 
     private synchronized boolean isPositionReached() {

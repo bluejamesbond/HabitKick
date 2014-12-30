@@ -20,36 +20,7 @@ import com.habitkick.alert.AlertNotificationReceiver;
 import java.io.IOException;
 
 
-public class HomeActivity extends WatchActivity<HomeUI> implements IMonitorEventListener {
-
-    public static final String PREFS_NAME = "NailBiterPrefs";
-
-    private final static int dot = 200;      // Length of a Morse Code "dot" in milliseconds
-    private final static int dash = 500;     // Length of a Morse Code "dash" in milliseconds
-    private final static int short_gap = 200;    // Length of Gap Between dots/dashes
-    private final static int medium_gap = 500;   // Length of Gap Between Letters
-    private final static int long_gap = 1000;    // Length of Gap Between Words
-    private final static long[] SOSPattern = {
-            0,  // Start immediately
-            dot, short_gap, dot, short_gap, dot,    // s
-            medium_gap,
-            dash, short_gap, dash, short_gap, dash, // o
-            medium_gap,
-            dot, short_gap, dot, short_gap, dot,    // s
-            long_gap
-    };
-    private final Context context = this;
-    // construct SOS pattern
-    private long mCalibrationDuration = 18;
-    private long mMeasurementDuration = 3;
-    private long mStartCalibrateTime;
-    private long mLastVibrateTime = 0;
-    private TextView mTextView;
-    private PositionMonitor mPositionMonitor;
-    private Vibrator mVibratorService;
-    private View mCalibrateButton;
-    private Button mMonitorButton;
-    private CalibrateTask mCalibrateTask;
+public class HomeActivity extends WatchActivity<HomeUI> {
 
     @Override
     protected HomeUI getUIInstance(WatchViewStub stub) {
@@ -58,22 +29,22 @@ public class HomeActivity extends WatchActivity<HomeUI> implements IMonitorEvent
 
     @Override
     protected void onCreate(WatchViewStub stub, HomeUI ui) {
-
-        // get system sensor service
-        SensorManager sensorManager =
-                (SensorManager) this.getSystemService(Activity.SENSOR_SERVICE);
-
-        // get system vibrator service
-        mVibratorService = (Vibrator) this.getSystemService(Activity.VIBRATOR_SERVICE);
-
-        // get the position monitor
-        mPositionMonitor = new PositionMonitor(sensorManager, getSharedPreferences(PREFS_NAME, 0), this);
-        mPositionMonitor.setMeasurementDuration(mMeasurementDuration);
-        mPositionMonitor.setState(PositionMonitor.NO_STATE);
-        mPositionMonitor.setVibratorService(mVibratorService);
-
-        // create a calibration task
-        mCalibrateTask = new CalibrateTask(this);
+//
+//        // get system sensor service
+//        SensorManager sensorManager =
+//                (SensorManager) this.getSystemService(Activity.SENSOR_SERVICE);
+//
+//        // get system vibrator service
+//        mVibratorService = (Vibrator) this.getSystemService(Activity.VIBRATOR_SERVICE);
+//
+//        // get the position monitor
+//        mPositionMonitor = new PositionMonitor(sensorManager, getSharedPreferences(PREFS_NAME, 0), this);
+//        mPositionMonitor.setMeasurementDuration(mMeasurementDuration);
+//        mPositionMonitor.setState(PositionMonitor.NO_STATE);
+//        mPositionMonitor.setVibratorService(mVibratorService);
+//
+//        // create a calibration task
+//        mCalibrateTask = new CalibrateTask(this);
 
 //        // register listeners for the buttons
 //        stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
@@ -131,71 +102,5 @@ public class HomeActivity extends WatchActivity<HomeUI> implements IMonitorEvent
     @Override
     protected int getContentViewId() {
         return R.layout.home_activity;
-    }
-
-    public void onMonitorAlert() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (System.currentTimeMillis() - mLastVibrateTime > 5000) {
-                    mVibratorService.vibrate(2000);
-                    mLastVibrateTime = System.currentTimeMillis();
-                    Intent i = new Intent();
-                    i.setAction("com.fiftyeightmorris.nailbiter.SHOW_NOTIFICATION");
-                    i.putExtra(AlertNotificationReceiver.CONTENT_KEY, getString(R.string.title));
-                    sendBroadcast(i);
-                    Toast.makeText(context, context.getString(R.string.alert_message), Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-    }
-
-    class CalibrateTask implements Runnable {
-
-        private Thread t = null;
-        private Context context = null;
-
-        public CalibrateTask(Context context) {
-            this.context = context;
-        }
-
-        public void start() throws IOException {
-            t = new Thread(this);
-            t.start();
-        }
-
-        @Override
-        public void run() {
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                // ignore
-            }
-
-            mPositionMonitor.setState(PositionMonitor.CALIBRATING_STATE);
-            mPositionMonitor.registerListeners();
-            mStartCalibrateTime = System.currentTimeMillis();
-
-            // wait for calibration to finish
-            while ((System.currentTimeMillis() - mStartCalibrateTime) < (mCalibrationDuration * 1000)) {
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    // ignore
-                }
-            }
-
-            // nofity user on calibration end
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    mPositionMonitor.unregisterListeners();
-                    mVibratorService.vibrate(500);
-                    mTextView.setText(R.string.calibrate_finished);
-                    Toast.makeText(context, context.getString(R.string.calibrate_finished), Toast.LENGTH_LONG).show();
-                }
-            });
-        }
     }
 }

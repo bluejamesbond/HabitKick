@@ -1,8 +1,55 @@
 package com.habitkick.shared;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 
 public class Utils {
+
+    public static final String PREFERENCE_NAME = "HabitKickPrefs";
+
+    public static <T> void putStore(Context context, String key, T value) {
+        SharedPreferences.Editor editor = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE).edit();
+
+        if (value == null) {
+            editor.putString(key, "");
+        } else if (value instanceof Integer) {
+            editor.putInt(key, (Integer) value);
+        } else if (value instanceof String) {
+            editor.putString(key, (String) value);
+        } else if (value instanceof Boolean) {
+            editor.putBoolean(key, (Boolean) value);
+        } else if (value instanceof Long) {
+            editor.putLong(key, (Long) value);
+        }
+
+        editor.apply();
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> T getStore(Context context, String key, T def) {
+
+        SharedPreferences editor = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+
+        if (def == null) {
+            String str = editor.getString(key, "");
+            return str == null ? null : (T) str;
+        } else if (def instanceof Integer) {
+            Integer str = editor.getInt(key, (Integer) def);
+            return (T) (str);
+        } else if (def instanceof String) {
+            String str = editor.getString(key, (String) def);
+            return str == null ? null : (T) (str);
+        } else if (def instanceof Boolean) {
+            Boolean str = editor.getBoolean(key, (Boolean) def);
+            return (T) (str);
+        } else if (def instanceof Long) {
+            Long str = editor.getLong(key, (Long) def);
+            return (T) (str);
+        }
+
+        return null;
+    }
 
     @SuppressWarnings("unused")
     public static int shiftHue(int color, float shift) {

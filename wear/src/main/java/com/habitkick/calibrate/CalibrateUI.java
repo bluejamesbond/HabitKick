@@ -37,4 +37,13 @@ public class CalibrateUI extends WatchUI {
     @Override
     protected void onCreate(final SocketActivity activity, final View stub) {
     }
+
+    protected void setPosition(final int position){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ((TextView) getRoot().findViewById(R.id.position_value)).setText(Integer.toString(position));
+            }
+        });
+    }
 }

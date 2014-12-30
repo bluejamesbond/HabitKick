@@ -23,7 +23,7 @@
                 android:id="@+id/position_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/detail_value"
+                android:layout_below="@+id/position_value"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
                 android:text="Position"
@@ -33,7 +33,7 @@
                 android:textStyle="bold" />
 
             <com.habitkick.shared.ProximaNovaBoldTextView
-                android:id="@+id/detail_value"
+                android:id="@+id/position_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"

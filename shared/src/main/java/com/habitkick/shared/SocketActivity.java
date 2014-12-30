@@ -17,10 +17,12 @@ import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
+import java.net.Socket;
+
 /**
  * Created by Mathew on 12/30/2014.
  */
-public abstract class SocketActivity extends Activity implements
+public abstract class SocketActivity extends ReferencedActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
@@ -58,6 +60,9 @@ public abstract class SocketActivity extends Activity implements
         new SendMessage("/message_path", message).start();
     }
 
+    public static SocketActivity getActive(Context context){
+        return (SocketActivity) ReferencedActivity.getActive(context);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,8 +93,8 @@ public abstract class SocketActivity extends Activity implements
         @Override
         public void onReceive(Context context, Intent intent) {
             String message = intent.getStringExtra("message");
-            onMessageReceived(0, message);
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+            onMessageReceived(message.hashCode(), message);
+            Toast.makeText(context, "[0x" + Integer.toHexString(message.hashCode()) + "]\n" + message, Toast.LENGTH_SHORT).show();
         }
     }
 

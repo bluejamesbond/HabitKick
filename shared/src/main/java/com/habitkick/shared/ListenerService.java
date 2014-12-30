@@ -1,6 +1,7 @@
 package com.habitkick.shared;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 
 import com.google.android.gms.wearable.MessageEvent;
@@ -12,7 +13,30 @@ public abstract class ListenerService extends WearableListenerService {
     public static final String OPEN_HOME_ACTIVITY_MSG = "OpenHome";
 
     public static final int OPEN_CALIBRATION_ID = 0x95f964bf;
-    public static final String OPEN_CALIBRATION = "OpenCalibrationWear";
+    public static final String OPEN_CALIBRATION_MSG = "OpenCalibrationWear";
+
+    public static final int START_CALIBRATION_SERVICE_ID = 0xe13e64ec;
+    public static final String START_CALIBRATION_SERVICE_MSG = "StartCalibrationPos";
+
+    public static final int NEXT_CALIBRATION_POSITION_ID = 0x916bcdfd;
+    public static final String NEXT_CALIBRATION_POSITION_MSG = "NextCalibrationPos";
+
+    public static final int FINISH_CALIBRATION_SERVICE_ID = 0x794fef9d;
+    public static final String FINISH_CALIBRATION_SERVICE_MSG = "FinishCalibrationPos";
+
+    public static final int STORED_CALIBRATION_POSITION_ID = 0xeffceaad;
+    public static final String STORED_CALIBRATION_POSITION_MSG = "StoredCalibrationPos";
+
+    private Handler mHandler;
+
+    public ListenerService(){
+        super();
+        mHandler = new Handler();
+    }
+
+    public final void runOnUiThread(Runnable action) {
+        mHandler.post(action);
+    }
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
@@ -26,7 +50,6 @@ public abstract class ListenerService extends WearableListenerService {
             Intent messageIntent = new Intent();
             messageIntent.setAction(Intent.ACTION_SEND);
             messageIntent.putExtra("message", message);
-            messageIntent.putExtra("id", id);
             LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
         } else {
             super.onMessageReceived(messageEvent);

@@ -26,20 +26,24 @@ public abstract class UI {
     private final boolean mBackground;
     private volatile List<Runnable> mPreInflation;
     private volatile boolean mInflated;
-    private View mRoot;
+    protected View mRoot;
 
     public UI(View view) {
         mHue = 0;
         mRoot = view;
-        mInflated = mRoot == null || !(mRoot instanceof WatchViewStub);
+        mInflated = !(mRoot instanceof WatchViewStub);
         mHandler = new Handler();
         mPreInflation = new ArrayList<>();
         mBackground = view.getResources().getBoolean(R.bool.app_background__enabled);
     }
 
-    public final void destroy(Activity activity) {
+    public void destroy(Activity activity) {
         onDestroy(activity, mRoot);
         mRoot = null;
+    }
+
+    protected View getRoot(){
+        return mRoot;
     }
 
     public abstract void onDestroy(final Activity activity, final View stub);
@@ -56,26 +60,28 @@ public abstract class UI {
         final Drawable bgDrawable;
         final int bgId = getBackgroundId();
 
-        if (mBackground && getBackgroundId() != NO_BACKGROUND) {
-            float bgCenterX = mRoot.getResources().getFraction(R.fraction.app__background_centerx, 1, 1);
-            float bgCenterY = mRoot.getResources().getFraction(R.fraction.app__background_centery, 1, 1);
-            float bgGradientRadius = mRoot.getResources().getFraction(R.fraction.app__background_radius, 1, 1) * mMetrics.widthPixels;
+        if(getBackgroundId() != NO_BACKGROUND) {
+            if (mBackground) {
+                float bgCenterX = mRoot.getResources().getFraction(R.fraction.app__background_centerx, 1, 1);
+                float bgCenterY = mRoot.getResources().getFraction(R.fraction.app__background_centery, 1, 1);
+                float bgGradientRadius = mRoot.getResources().getFraction(R.fraction.app__background_radius, 1, 1) * mMetrics.widthPixels;
 
-            GradientDrawable bgGradientDrawable = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{bgStartColor, bgCenterColor, bgEndColor});
-            bgGradientDrawable.setGradientType(GradientDrawable.RADIAL_GRADIENT);
-            bgGradientDrawable.setGradientRadius(bgGradientRadius);
-            bgGradientDrawable.setGradientCenter(bgCenterX, bgCenterY);
-            bgDrawable = bgGradientDrawable;
-        } else {
-            bgDrawable = new ColorDrawable(mRoot.getResources().getColor(R.color.dark_grey));
-        }
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mRoot.findViewById(bgId).setBackground(bgDrawable);
+                GradientDrawable bgGradientDrawable = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{bgStartColor, bgCenterColor, bgEndColor});
+                bgGradientDrawable.setGradientType(GradientDrawable.RADIAL_GRADIENT);
+                bgGradientDrawable.setGradientRadius(bgGradientRadius);
+                bgGradientDrawable.setGradientCenter(bgCenterX, bgCenterY);
+                bgDrawable = bgGradientDrawable;
+            } else {
+                bgDrawable = new ColorDrawable(mRoot.getResources().getColor(R.color.dark_grey));
             }
-        });
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mRoot.findViewById(bgId).setBackground(bgDrawable);
+                }
+            });
+        }
 
         onThemeChange(mRoot, appColor, theme);
     }

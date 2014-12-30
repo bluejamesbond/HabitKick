@@ -2,8 +2,9 @@ package com.habitkick.home;
 
 import com.habitkick.MobileActivity;
 import com.habitkick.R;
+import com.habitkick.shared.ListenerService;
 
-public class HomeActivity extends MobileActivity {
+public class HomeActivity extends MobileActivity<HomeUI> {
 
     @Override
     protected void onCreate() {
@@ -11,7 +12,21 @@ public class HomeActivity extends MobileActivity {
     }
 
     @Override
+    protected HomeUI getUIInstance() {
+        return new HomeUI(findViewById(R.id.bg));
+    }
+
+    @Override
     protected int getContentViewId() {
         return R.layout.home_activity;
+    }
+
+    @Override
+    protected void onMessageReceived(int id, String message) {
+        switch (id){
+            case ListenerService.STORED_CALIBRATION_POSITION_ID : {
+                getUI().setCalibrationButtonEnabled(this, true);
+            }
+        }
     }
 }

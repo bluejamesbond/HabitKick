@@ -1,27 +1,21 @@
 package com.habitkick.home;
 
 import android.app.Activity;
-import android.support.wearable.view.WatchViewStub;
 import android.view.View;
 
+import com.habitkick.MobileUI;
 import com.habitkick.R;
 import com.habitkick.shared.ListenerService;
 import com.habitkick.shared.SocketActivity;
-import com.habitkick.shared.UI;
 
-public class HomeUI extends UI {
+public class HomeUI extends MobileUI {
 
-    public HomeUI(WatchViewStub stub) {
-        super(stub);
+    public HomeUI(View v) {
+        super(v);
     }
 
     @Override
     public void onDestroy(Activity activity, View stub) {
-    }
-
-    @Override
-    protected int getBackgroundId() {
-        return UI.NO_BACKGROUND;
     }
 
     @Override
@@ -37,9 +31,27 @@ public class HomeUI extends UI {
                 activity.findViewById(R.id.calibrate_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        activity.sendMessage(ListenerService.OPEN_CALIBRATION);
+                        activity.sendMessage(ListenerService.OPEN_CALIBRATION_MSG);
+                        activity.sendMessage(ListenerService.START_CALIBRATION_SERVICE_MSG);
                     }
                 });
+
+                activity.findViewById(R.id.calibrate_next_button).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        activity.sendMessage(ListenerService.NEXT_CALIBRATION_POSITION_MSG);
+                        setCalibrationButtonEnabled(activity, false);
+                    }
+                });
+            }
+        });
+    }
+
+    public void setCalibrationButtonEnabled(final Activity activity, final boolean enable){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                activity.findViewById(R.id.calibrate_button).setEnabled(enable);
             }
         });
     }

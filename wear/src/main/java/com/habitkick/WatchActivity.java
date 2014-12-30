@@ -5,12 +5,17 @@ import android.support.wearable.view.WatchViewStub;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.habitkick.shared.SocketActivity;
+import com.habitkick.shared.Theme;
 
-public abstract class WatchActivity<T extends UI> extends SocketActivity implements
+public abstract class WatchActivity<T extends WatchUI> extends SocketActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
     private T mUi;
+
+    protected T getUI(){
+        return mUi;
+    }
 
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
@@ -21,7 +26,7 @@ public abstract class WatchActivity<T extends UI> extends SocketActivity impleme
 
         mUi = getUIInstance(stub);
         mUi.create(this);
-        mUi.setTheme(UI.Theme.RANDOM);
+        mUi.setTheme(Theme.RANDOM);
 
         onCreate(stub, mUi);
     }
