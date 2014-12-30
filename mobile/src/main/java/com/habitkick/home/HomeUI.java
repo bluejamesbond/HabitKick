@@ -40,18 +40,18 @@ public class HomeUI extends MobileUI {
                     @Override
                     public void onClick(View v) {
                         activity.sendMessage(ListenerService.NEXT_CALIBRATION_POSITION_MSG);
-                        setCalibrationButtonEnabled(activity, false);
+                        setNextPositionEnabled(activity, false);
                     }
                 });
             }
         });
     }
 
-    public void setCalibrationButtonEnabled(final Activity activity, final boolean enable){
+    public void setNextPositionEnabled(final Activity activity, final boolean enable){
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                activity.findViewById(R.id.calibrate_button).setEnabled(enable);
+                activity.findViewById(R.id.calibrate_next_button).setEnabled(enable);
             }
         });
     }

@@ -3,6 +3,7 @@ package com.habitkick.shared;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 
 public class Utils {
 
@@ -94,6 +95,23 @@ public class Utils {
         }
 
         return Color.argb(A, R, G, B);
+    }
+
+    public static boolean isEmulator() {
+        boolean result =//
+                Build.FINGERPRINT.startsWith("generic")//
+                        || Build.FINGERPRINT.startsWith("unknown")//
+                        || Build.MODEL.contains("google_sdk")//
+                        || Build.MODEL.contains("Emulator")//
+                        || Build.MODEL.contains("Android SDK built for x86")
+                        || Build.MANUFACTURER.contains("Genymotion");
+        if (result)
+            return true;
+        result |= Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic");
+        if (result)
+            return true;
+        result |= "google_sdk".equals(Build.PRODUCT);
+        return result;
     }
 
 }

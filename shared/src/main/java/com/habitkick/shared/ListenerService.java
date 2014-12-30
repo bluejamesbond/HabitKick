@@ -21,8 +21,8 @@ public abstract class ListenerService extends WearableListenerService {
     public static final int NEXT_CALIBRATION_POSITION_ID = 0x916bcdfd;
     public static final String NEXT_CALIBRATION_POSITION_MSG = "NextCalibrationPos";
 
-    public static final int FINISH_CALIBRATION_SERVICE_ID = 0x794fef9d;
-    public static final String FINISH_CALIBRATION_SERVICE_MSG = "FinishCalibrationPos";
+    public static final int FINISHED_CALIBRATION_SERVICE_ID = 0x794fef9d;
+    public static final String FINISHED_CALIBRATION_SERVICE_MSG = "FinishCalibrationPos";
 
     public static final int STORED_CALIBRATION_POSITION_ID = 0xeffceaad;
     public static final String STORED_CALIBRATION_POSITION_MSG = "StoredCalibrationPos";

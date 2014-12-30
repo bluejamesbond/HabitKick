@@ -40,7 +40,7 @@ public class MonitorService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPositionMonitor.unregisterListeners();
+        mPositionMonitor.unregisterListeners(true);
         if (timer != null) {
             timer.cancel();
         }

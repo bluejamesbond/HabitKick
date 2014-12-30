@@ -12,6 +12,8 @@ import android.hardware.SensorManager;
 import android.os.Vibrator;
 import android.util.Log;
 
+import com.habitkick.shared.Utils;
+
 /**
  * Created by dmitriyblok on 10/12/14.
  */
@@ -49,6 +51,7 @@ public class PositionMonitor implements SensorEventListener {
     private SharedPreferences mSettings;
     private Vibrator mVibratorService;
     private int mLastPos = 0;
+    private boolean mRegistered;
 
     public PositionMonitor(SensorManager sensorManager, SharedPreferences settings,
                            IMonitorEventListener monitorEventListener) {
@@ -59,15 +62,21 @@ public class PositionMonitor implements SensorEventListener {
                 Sensor.TYPE_ROTATION_VECTOR);
     }
 
-    public void unregisterListeners() {
+    public void unregisterListeners(boolean save) {
         mSensorManager.unregisterListener(this);
-        if (isCalibrate()) {
+        if (isCalibrate() && save) {
             saveRotationMatrix();
         }
+        mRegistered = false;
+    }
+
+    public boolean isRegistered() {
+        return mRegistered;
     }
 
     public void registerListeners() {
 
+        mRegistered = true;
         mCurrPos = 0;
 
         if (isCalibrate()) {
@@ -91,7 +100,10 @@ public class PositionMonitor implements SensorEventListener {
     }
 
     public void nextPosition() {
-        mCurrPos++;
+        mCurrPos += 10;
+        if (Utils.isEmulator()) {
+            mMonitorEventListener.onPositionStored(mCurrPos, mCurrPos == MAX_POSITIONS);
+        }
     }
 
     public int getPosition() {
@@ -99,7 +111,7 @@ public class PositionMonitor implements SensorEventListener {
     }
 
     public boolean hasNextPosition() {
-        return mCurrPos + 1 < MAX_POSITIONS && (mLastPos != mCurrPos || mLastPos == 0);
+        return mCurrPos + 10 <= MAX_POSITIONS && (mLastPos != mCurrPos || mLastPos == 0);
     }
 
     @Override
@@ -117,7 +129,10 @@ public class PositionMonitor implements SensorEventListener {
                     if (mLastPos != mCurrPos || mLastPos == 0) {
                         calculateRotation();
                         mLastPos = mCurrPos;
-                        mMonitorEventListener.onPositionStored();
+
+                        if (mCurrPos % 10 == 0) {
+                            mMonitorEventListener.onPositionStored(mCurrPos, mCurrPos == MAX_POSITIONS);
+                        }
                     }
                 } else {
                     if (isPositionReached()) {
