@@ -21,12 +21,11 @@ import java.util.List;
 public abstract class IUserInterface {
 
     protected static DisplayMetrics mMetrics = null;
+    protected static float mHue;
     private final Handler mHandler;
+    private final boolean mBackground;
     private volatile List<Runnable> mPreInflation;
     private volatile boolean mInflated;
-    protected static float mHue;
-
-    private final boolean mBackground;
 
     public IUserInterface(WatchViewStub stub) {
         mHue = 0;
@@ -34,19 +33,6 @@ public abstract class IUserInterface {
         mHandler = new Handler();
         mPreInflation = new ArrayList<>();
         mBackground = stub.getResources().getBoolean(R.bool.app_background__enabled);
-    }
-
-    @SuppressWarnings("unused")
-    public static class Theme {
-        public static final float RED = 160f;
-        public static final float YELLOW = 230f;
-        public static final float ORANGE = 210f;
-        public static final float GREEN = 270f;
-        public static final float CYAN = 0f;
-        public static final float BLUE = 12f;
-        public static final float PURPLE = 100f;
-        public static final float PINK = 120f;
-        public static final float RANDOM = (float) (Math.random() * 360f);
     }
 
     public void setTheme(final WatchViewStub stub, float theme) {
@@ -84,7 +70,7 @@ public abstract class IUserInterface {
         onThemeChange(stub, appColor, theme);
     }
 
-    protected StateListDrawable getBigButtonStateList(WatchViewStub stub, final int appColor) {
+    protected StateListDrawable createBigButtonStateList(WatchViewStub stub, final int appColor) {
 
         StateListDrawable stateListDrawable;
         LayerDrawable layerDrawable;
@@ -151,5 +137,18 @@ public abstract class IUserInterface {
                 }
             }
         }
+    }
+
+    @SuppressWarnings("unused")
+    public static class Theme {
+        public static final float RED = 160f;
+        public static final float YELLOW = 230f;
+        public static final float ORANGE = 210f;
+        public static final float GREEN = 270f;
+        public static final float CYAN = 0f;
+        public static final float BLUE = 12f;
+        public static final float PURPLE = 100f;
+        public static final float PINK = 120f;
+        public static final float RANDOM = (float) (Math.random() * 360f);
     }
 }

@@ -13,11 +13,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fiftyeightmorris.nailbiter.alert.AlertNotificationReceiver;
 import com.fiftyeightmorris.nailbiter.IMonitorEventListener;
+import com.fiftyeightmorris.nailbiter.IUserInterface;
 import com.fiftyeightmorris.nailbiter.PositionMonitor;
 import com.fiftyeightmorris.nailbiter.R;
-import com.fiftyeightmorris.nailbiter.IUserInterface;
+import com.fiftyeightmorris.nailbiter.alert.AlertNotificationReceiver;
 
 import java.io.IOException;
 
