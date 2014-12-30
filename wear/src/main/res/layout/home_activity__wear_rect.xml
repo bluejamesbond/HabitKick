@@ -13,7 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="40">
+        android:layout_weight="50">
 
         <com.fiftyeightmorris.nailbiter.helper.ProximaNovaSemiBoldTextView
             android:id="@+id/today_value"
@@ -70,9 +70,8 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-10dp"
-        android:layout_weight="30"
-        android:background="@drawable/home_activity__midsection_round"
+        android:layout_weight="50"
+        android:background="@drawable/home_activity__midsection_square"
         android:orientation="vertical">
 
         <LinearLayout
@@ -138,7 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="45"
+                android:layout_weight="40"
                 android:weightSum="100">
 
                 <LinearLayout
@@ -178,7 +177,7 @@
                 android:id="@+id/lasttime_button"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_weight="25"
+                android:layout_weight="30"
                 android:background="@drawable/sub_button_rborder__background"
                 android:clickable="true"
                 android:gravity="center_vertical|center"
@@ -195,8 +194,7 @@
                 android:layout_weight="30"
                 android:background="@drawable/sub_button__background"
                 android:clickable="true"
-                android:gravity="center_vertical|left"
-                android:paddingLeft="12dp"
+                android:gravity="center_vertical|center"
                 android:text="@string/icon_silent"
                 android:textAllCaps="true"
                 android:textColor="@color/sub_button__textcolor"
