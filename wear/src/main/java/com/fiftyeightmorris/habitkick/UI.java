@@ -1,4 +1,4 @@
-package com.fiftyeightmorris.nailbiter;
+package com.fiftyeightmorris.habitkick;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,12 +13,12 @@ import android.support.wearable.view.WatchViewStub;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import com.fiftyeightmorris.nailbiter.helper.Utils;
+import com.fiftyeightmorris.habitkick.helper.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class IUserInterface {
+public abstract class UI {
 
     protected static DisplayMetrics mMetrics = null;
     protected static float mHue;
@@ -26,30 +26,39 @@ public abstract class IUserInterface {
     private final boolean mBackground;
     private volatile List<Runnable> mPreInflation;
     private volatile boolean mInflated;
+    private WatchViewStub mStub;
 
-    public IUserInterface(WatchViewStub stub) {
+    public UI(WatchViewStub stub) {
         mHue = 0;
+        mStub = stub;
         mInflated = false;
         mHandler = new Handler();
         mPreInflation = new ArrayList<>();
         mBackground = stub.getResources().getBoolean(R.bool.app_background__enabled);
     }
 
-    public void setTheme(final WatchViewStub stub, float theme) {
+    public final void destroy(Activity activity) {
+        onDestroy(activity, mStub);
+        mStub = null;
+    }
+
+    public abstract void onDestroy(final Activity activity, final WatchViewStub stub);
+
+    public final void setTheme(float theme) {
 
         mHue = theme;
 
-        int appColor = Utils.shiftHue(stub.getResources().getColor(R.color.universal__appcolor), theme);
-        int bgStartColor = Utils.shiftHue(stub.getResources().getColor(R.color.app__background_startcolor), theme);
-        int bgCenterColor = Utils.shiftHue(stub.getResources().getColor(R.color.app__background_centercolor), theme);
-        int bgEndColor = Utils.shiftHue(stub.getResources().getColor(R.color.app__background_endcolor), theme);
+        int appColor = Utils.shiftHue(mStub.getResources().getColor(R.color.universal__appcolor), theme);
+        int bgStartColor = Utils.shiftHue(mStub.getResources().getColor(R.color.app__background_startcolor), theme);
+        int bgCenterColor = Utils.shiftHue(mStub.getResources().getColor(R.color.app__background_centercolor), theme);
+        int bgEndColor = Utils.shiftHue(mStub.getResources().getColor(R.color.app__background_endcolor), theme);
 
         final Drawable bgDrawable;
 
         if (mBackground) {
-            float bgCenterX = stub.getResources().getFraction(R.fraction.app__background_centerx, 1, 1);
-            float bgCenterY = stub.getResources().getFraction(R.fraction.app__background_centery, 1, 1);
-            float bgGradientRadius = stub.getResources().getFraction(R.fraction.app__background_radius, 1, 1) * mMetrics.widthPixels;
+            float bgCenterX = mStub.getResources().getFraction(R.fraction.app__background_centerx, 1, 1);
+            float bgCenterY = mStub.getResources().getFraction(R.fraction.app__background_centery, 1, 1);
+            float bgGradientRadius = mStub.getResources().getFraction(R.fraction.app__background_radius, 1, 1) * mMetrics.widthPixels;
 
             GradientDrawable bgGradientDrawable = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{bgStartColor, bgCenterColor, bgEndColor});
             bgGradientDrawable.setGradientType(GradientDrawable.RADIAL_GRADIENT);
@@ -57,20 +66,20 @@ public abstract class IUserInterface {
             bgGradientDrawable.setGradientCenter(bgCenterX, bgCenterY);
             bgDrawable = bgGradientDrawable;
         } else {
-            bgDrawable = new ColorDrawable(stub.getResources().getColor(R.color.dark_grey));
+            bgDrawable = new ColorDrawable(mStub.getResources().getColor(R.color.dark_grey));
         }
 
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                stub.findViewById(R.id.bg).setBackground(bgDrawable);
+                mStub.findViewById(R.id.bg).setBackground(bgDrawable);
             }
         });
 
-        onThemeChange(stub, appColor, theme);
+        onThemeChange(mStub, appColor, theme);
     }
 
-    protected StateListDrawable createBigButtonStateList(WatchViewStub stub, final int appColor) {
+    protected StateListDrawable createBigButtonStateList(final int appColor) {
 
         StateListDrawable stateListDrawable;
         LayerDrawable layerDrawable;
@@ -79,12 +88,12 @@ public abstract class IUserInterface {
         // ---
         stateListDrawable = new StateListDrawable();
 
-        layerDrawable = (LayerDrawable) stub.getResources().getDrawable(R.drawable.big_button__background_pressed);
+        layerDrawable = (LayerDrawable) mStub.getResources().getDrawable(R.drawable.big_button__background_pressed);
         gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(R.id.big_button__background_pressed_backgrounditem);
         gradientDrawable.setColor(appColor);
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, layerDrawable);
 
-        layerDrawable = (LayerDrawable) stub.getResources().getDrawable(R.drawable.big_button__background_default);
+        layerDrawable = (LayerDrawable) mStub.getResources().getDrawable(R.drawable.big_button__background_default);
         gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(R.id.big_button__background_default_backgrounditem);
         gradientDrawable.setColor(appColor);
         stateListDrawable.addState(new int[]{}, layerDrawable);
@@ -96,19 +105,19 @@ public abstract class IUserInterface {
 
     protected abstract void onCreate(final Activity activity, final WatchViewStub stub);
 
-    public void create(final Activity activity, final WatchViewStub stub) {
+    public final void create(final Activity activity) {
 
         if (mMetrics == null) {
             mMetrics = new DisplayMetrics();
-            WindowManager windowManager = (WindowManager) stub.getContext().getSystemService(Context.WINDOW_SERVICE);
+            WindowManager windowManager = (WindowManager) mStub.getContext().getSystemService(Context.WINDOW_SERVICE);
             windowManager.getDefaultDisplay().getMetrics(mMetrics);
         }
 
-        stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
+        mStub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
                 mInflated = true;
-                synchronized (IUserInterface.this) {
+                synchronized (UI.this) {
                     for (Runnable action : mPreInflation) {
                         action.run();
                     }
@@ -118,7 +127,7 @@ public abstract class IUserInterface {
             }
         });
 
-        onCreate(activity, stub);
+        onCreate(activity, mStub);
     }
 
     public final void runOnUiThread(Runnable action) {

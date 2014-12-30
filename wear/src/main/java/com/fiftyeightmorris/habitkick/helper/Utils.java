@@ -1,4 +1,4 @@
-package com.fiftyeightmorris.nailbiter.helper;
+package com.fiftyeightmorris.habitkick.helper;
 
 import android.graphics.Color;
 

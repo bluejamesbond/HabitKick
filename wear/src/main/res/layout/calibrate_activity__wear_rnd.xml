@@ -19,7 +19,7 @@
             android:layout_width="fill_parent"
             android:layout_height="70dp">
 
-            <com.fiftyeightmorris.nailbiter.helper.ProximaNovaSemiBoldTextView
+            <com.fiftyeightmorris.habitkick.helper.ProximaNovaSemiBoldTextView
                 android:id="@+id/position_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
                 android:textSize="9dp"
                 android:textStyle="bold" />
 
-            <com.fiftyeightmorris.nailbiter.helper.ProximaNovaSemiBoldTextView
+            <com.fiftyeightmorris.habitkick.helper.ProximaNovaSemiBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/detail_value"
@@ -47,7 +47,7 @@
                 android:textSize="12dp"
                 android:textStyle="bold" />
 
-            <com.fiftyeightmorris.nailbiter.helper.ProximaNovaBoldTextView
+            <com.fiftyeightmorris.habitkick.helper.ProximaNovaBoldTextView
                 android:id="@+id/detail_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
         android:background="@drawable/calibrate_activity__midsection"
         android:layout_marginTop="5dp">
 
-        <com.fiftyeightmorris.nailbiter.helper.ProximaNovaSemiBoldTextView
+        <com.fiftyeightmorris.habitkick.helper.ProximaNovaSemiBoldTextView
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -84,7 +84,7 @@
             android:textColor="#999999"
             android:textSize="8dp" />
 
-        <com.fiftyeightmorris.nailbiter.helper.ProximaNovaBoldTextView
+        <com.fiftyeightmorris.habitkick.helper.ProximaNovaBoldTextView
             android:id="@+id/start_button"
             android:layout_width="130dp"
             android:layout_height="50dp"

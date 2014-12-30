@@ -2,14 +2,14 @@
  * Copyright (c) 2014. 58 Morris LLC All rights reserved
  */
 
-package com.fiftyeightmorris.nailbiter.alert;
+package com.fiftyeightmorris.habitkick.alert;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.fiftyeightmorris.nailbiter.R;
+import com.fiftyeightmorris.habitkick.R;
 
 
 public class AlertActivity extends Activity {
