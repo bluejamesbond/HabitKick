@@ -54,8 +54,8 @@ public abstract class SocketActivity extends Activity implements
         super.onStop();
     }
 
-    protected void sendMessage(int id, String message) {
-        new SendMessage("/message_path", id, message).start();
+    public void sendMessage(String message) {
+        new SendMessage("/message_path", message).start();
     }
 
 
@@ -100,9 +100,8 @@ public abstract class SocketActivity extends Activity implements
         int id;
 
         // Constructor to send a message to the data layer
-        SendMessage(String p, int i, String msg) {
+        SendMessage(String p, String msg) {
             path = p;
-            id = i;
             message = msg;
         }
 

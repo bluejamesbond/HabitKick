@@ -1,14 +1,17 @@
-package com.habitkick;
+package com.habitkick.home;
+
+import com.habitkick.MobileActivity;
+import com.habitkick.R;
 
 public class HomeActivity extends MobileActivity {
 
     @Override
     protected void onCreate() {
-        sendMessage(0, "App opened");
+        sendMessage("App opened");
     }
 
     @Override
     protected int getContentViewId() {
-        return R.layout.activity_main;
+        return R.layout.home_activity;
     }
 }

@@ -10,21 +10,22 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.habitkick.R;
-import com.habitkick.UI;
+import com.habitkick.WatchUI;
 import com.habitkick.menu.MenuActivity;
+import com.habitkick.shared.SocketActivity;
 
-public class HomeUI extends UI {
+public class HomeUI extends WatchUI {
 
     public HomeUI(WatchViewStub stub) {
         super(stub);
     }
 
     @Override
-    public void onDestroy(Activity activity, WatchViewStub stub) {
+    public void onDestroy(Activity activity, View stub) {
     }
 
     @Override
-    protected void onThemeChange(final WatchViewStub stub, final int appColor, final float hue) {
+    protected void onThemeChange(final View stub, final int appColor, final float hue) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -44,7 +45,7 @@ public class HomeUI extends UI {
         });
     }
 
-    protected void onCreate(final Activity activity, final WatchViewStub stub) {
+    protected void onCreate(final SocketActivity activity, final View stub) {
 
         final Context context = stub.getContext();
         final Intent menuIntent = new Intent(context, MenuActivity.class);

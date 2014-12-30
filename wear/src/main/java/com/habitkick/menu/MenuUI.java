@@ -8,22 +8,23 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.habitkick.R;
-import com.habitkick.UI;
+import com.habitkick.WatchUI;
 import com.habitkick.calibrate.CalibrateActivity;
+import com.habitkick.shared.SocketActivity;
 
-public class MenuUI extends UI {
+public class MenuUI extends WatchUI {
 
     public MenuUI(WatchViewStub stub) {
         super(stub);
     }
 
     @Override
-    public void onDestroy(Activity activity, WatchViewStub stub) {
+    public void onDestroy(Activity activity, View stub) {
 
     }
 
     @Override
-    protected void onThemeChange(final WatchViewStub stub, final int appColor, float hue) {
+    protected void onThemeChange(final View stub, final int appColor, float hue) {
 
         runOnUiThread(new Runnable() {
             @Override
@@ -40,7 +41,7 @@ public class MenuUI extends UI {
     }
 
     @Override
-    protected void onCreate(final Activity activity, final WatchViewStub stub) {
+    protected void onCreate(final SocketActivity activity, final View stub) {
 
         final Context context = stub.getContext();
         final Intent calibrateIntent = new Intent(context, CalibrateActivity.class);

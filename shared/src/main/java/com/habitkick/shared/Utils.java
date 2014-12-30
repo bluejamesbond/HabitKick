@@ -1,4 +1,4 @@
-package com.habitkick.helper;
+package com.habitkick.shared;
 
 import android.graphics.Color;
 

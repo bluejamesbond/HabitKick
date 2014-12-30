@@ -1,4 +1,4 @@
-package com.habitkick;
+package com.habitkick.shared;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,54 +11,55 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.wearable.view.WatchViewStub;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.WindowManager;
-
-import com.habitkick.helper.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class UI {
 
+    public static final int NO_BACKGROUND = -1;
     protected static DisplayMetrics mMetrics = null;
     protected static float mHue;
     private final Handler mHandler;
     private final boolean mBackground;
     private volatile List<Runnable> mPreInflation;
     private volatile boolean mInflated;
-    private WatchViewStub mStub;
+    private View mRoot;
 
-    public UI(WatchViewStub stub) {
+    public UI(View view) {
         mHue = 0;
-        mStub = stub;
-        mInflated = false;
+        mRoot = view;
+        mInflated = mRoot == null || !(mRoot instanceof WatchViewStub);
         mHandler = new Handler();
         mPreInflation = new ArrayList<>();
-        mBackground = stub.getResources().getBoolean(R.bool.app_background__enabled);
+        mBackground = view.getResources().getBoolean(R.bool.app_background__enabled);
     }
 
     public final void destroy(Activity activity) {
-        onDestroy(activity, mStub);
-        mStub = null;
+        onDestroy(activity, mRoot);
+        mRoot = null;
     }
 
-    public abstract void onDestroy(final Activity activity, final WatchViewStub stub);
+    public abstract void onDestroy(final Activity activity, final View stub);
 
     public final void setTheme(float theme) {
 
         mHue = theme;
 
-        int appColor = Utils.shiftHue(mStub.getResources().getColor(R.color.universal__appcolor), theme);
-        int bgStartColor = Utils.shiftHue(mStub.getResources().getColor(R.color.app__background_startcolor), theme);
-        int bgCenterColor = Utils.shiftHue(mStub.getResources().getColor(R.color.app__background_centercolor), theme);
-        int bgEndColor = Utils.shiftHue(mStub.getResources().getColor(R.color.app__background_endcolor), theme);
+        int appColor = Utils.shiftHue(mRoot.getResources().getColor(R.color.universal__appcolor), theme);
+        int bgStartColor = Utils.shiftHue(mRoot.getResources().getColor(R.color.app__background_startcolor), theme);
+        int bgCenterColor = Utils.shiftHue(mRoot.getResources().getColor(R.color.app__background_centercolor), theme);
+        int bgEndColor = Utils.shiftHue(mRoot.getResources().getColor(R.color.app__background_endcolor), theme);
 
         final Drawable bgDrawable;
+        final int bgId = getBackgroundId();
 
-        if (mBackground) {
-            float bgCenterX = mStub.getResources().getFraction(R.fraction.app__background_centerx, 1, 1);
-            float bgCenterY = mStub.getResources().getFraction(R.fraction.app__background_centery, 1, 1);
-            float bgGradientRadius = mStub.getResources().getFraction(R.fraction.app__background_radius, 1, 1) * mMetrics.widthPixels;
+        if (mBackground && getBackgroundId() != NO_BACKGROUND) {
+            float bgCenterX = mRoot.getResources().getFraction(R.fraction.app__background_centerx, 1, 1);
+            float bgCenterY = mRoot.getResources().getFraction(R.fraction.app__background_centery, 1, 1);
+            float bgGradientRadius = mRoot.getResources().getFraction(R.fraction.app__background_radius, 1, 1) * mMetrics.widthPixels;
 
             GradientDrawable bgGradientDrawable = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{bgStartColor, bgCenterColor, bgEndColor});
             bgGradientDrawable.setGradientType(GradientDrawable.RADIAL_GRADIENT);
@@ -66,18 +67,20 @@ public abstract class UI {
             bgGradientDrawable.setGradientCenter(bgCenterX, bgCenterY);
             bgDrawable = bgGradientDrawable;
         } else {
-            bgDrawable = new ColorDrawable(mStub.getResources().getColor(R.color.dark_grey));
+            bgDrawable = new ColorDrawable(mRoot.getResources().getColor(R.color.dark_grey));
         }
 
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mStub.findViewById(R.id.bg).setBackground(bgDrawable);
+                mRoot.findViewById(bgId).setBackground(bgDrawable);
             }
         });
 
-        onThemeChange(mStub, appColor, theme);
+        onThemeChange(mRoot, appColor, theme);
     }
+
+    protected abstract int getBackgroundId();
 
     protected StateListDrawable createBigButtonStateList(final int appColor) {
 
@@ -88,12 +91,12 @@ public abstract class UI {
         // ---
         stateListDrawable = new StateListDrawable();
 
-        layerDrawable = (LayerDrawable) mStub.getResources().getDrawable(R.drawable.big_button__background_pressed);
+        layerDrawable = (LayerDrawable) mRoot.getResources().getDrawable(R.drawable.big_button__background_pressed);
         gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(R.id.big_button__background_pressed_backgrounditem);
         gradientDrawable.setColor(appColor);
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, layerDrawable);
 
-        layerDrawable = (LayerDrawable) mStub.getResources().getDrawable(R.drawable.big_button__background_default);
+        layerDrawable = (LayerDrawable) mRoot.getResources().getDrawable(R.drawable.big_button__background_default);
         gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(R.id.big_button__background_default_backgrounditem);
         gradientDrawable.setColor(appColor);
         stateListDrawable.addState(new int[]{}, layerDrawable);
@@ -101,33 +104,35 @@ public abstract class UI {
         return stateListDrawable;
     }
 
-    protected abstract void onThemeChange(final WatchViewStub stub, final int appColor, final float hue);
+    protected abstract void onThemeChange(final View stub, final int appColor, final float hue);
 
-    protected abstract void onCreate(final Activity activity, final WatchViewStub stub);
+    protected abstract void onCreate(final SocketActivity activity, final View stub);
 
-    public final void create(final Activity activity) {
+    public final void create(final SocketActivity activity) {
 
         if (mMetrics == null) {
             mMetrics = new DisplayMetrics();
-            WindowManager windowManager = (WindowManager) mStub.getContext().getSystemService(Context.WINDOW_SERVICE);
+            WindowManager windowManager = (WindowManager) mRoot.getContext().getSystemService(Context.WINDOW_SERVICE);
             windowManager.getDefaultDisplay().getMetrics(mMetrics);
         }
 
-        mStub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
-            @Override
-            public void onLayoutInflated(WatchViewStub stub) {
-                mInflated = true;
-                synchronized (UI.this) {
-                    for (Runnable action : mPreInflation) {
-                        action.run();
+        if (mRoot instanceof WatchViewStub) {
+            ((WatchViewStub) mRoot).setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
+                @Override
+                public void onLayoutInflated(WatchViewStub stub) {
+                    mInflated = true;
+                    synchronized (UI.this) {
+                        for (Runnable action : mPreInflation) {
+                            action.run();
+                        }
+                        mPreInflation.removeAll(mPreInflation);
+                        mPreInflation = null;
                     }
-                    mPreInflation.removeAll(mPreInflation);
-                    mPreInflation = null;
                 }
-            }
-        });
+            });
+        }
 
-        onCreate(activity, mStub);
+        onCreate(activity, mRoot);
     }
 
     public final void runOnUiThread(Runnable action) {
@@ -146,18 +151,5 @@ public abstract class UI {
                 }
             }
         }
-    }
-
-    @SuppressWarnings("unused")
-    public static class Theme {
-        public static final float RED = 160f;
-        public static final float YELLOW = 230f;
-        public static final float ORANGE = 210f;
-        public static final float GREEN = 270f;
-        public static final float CYAN = 0f;
-        public static final float BLUE = 12f;
-        public static final float PURPLE = 100f;
-        public static final float PINK = 120f;
-        public static final float RANDOM = (float) (Math.random() * 360f);
     }
 }

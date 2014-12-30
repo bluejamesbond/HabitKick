@@ -2,22 +2,24 @@ package com.habitkick.calibrate;
 
 import android.app.Activity;
 import android.support.wearable.view.WatchViewStub;
+import android.view.View;
 import android.widget.TextView;
 
 import com.habitkick.R;
-import com.habitkick.UI;
+import com.habitkick.WatchUI;
+import com.habitkick.shared.SocketActivity;
 
-public class CalibrateUI extends UI {
+public class CalibrateUI extends WatchUI {
     public CalibrateUI(WatchViewStub stub) {
         super(stub);
     }
 
     @Override
-    public void onDestroy(Activity activity, WatchViewStub stub) {
+    public void onDestroy(Activity activity, View stub) {
     }
 
     @Override
-    protected void onThemeChange(final WatchViewStub stub, final int appColor, float hue) {
+    protected void onThemeChange(final View stub, final int appColor, float hue) {
 
         runOnUiThread(new Runnable() {
             @Override
@@ -33,6 +35,6 @@ public class CalibrateUI extends UI {
     }
 
     @Override
-    protected void onCreate(final Activity activity, final WatchViewStub stub) {
+    protected void onCreate(final SocketActivity activity, final View stub) {
     }
 }

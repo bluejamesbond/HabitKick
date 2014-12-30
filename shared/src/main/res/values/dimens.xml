@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HabitKick</string>
+    <fraction name="app__background_centerx">10%p</fraction>
+    <fraction name="app__background_centery">40%p</fraction>
+    <fraction name="app__background_radius">95%p</fraction>
+</resources>

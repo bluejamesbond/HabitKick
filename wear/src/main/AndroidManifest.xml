@@ -12,16 +12,20 @@
         android:theme="@android:style/Theme.DeviceDefault">
         <activity
             android:name="com.habitkick.home.HomeActivity"
-            android:label="@string/app_name" />
+            android:label="@string/app_name"
+            android:launchMode="singleInstance" />
         <activity
             android:name="com.habitkick.menu.MenuActivity"
-            android:label="@string/app_name" />
+            android:label="@string/app_name"
+            android:launchMode="singleInstance" />
         <activity
             android:name="com.habitkick.calibrate.CalibrateActivity"
-            android:label="@string/app_name" />
+            android:label="@string/app_name"
+            android:launchMode="singleInstance" />
         <activity
             android:name="com.habitkick.start.StartActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

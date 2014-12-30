@@ -8,7 +8,11 @@ import com.google.android.gms.wearable.WearableListenerService;
 
 public abstract class ListenerService extends WearableListenerService {
 
-    public static final int OPEN_HOME_ACTIVITY = 0xe5c0be69;
+    public static final int OPEN_HOME_ACTIVITY_ID = 0xe5c0be69;
+    public static final String OPEN_HOME_ACTIVITY_MSG = "OpenHome";
+
+    public static final int OPEN_CALIBRATION_ID = 0x95f964bf;
+    public static final String OPEN_CALIBRATION = "OpenCalibrationWear";
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
