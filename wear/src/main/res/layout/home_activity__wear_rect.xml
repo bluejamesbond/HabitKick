@@ -146,7 +146,7 @@
                     android:layout_gravity="center_vertical|right"
                     android:orientation="vertical">
 
-                    <com.fiftyeightmorris.habitkick.helper.ProximaNovaSemiBoldTextView
+                    <com.habitkick.helper.ProximaNovaSemiBoldTextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -158,7 +158,7 @@
                         android:textSize="8dp"
                         android:textStyle="bold" />
 
-                    <com.fiftyeightmorris.habitkick.helper.ProximaNovaBoldTextView
+                    <com.habitkick.helper.ProximaNovaBoldTextView
                         android:id="@+id/detail_value"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -173,7 +173,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <com.fiftyeightmorris.habitkick.helper.FontelloTextView
+            <com.habitkick.helper.FontelloTextView
                 android:id="@+id/lasttime_button"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
@@ -187,7 +187,7 @@
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
-            <com.fiftyeightmorris.habitkick.helper.FontelloTextView
+            <com.habitkick.helper.FontelloTextView
                 android:id="@+id/uptime_button"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"

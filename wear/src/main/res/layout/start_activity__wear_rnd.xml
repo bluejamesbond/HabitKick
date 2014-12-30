@@ -18,7 +18,7 @@
         android:paddingLeft="40dp"
         android:paddingTop="45dp">
 
-        <com.fiftyeightmorris.habitkick.helper.ProximaNovaBoldTextView
+        <com.habitkick.helper.ProximaNovaBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left"
@@ -28,7 +28,7 @@
             android:textSize="17dp"
             android:textStyle="bold" />
 
-        <com.fiftyeightmorris.habitkick.helper.ProximaNovaBoldTextView
+        <com.habitkick.helper.ProximaNovaBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left"
@@ -45,7 +45,7 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/calibrate_activity__midsection">
 
-        <com.fiftyeightmorris.habitkick.helper.FontelloTextView
+        <com.habitkick.helper.FontelloTextView
             android:id="@+id/mobile_button"
             android:layout_width="50dp"
             android:layout_height="50dp"
