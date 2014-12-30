@@ -9,8 +9,8 @@ import android.support.wearable.view.WatchViewStub;
 import android.view.View;
 import android.widget.TextView;
 
-import com.habitkick.UI;
 import com.habitkick.R;
+import com.habitkick.UI;
 import com.habitkick.menu.MenuActivity;
 
 public class HomeUI extends UI {
@@ -20,7 +20,8 @@ public class HomeUI extends UI {
     }
 
     @Override
-    public void onDestroy(Activity activity, WatchViewStub stub) {}
+    public void onDestroy(Activity activity, WatchViewStub stub) {
+    }
 
     @Override
     protected void onThemeChange(final WatchViewStub stub, final int appColor, final float hue) {
