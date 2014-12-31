@@ -11,17 +11,16 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.habitkick.shared.R;
-import com.habitkick.shared.common.Utils;
 import com.habitkick.shared.common.SocketActivity;
+import com.habitkick.shared.common.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class HabitKickActivity extends SocketActivity {
 
-    protected static DisplayMetrics mMetrics = null;
     protected final static boolean GRADIENT_BACKGROUND_ENABLED = true;
-
+    protected static DisplayMetrics mMetrics = null;
     protected static float mHue = 0;
 
     private View mRoot;
@@ -43,10 +42,10 @@ public abstract class HabitKickActivity extends SocketActivity {
 
     public final void setTheme(float theme) {
         mHue = theme;
-        onThemeChange(Utils.shiftHue(getResources().getColor(R.color.universal__appcolor), theme), theme);
+        onThemeChange(Utils.shiftHue(getRootView().getResources().getColor(R.color.universal__appcolor), theme), theme);
     }
 
-    protected StateListDrawable createStateList(final int appColor, final int pressed, final int def, final int backgroundId) {
+    protected StateListDrawable createStateList(final int appColor, final int pressed, final int def, final int presid, final int defid) {
 
         StateListDrawable stateListDrawable;
         LayerDrawable layerDrawable;
@@ -56,12 +55,12 @@ public abstract class HabitKickActivity extends SocketActivity {
         stateListDrawable = new StateListDrawable();
 
         layerDrawable = (LayerDrawable) getResources().getDrawable(pressed);
-        gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(backgroundId);
+        gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(presid);
         gradientDrawable.setColor(appColor);
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed, android.R.attr.state_selected}, layerDrawable);
 
         layerDrawable = (LayerDrawable) getResources().getDrawable(def);
-        gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(backgroundId);
+        gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(defid);
         gradientDrawable.setColor(appColor);
         stateListDrawable.addState(new int[]{}, layerDrawable);
 

@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.habitkick.core.MobileActivity;
 import com.habitkick.R;
+import com.habitkick.core.MobileActivity;
 import com.habitkick.shared.core.MessageConstants;
 
 public class HomeActivity extends MobileActivity {

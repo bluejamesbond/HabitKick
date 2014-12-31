@@ -30,8 +30,8 @@
         android:layout_alignRight="@+id/linearLayout2"
         android:layout_weight="20"
         android:background="@color/universal__appcolor"
-        android:orientation="vertical"
         android:elevation="10dp"
+        android:orientation="vertical"
         android:padding="40dp">
 
         <LinearLayout

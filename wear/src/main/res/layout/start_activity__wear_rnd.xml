@@ -43,7 +43,8 @@
         android:layout_width="fill_parent"
         android:layout_height="78dp"
         android:layout_marginTop="5dp"
-        android:background="@drawable/calibrate_activity__midsection">
+        android:background="@drawable/calibrate_activity__midsection"
+        android:elevation="1dp">
 
         <com.habitkick.shared.common.view.text.FontelloTextView
             android:id="@+id/mobile_button"
@@ -54,6 +55,7 @@
             android:layout_gravity="center"
             android:background="@drawable/big_button__background"
             android:clickable="true"
+            android:elevation="9dp"
             android:gravity="center"
             android:text="@string/icon_mobile"
             android:textAllCaps="true"
