@@ -20,6 +20,7 @@ public class CalibrateUI extends WatchUI {
 
     @Override
     protected void onThemeChange(final View stub, final int appColor, float hue) {
+        super.onThemeChange(stub, appColor, hue);
 
         runOnUiThread(new Runnable() {
             @Override
@@ -38,7 +39,7 @@ public class CalibrateUI extends WatchUI {
     protected void onCreate(final SocketActivity activity, final View stub) {
     }
 
-    protected void setPosition(final int position){
+    protected void setPosition(final int position) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

@@ -1,6 +1,5 @@
 package com.habitkick.shared;
 
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,8 +16,6 @@ import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
-import java.net.Socket;
-
 /**
  * Created by Mathew on 12/30/2014.
  */
@@ -27,6 +24,10 @@ public abstract class SocketActivity extends ReferencedActivity implements
         GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleApiClient mGoogleClient;
+
+    public static SocketActivity getActive(Context context) {
+        return (SocketActivity) ReferencedActivity.getActive(context);
+    }
 
     // Send a message when the data layer connection is successful.
     @Override
@@ -58,10 +59,6 @@ public abstract class SocketActivity extends ReferencedActivity implements
 
     public void sendMessage(String message) {
         new SendMessage("/message_path", message).start();
-    }
-
-    public static SocketActivity getActive(Context context){
-        return (SocketActivity) ReferencedActivity.getActive(context);
     }
 
     @Override

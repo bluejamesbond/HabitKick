@@ -25,7 +25,7 @@ public class MenuUI extends WatchUI {
 
     @Override
     protected void onThemeChange(final View stub, final int appColor, float hue) {
-
+        super.onThemeChange(stub, appColor, hue);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {

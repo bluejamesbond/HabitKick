@@ -1,16 +1,15 @@
 package com.habitkick;
 
 import android.os.Bundle;
-import android.support.wearable.view.WatchViewStub;
 
 import com.habitkick.shared.SocketActivity;
 import com.habitkick.shared.Theme;
 
-public abstract class MobileActivity<T extends MobileUI>  extends SocketActivity {
+public abstract class MobileActivity<T extends MobileUI> extends SocketActivity {
 
     private T mUi;
 
-    protected T getUI(){
+    protected T getUI() {
         return mUi;
     }
 

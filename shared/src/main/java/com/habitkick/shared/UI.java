@@ -2,8 +2,6 @@ package com.habitkick.shared;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
@@ -19,14 +17,13 @@ import java.util.List;
 
 public abstract class UI {
 
-    public static final int NO_BACKGROUND = -1;
     protected static DisplayMetrics mMetrics = null;
     protected static float mHue;
+    protected final boolean mBackground;
     private final Handler mHandler;
-    private final boolean mBackground;
+    protected View mRoot;
     private volatile List<Runnable> mPreInflation;
     private volatile boolean mInflated;
-    protected View mRoot;
 
     public UI(View view) {
         mHue = 0;
@@ -42,53 +39,21 @@ public abstract class UI {
         mRoot = null;
     }
 
-    protected View getRoot(){
+    protected View getRoot() {
         return mRoot;
     }
 
-    public abstract void onDestroy(final Activity activity, final View stub);
 
     public final void setTheme(float theme) {
 
         mHue = theme;
 
         int appColor = Utils.shiftHue(mRoot.getResources().getColor(R.color.universal__appcolor), theme);
-        int bgStartColor = Utils.shiftHue(mRoot.getResources().getColor(R.color.app__background_startcolor), theme);
-        int bgCenterColor = Utils.shiftHue(mRoot.getResources().getColor(R.color.app__background_centercolor), theme);
-        int bgEndColor = Utils.shiftHue(mRoot.getResources().getColor(R.color.app__background_endcolor), theme);
-
-        final Drawable bgDrawable;
-        final int bgId = getBackgroundId();
-
-        if(getBackgroundId() != NO_BACKGROUND) {
-            if (mBackground) {
-                float bgCenterX = mRoot.getResources().getFraction(R.fraction.app__background_centerx, 1, 1);
-                float bgCenterY = mRoot.getResources().getFraction(R.fraction.app__background_centery, 1, 1);
-                float bgGradientRadius = mRoot.getResources().getFraction(R.fraction.app__background_radius, 1, 1) * mMetrics.widthPixels;
-
-                GradientDrawable bgGradientDrawable = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{bgStartColor, bgCenterColor, bgEndColor});
-                bgGradientDrawable.setGradientType(GradientDrawable.RADIAL_GRADIENT);
-                bgGradientDrawable.setGradientRadius(bgGradientRadius);
-                bgGradientDrawable.setGradientCenter(bgCenterX, bgCenterY);
-                bgDrawable = bgGradientDrawable;
-            } else {
-                bgDrawable = new ColorDrawable(mRoot.getResources().getColor(R.color.dark_grey));
-            }
-
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    mRoot.findViewById(bgId).setBackground(bgDrawable);
-                }
-            });
-        }
 
         onThemeChange(mRoot, appColor, theme);
     }
 
-    protected abstract int getBackgroundId();
-
-    private StateListDrawable createBugButtonRawStateList(final int appColor, final int pressed, final int def){
+    protected StateListDrawable createStateList(final int appColor, final int pressed, final int def, final int backgroundId) {
 
         StateListDrawable stateListDrawable;
         LayerDrawable layerDrawable;
@@ -98,27 +63,19 @@ public abstract class UI {
         stateListDrawable = new StateListDrawable();
 
         layerDrawable = (LayerDrawable) mRoot.getResources().getDrawable(pressed);
-        gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(R.id.big_button__background_pressed_backgrounditem);
+        gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(backgroundId);
         gradientDrawable.setColor(appColor);
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed, android.R.attr.state_selected}, layerDrawable);
 
         layerDrawable = (LayerDrawable) mRoot.getResources().getDrawable(def);
-        gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(R.id.big_button__background_default_backgrounditem);
+        gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(backgroundId);
         gradientDrawable.setColor(appColor);
         stateListDrawable.addState(new int[]{}, layerDrawable);
 
         return stateListDrawable;
     }
 
-    protected StateListDrawable createBigButtonStateList(final int appColor) {
-        return createBugButtonRawStateList(appColor, R.drawable.big_button__background_pressed, R.drawable.big_button__background_default);
-    }
-
-
-    protected StateListDrawable createBigButtonLowRadStateList(final int appColor) {
-        return createBugButtonRawStateList(appColor, R.drawable.big_button_low_rad__background_pressed, R.drawable.big_button_low_rad__background_default);
-    }
-
+    public abstract void onDestroy(final Activity activity, final View stub);
 
     protected abstract void onThemeChange(final View stub, final int appColor, final float hue);
 

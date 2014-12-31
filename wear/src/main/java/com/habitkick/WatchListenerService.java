@@ -41,7 +41,7 @@ public class WatchListenerService extends ListenerService implements IMonitorEve
     public void onPositionStored(int pos, boolean done) {
         Utils.putStore(WatchListenerService.this, "CalibrationPosition", pos);
 
-        if(done){
+        if (done) {
             if (mPositionMonitor == null) {
                 return; // error
             }

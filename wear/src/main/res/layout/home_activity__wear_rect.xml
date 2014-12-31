@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="50">
 
-        <com.fiftyeightmorris.habitkick.helper.ProximaNovaSemiBoldTextView
+        <com.habitkick.shared.ProximaNovaSemiBoldTextView
             android:id="@+id/today_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
             android:textSize="@dimen/today_value"
             android:textStyle="bold" />
 
-        <com.fiftyeightmorris.habitkick.helper.ProximaNovaBoldTextView
+        <com.habitkick.shared.ProximaNovaBoldTextView
             android:id="@+id/today_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
             android:textSize="@dimen/today_label"
             android:textStyle="bold" />
 
-        <com.fiftyeightmorris.habitkick.helper.FontelloTextView
+        <com.habitkick.shared.FontelloTextView
             android:id="@+id/textView"
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -53,7 +53,7 @@
             android:text="@string/icon_left"
             android:textSize="12dp" />
 
-        <com.fiftyeightmorris.habitkick.helper.FontelloTextView
+        <com.habitkick.shared.FontelloTextView
             android:id="@+id/textView2"
             android:layout_width="24dp"
             android:layout_height="24dp"
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:weightSum="100">
 
-            <com.fiftyeightmorris.habitkick.helper.FontelloTextView
+            <com.habitkick.shared.FontelloTextView
                 android:id="@+id/menu_button"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -100,7 +100,7 @@
                 android:gravity="center_vertical|left"
                 android:paddingLeft="15dp">
 
-                <com.fiftyeightmorris.habitkick.helper.ProximaNovaBoldTextView
+                <com.habitkick.shared.ProximaNovaBoldTextView
                     android:id="@+id/goal_label"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
@@ -112,7 +112,7 @@
                     android:textSize="21dp"
                     android:textStyle="bold" />
 
-                <com.fiftyeightmorris.habitkick.helper.ProximaNovaBoldTextView
+                <com.habitkick.shared.ProximaNovaBoldTextView
                     android:id="@+id/goal_value"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"

@@ -20,12 +20,13 @@ public class HomeUI extends MobileUI {
 
     @Override
     protected void onThemeChange(final View stub, final int appColor, final float hue) {
+        super.onThemeChange(stub, appColor, hue);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 stub.findViewById(R.id.center_banner).setBackgroundColor(appColor);
-                stub.findViewById(R.id.calibrate_button).setBackground(createBigButtonLowRadStateList(appColor));
-            //    stub.findViewById(R.id.calibrate_next_button).setBackground(createBigButtonLowRadStateList(appColor));
+                stub.findViewById(R.id.calibrate_button).setBackground(createBigButtonStateList(appColor));
+                //    stub.findViewById(R.id.calibrate_next_button).setBackground(createBigButtonLowRadStateList(appColor));
             }
         });
     }
@@ -56,11 +57,11 @@ public class HomeUI extends MobileUI {
         });
     }
 
-    public void setNextPositionEnabled(final Activity activity, final boolean enable){
+    public void setNextPositionEnabled(final Activity activity, final boolean enable) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-            //    activity.findViewById(R.id.calibrate_next_button).setEnabled(enable);
+                //    activity.findViewById(R.id.calibrate_next_button).setEnabled(enable);
             }
         });
     }

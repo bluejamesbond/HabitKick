@@ -1,7 +1,6 @@
 package com.habitkick.calibrate;
 
 import android.support.wearable.view.WatchViewStub;
-import android.widget.Toast;
 
 import com.habitkick.R;
 import com.habitkick.WatchActivity;

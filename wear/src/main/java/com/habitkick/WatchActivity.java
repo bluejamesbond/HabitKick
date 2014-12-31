@@ -13,7 +13,7 @@ public abstract class WatchActivity<T extends WatchUI> extends SocketActivity im
 
     private T mUi;
 
-    protected T getUI(){
+    protected T getUI() {
         return mUi;
     }
 

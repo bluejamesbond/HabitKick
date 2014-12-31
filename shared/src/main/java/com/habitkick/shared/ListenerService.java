@@ -29,7 +29,7 @@ public abstract class ListenerService extends WearableListenerService {
 
     private Handler mHandler;
 
-    public ListenerService(){
+    public ListenerService() {
         super();
         mHandler = new Handler();
     }

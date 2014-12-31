@@ -1,5 +1,6 @@
 package com.habitkick;
 
+import android.graphics.drawable.StateListDrawable;
 import android.view.View;
 
 import com.habitkick.shared.UI;
@@ -13,8 +14,13 @@ public abstract class MobileUI extends UI {
         super(v);
     }
 
+    protected StateListDrawable createBigButtonStateList(final int appColor) {
+        return createStateList(appColor, R.drawable.big_button_low_rad__background_pressed, R.drawable.big_button_low_rad__background_default,
+                R.id.big_button__background_default_backgrounditem);
+    }
+
     @Override
-    protected int getBackgroundId() {
-        return R.id.bg;
+    protected void onThemeChange(View stub, int appColor, float hue) {
+        // do nothing
     }
 }

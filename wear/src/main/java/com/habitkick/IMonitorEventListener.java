@@ -11,5 +11,6 @@ import java.util.EventListener;
  */
 public interface IMonitorEventListener extends EventListener {
     public void onMonitorAlert();
+
     public void onPositionStored(int pos, boolean done);
 }

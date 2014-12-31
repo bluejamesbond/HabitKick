@@ -23,8 +23,8 @@ public class HomeActivity extends MobileActivity<HomeUI> {
 
     @Override
     protected void onMessageReceived(int id, String message) {
-        switch (id){
-            case ListenerService.STORED_CALIBRATION_POSITION_ID : {
+        switch (id) {
+            case ListenerService.STORED_CALIBRATION_POSITION_ID: {
                 getUI().setNextPositionEnabled(this, true);
             }
         }

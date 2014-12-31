@@ -1,23 +1,9 @@
 package com.habitkick.home;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.hardware.SensorManager;
-import android.os.Vibrator;
 import android.support.wearable.view.WatchViewStub;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.habitkick.IMonitorEventListener;
-import com.habitkick.PositionMonitor;
 import com.habitkick.R;
 import com.habitkick.WatchActivity;
-import com.habitkick.alert.AlertNotificationReceiver;
-
-import java.io.IOException;
 
 
 public class HomeActivity extends WatchActivity<HomeUI> {
