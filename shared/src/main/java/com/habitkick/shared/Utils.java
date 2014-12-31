@@ -8,6 +8,22 @@ import android.os.Build;
 public class Utils {
 
     public static final String PREFERENCE_NAME = "HabitKickPrefs";
+    public static final boolean IS_EMULATOR;
+
+    static {
+        boolean res =//
+                Build.FINGERPRINT.startsWith("generic")//
+                        || Build.FINGERPRINT.startsWith("unknown")//
+                        || Build.MODEL.contains("google_sdk")//
+                        || Build.MODEL.contains("Emulator")//
+                        || Build.MODEL.contains("Android SDK built for x86")
+                        || Build.MANUFACTURER.contains("Genymotion");
+
+        res |= Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic");
+        res |= "google_sdk".equals(Build.PRODUCT);
+
+        IS_EMULATOR = res;
+    }
 
     public static <T> void putStore(Context context, String key, T value) {
         SharedPreferences.Editor editor = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE).edit();
@@ -95,23 +111,6 @@ public class Utils {
         }
 
         return Color.argb(A, R, G, B);
-    }
-
-    public static boolean isEmulator() {
-        boolean result =//
-                Build.FINGERPRINT.startsWith("generic")//
-                        || Build.FINGERPRINT.startsWith("unknown")//
-                        || Build.MODEL.contains("google_sdk")//
-                        || Build.MODEL.contains("Emulator")//
-                        || Build.MODEL.contains("Android SDK built for x86")
-                        || Build.MANUFACTURER.contains("Genymotion");
-        if (result)
-            return true;
-        result |= Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic");
-        if (result)
-            return true;
-        result |= "google_sdk".equals(Build.PRODUCT);
-        return result;
     }
 
 }

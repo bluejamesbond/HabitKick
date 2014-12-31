@@ -88,7 +88,7 @@ public abstract class UI {
 
     protected abstract int getBackgroundId();
 
-    protected StateListDrawable createBigButtonStateList(final int appColor) {
+    private StateListDrawable createBugButtonRawStateList(final int appColor, final int pressed, final int def){
 
         StateListDrawable stateListDrawable;
         LayerDrawable layerDrawable;
@@ -97,18 +97,28 @@ public abstract class UI {
         // ---
         stateListDrawable = new StateListDrawable();
 
-        layerDrawable = (LayerDrawable) mRoot.getResources().getDrawable(R.drawable.big_button__background_pressed);
+        layerDrawable = (LayerDrawable) mRoot.getResources().getDrawable(pressed);
         gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(R.id.big_button__background_pressed_backgrounditem);
         gradientDrawable.setColor(appColor);
-        stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, layerDrawable);
+        stateListDrawable.addState(new int[]{android.R.attr.state_pressed, android.R.attr.state_selected}, layerDrawable);
 
-        layerDrawable = (LayerDrawable) mRoot.getResources().getDrawable(R.drawable.big_button__background_default);
+        layerDrawable = (LayerDrawable) mRoot.getResources().getDrawable(def);
         gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(R.id.big_button__background_default_backgrounditem);
         gradientDrawable.setColor(appColor);
         stateListDrawable.addState(new int[]{}, layerDrawable);
 
         return stateListDrawable;
     }
+
+    protected StateListDrawable createBigButtonStateList(final int appColor) {
+        return createBugButtonRawStateList(appColor, R.drawable.big_button__background_pressed, R.drawable.big_button__background_default);
+    }
+
+
+    protected StateListDrawable createBigButtonLowRadStateList(final int appColor) {
+        return createBugButtonRawStateList(appColor, R.drawable.big_button_low_rad__background_pressed, R.drawable.big_button_low_rad__background_default);
+    }
+
 
     protected abstract void onThemeChange(final View stub, final int appColor, final float hue);
 

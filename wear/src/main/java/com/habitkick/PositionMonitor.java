@@ -92,7 +92,9 @@ public class PositionMonitor implements SensorEventListener {
             restoreRotationMatrix();
         }
 
-        mSensorManager.registerListener(this, mRotationVectorSensor, updateFrequency);
+        if (Utils.IS_EMULATOR) {
+            mSensorManager.registerListener(this, mRotationVectorSensor, updateFrequency);
+        }
     }
 
     public void resetPosition() {
@@ -101,7 +103,7 @@ public class PositionMonitor implements SensorEventListener {
 
     public void nextPosition() {
         mCurrPos += 10;
-        if (Utils.isEmulator()) {
+        if (Utils.IS_EMULATOR) {
             mMonitorEventListener.onPositionStored(mCurrPos, mCurrPos == MAX_POSITIONS);
         }
     }

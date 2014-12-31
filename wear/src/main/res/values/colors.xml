@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="trans_button_background_default_backgroundcolor">#33ffffff</color>
-    <color name="sub_button__background_default_backgroundcolor">#ddffffff</color>
     <color name="goal_label__textcolor">#50000000</color>
-    <color name="sub_button__textcolor_default">#ff777777</color>
-    <color name="sub_button__textcolor_pressed">#FF333333</color>
 </resources>

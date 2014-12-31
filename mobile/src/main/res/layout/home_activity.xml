@@ -1,49 +1,105 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     android:orientation="vertical"
-    android:id="@+id/bg"
+    android:weightSum="100"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textViewIntro"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:password="false"
-        android:text="@string/intro"
-        android:textIsSelectable="false"
-        android:textSize="20sp" />
+        android:layout_weight="40"
+        android:orientation="vertical"
+        android:padding="40dp"
+        android:layout_below="@+id/center_banner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/linearLayout">
 
-    <TextView
-        android:id="@+id/textViewCalibrate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
-        android:text="@string/intro_calibrate"
-        android:textIsSelectable="true"
-        android:textSize="20sp" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textViewTimeout"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/center_banner"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="@string/timeout"
-        android:textSize="20sp" />
+        android:layout_weight="20"
+        android:background="@color/universal__appcolor"
+        android:orientation="vertical"
+        android:padding="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/linearLayout2"
+        android:layout_alignEnd="@+id/linearLayout2">
 
-    <Button
-        android:id="@+id/calibrate_button"
-        android:layout_width="wrap_content"
-        android:clickable="true"
-        android:layout_height="wrap_content"
-        android:text="Calibrate" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|left"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/calibrate_next_button"
-        android:layout_width="wrap_content"
-        android:clickable="true"
+            <com.habitkick.shared.ProximaNovaBoldTextView
+                android:id="@+id/view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:lineSpacingMultiplier="0.9"
+                android:text="Welcome"
+                android:textAllCaps="true"
+                android:textColor="#44FFFFFF"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <com.habitkick.shared.ProximaNovaBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/view"
+                android:gravity="left"
+                android:lineSpacingMultiplier="0.8"
+                android:text="Open\nHabitKick on\nYour Handheld"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Next" />
-</LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="center_vertical"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <com.habitkick.shared.ProximaNovaBoldTextView
+                android:id="@+id/calibrate_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/big_button_low_rad__background"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text="Calibrate"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

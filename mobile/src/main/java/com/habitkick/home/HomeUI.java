@@ -20,6 +20,14 @@ public class HomeUI extends MobileUI {
 
     @Override
     protected void onThemeChange(final View stub, final int appColor, final float hue) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                stub.findViewById(R.id.center_banner).setBackgroundColor(appColor);
+                stub.findViewById(R.id.calibrate_button).setBackground(createBigButtonLowRadStateList(appColor));
+            //    stub.findViewById(R.id.calibrate_next_button).setBackground(createBigButtonLowRadStateList(appColor));
+            }
+        });
     }
 
     protected void onCreate(final SocketActivity activity, final View stub) {
@@ -28,6 +36,7 @@ public class HomeUI extends MobileUI {
 
             @Override
             public void run() {
+
                 activity.findViewById(R.id.calibrate_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -36,13 +45,13 @@ public class HomeUI extends MobileUI {
                     }
                 });
 
-                activity.findViewById(R.id.calibrate_next_button).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        activity.sendMessage(ListenerService.NEXT_CALIBRATION_POSITION_MSG);
-                        setNextPositionEnabled(activity, false);
-                    }
-                });
+//                activity.findViewById(R.id.calibrate_next_button).setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        activity.sendMessage(ListenerService.NEXT_CALIBRATION_POSITION_MSG);
+//                        setNextPositionEnabled(activity, false);
+//                    }
+//                });
             }
         });
     }
@@ -51,7 +60,7 @@ public class HomeUI extends MobileUI {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                activity.findViewById(R.id.calibrate_next_button).setEnabled(enable);
+            //    activity.findViewById(R.id.calibrate_next_button).setEnabled(enable);
             }
         });
     }

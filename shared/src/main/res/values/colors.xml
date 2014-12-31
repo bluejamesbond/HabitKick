@@ -4,4 +4,7 @@
     <color name="app__background_centercolor">#224743</color>
     <color name="app__background_endcolor">#252d47</color>
     <color name="universal__appcolor">#12cae0</color>
+    <color name="sub_button__background_default_backgroundcolor">#ddffffff</color>
+    <color name="sub_button__textcolor_default">#ff777777</color>
+    <color name="sub_button__textcolor_pressed">#FF333333</color>
 </resources>
