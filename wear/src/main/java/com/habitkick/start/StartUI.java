@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.habitkick.R;
 import com.habitkick.WatchUI;
-import com.habitkick.shared.core.ListenerService;
+import com.habitkick.shared.core.MessageConstants;
 import com.habitkick.shared.core.SocketActivity;
 
 public class StartUI extends WatchUI {
@@ -39,7 +39,7 @@ public class StartUI extends WatchUI {
                 stub.findViewById(R.id.mobile_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        activity.sendMessage(ListenerService.OPEN_HOME_ACTIVITY_MSG);
+                        activity.sendMessage(MessageConstants.OPEN_HOME_ACTIVITY_MSG);
                     }
                 });
             }

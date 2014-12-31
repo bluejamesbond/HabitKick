@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.habitkick.alert.AlertNotificationReceiver;
 import com.habitkick.calibrate.CalibrateActivity;
 import com.habitkick.shared.core.ListenerService;
+import com.habitkick.shared.core.MessageConstants;
 import com.habitkick.shared.core.SocketActivity;
 import com.habitkick.shared.Utils;
 
@@ -51,23 +52,23 @@ public class WatchListenerService extends ListenerService implements IMonitorEve
             mVibratorService = null;
 
             Utils.putStore(WatchListenerService.this, "CalibrationFinished", true);
-            SocketActivity.getActive(this).sendMessage(ListenerService.FINISHED_CALIBRATION_SERVICE_MSG);
+            SocketActivity.getActive(this).sendMessage(MessageConstants.FINISHED_CALIBRATION_SERVICE_MSG);
 
         } else {
-            SocketActivity.getActive(this).sendMessage(ListenerService.STORED_CALIBRATION_POSITION_MSG);
+            SocketActivity.getActive(this).sendMessage(MessageConstants.STORED_CALIBRATION_POSITION_MSG);
         }
     }
 
     @Override
     protected void handleMessage(int id) {
         switch (id) {
-            case ListenerService.OPEN_CALIBRATION_ID: {
+            case MessageConstants.OPEN_CALIBRATION_ID: {
                 Intent intent = new Intent(this, CalibrateActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 this.startActivity(intent);
                 break;
             }
-            case ListenerService.START_CALIBRATION_SERVICE_ID: {
+            case MessageConstants.START_CALIBRATION_SERVICE_ID: {
 
                 if (mPositionMonitor != null) {
                     if (mPositionMonitor.isRegistered()) {
@@ -92,7 +93,7 @@ public class WatchListenerService extends ListenerService implements IMonitorEve
 
                 break;
             }
-            case ListenerService.NEXT_CALIBRATION_POSITION_ID: {
+            case MessageConstants.NEXT_CALIBRATION_POSITION_ID: {
                 if (mPositionMonitor == null) {
                     Log.e("TEST", "NULL!");
                     break;

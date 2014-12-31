@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.habitkick.MobileUI;
 import com.habitkick.R;
-import com.habitkick.shared.core.ListenerService;
+import com.habitkick.shared.core.MessageConstants;
 import com.habitkick.shared.core.SocketActivity;
 
 public class HomeUI extends MobileUI {
@@ -41,8 +41,8 @@ public class HomeUI extends MobileUI {
                 activity.findViewById(R.id.calibrate_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        activity.sendMessage(ListenerService.OPEN_CALIBRATION_MSG);
-                        activity.sendMessage(ListenerService.START_CALIBRATION_SERVICE_MSG);
+                        activity.sendMessage(MessageConstants.OPEN_CALIBRATION_MSG);
+                        activity.sendMessage(MessageConstants.START_CALIBRATION_SERVICE_MSG);
                     }
                 });
 

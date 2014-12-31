@@ -2,7 +2,7 @@ package com.habitkick.home;
 
 import com.habitkick.MobileActivity;
 import com.habitkick.R;
-import com.habitkick.shared.core.ListenerService;
+import com.habitkick.shared.core.MessageConstants;
 
 public class HomeActivity extends MobileActivity<HomeUI> {
 
@@ -24,7 +24,7 @@ public class HomeActivity extends MobileActivity<HomeUI> {
     @Override
     protected void onMessageReceived(int id, String message) {
         switch (id) {
-            case ListenerService.STORED_CALIBRATION_POSITION_ID: {
+            case MessageConstants.STORED_CALIBRATION_POSITION_ID: {
                 getUI().setNextPositionEnabled(this, true);
             }
         }

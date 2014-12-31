@@ -4,8 +4,8 @@ import android.support.wearable.view.WatchViewStub;
 
 import com.habitkick.R;
 import com.habitkick.WatchActivity;
-import com.habitkick.shared.core.ListenerService;
 import com.habitkick.shared.Utils;
+import com.habitkick.shared.core.MessageConstants;
 
 public class CalibrateActivity extends WatchActivity<CalibrateUI> {
 
@@ -22,7 +22,7 @@ public class CalibrateActivity extends WatchActivity<CalibrateUI> {
     @Override
     protected void onMessageReceived(int id, String message) {
         switch (id) {
-            case ListenerService.NEXT_CALIBRATION_POSITION_ID: {
+            case MessageConstants.NEXT_CALIBRATION_POSITION_ID: {
                 getUI().setPosition(Utils.getStore(this, "CalibrationPosition", 0));
             }
         }
