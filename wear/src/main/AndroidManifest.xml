@@ -6,25 +6,25 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name=".shared.core.ReferencedApplication"
+        android:name=".shared.common.ReferencedApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.DeviceDefault">
         <activity
-            android:name="com.habitkick.home.HomeActivity"
+            android:name="com.habitkick.activity.HomeActivity"
             android:label="@string/app_name"
             android:launchMode="singleInstance" />
         <activity
-            android:name="com.habitkick.menu.MenuActivity"
+            android:name=".activity.MenuActivity"
             android:label="@string/app_name"
             android:launchMode="singleInstance" />
         <activity
-            android:name="com.habitkick.calibrate.CalibrateActivity"
+            android:name=".activity.CalibrateActivity"
             android:label="@string/app_name"
             android:launchMode="singleInstance" />
         <activity
-            android:name="com.habitkick.start.StartActivity"
+            android:name=".activity.StartActivity"
             android:label="@string/app_name"
             android:launchMode="singleInstance">
             <intent-filter>
@@ -49,10 +49,10 @@
         </receiver>
 
         <service
-            android:name=".MonitorService"
+            android:name=".core.MonitorService"
             android:enabled="true" />
 
-        <service android:name=".WatchListenerService">
+        <service android:name=".core.WatchListenerService">
             <intent-filter>
                 <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
             </intent-filter>
