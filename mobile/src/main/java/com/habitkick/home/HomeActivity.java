@@ -2,7 +2,7 @@ package com.habitkick.home;
 
 import com.habitkick.MobileActivity;
 import com.habitkick.R;
-import com.habitkick.shared.ListenerService;
+import com.habitkick.shared.core.ListenerService;
 
 public class HomeActivity extends MobileActivity<HomeUI> {
 

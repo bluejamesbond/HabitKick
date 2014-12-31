@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.habitkick.R;
 import com.habitkick.WatchUI;
-import com.habitkick.shared.SocketActivity;
+import com.habitkick.shared.core.SocketActivity;
 
 public class CalibrateUI extends WatchUI {
     public CalibrateUI(WatchViewStub stub) {

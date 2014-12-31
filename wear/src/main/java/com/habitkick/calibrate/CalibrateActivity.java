@@ -4,7 +4,7 @@ import android.support.wearable.view.WatchViewStub;
 
 import com.habitkick.R;
 import com.habitkick.WatchActivity;
-import com.habitkick.shared.ListenerService;
+import com.habitkick.shared.core.ListenerService;
 import com.habitkick.shared.Utils;
 
 public class CalibrateActivity extends WatchActivity<CalibrateUI> {

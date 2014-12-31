@@ -5,8 +5,8 @@ import android.view.View;
 
 import com.habitkick.MobileUI;
 import com.habitkick.R;
-import com.habitkick.shared.ListenerService;
-import com.habitkick.shared.SocketActivity;
+import com.habitkick.shared.core.ListenerService;
+import com.habitkick.shared.core.SocketActivity;
 
 public class HomeUI extends MobileUI {
 

@@ -1,4 +1,4 @@
-package com.habitkick.shared;
+package com.habitkick.shared.view.text;
 
 import android.content.Context;
 import android.graphics.Typeface;

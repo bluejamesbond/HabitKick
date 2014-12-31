@@ -39,7 +39,7 @@
             android:layout_gravity="center_vertical|left"
             android:orientation="vertical">
 
-            <com.habitkick.shared.ProximaNovaBoldTextView
+            <com.habitkick.shared.view.text.ProximaNovaBoldTextView
                 android:id="@+id/view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
-            <com.habitkick.shared.ProximaNovaBoldTextView
+            <com.habitkick.shared.view.text.ProximaNovaBoldTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:padding="20dp">
 
-            <com.habitkick.shared.ProximaNovaBoldTextView
+            <com.habitkick.shared.view.text.ProximaNovaBoldTextView
                 android:id="@+id/calibrate_button"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

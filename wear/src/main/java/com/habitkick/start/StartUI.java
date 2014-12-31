@@ -6,8 +6,8 @@ import android.view.View;
 
 import com.habitkick.R;
 import com.habitkick.WatchUI;
-import com.habitkick.shared.ListenerService;
-import com.habitkick.shared.SocketActivity;
+import com.habitkick.shared.core.ListenerService;
+import com.habitkick.shared.core.SocketActivity;
 
 public class StartUI extends WatchUI {
     public StartUI(WatchViewStub stub) {

@@ -9,8 +9,8 @@ import android.widget.Toast;
 
 import com.habitkick.alert.AlertNotificationReceiver;
 import com.habitkick.calibrate.CalibrateActivity;
-import com.habitkick.shared.ListenerService;
-import com.habitkick.shared.SocketActivity;
+import com.habitkick.shared.core.ListenerService;
+import com.habitkick.shared.core.SocketActivity;
 import com.habitkick.shared.Utils;
 
 public class WatchListenerService extends ListenerService implements IMonitorEventListener {

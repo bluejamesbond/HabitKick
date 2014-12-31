@@ -1,4 +1,4 @@
-package com.habitkick.shared;
+package com.habitkick.shared.core;
 
 import android.app.Activity;
 import android.app.Application;

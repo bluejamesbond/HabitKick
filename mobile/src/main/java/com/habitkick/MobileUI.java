@@ -3,7 +3,7 @@ package com.habitkick;
 import android.graphics.drawable.StateListDrawable;
 import android.view.View;
 
-import com.habitkick.shared.UI;
+import com.habitkick.shared.style.UI;
 
 /**
  * Created by Mathew on 12/30/2014.

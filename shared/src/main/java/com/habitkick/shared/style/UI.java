@@ -1,4 +1,4 @@
-package com.habitkick.shared;
+package com.habitkick.shared.style;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,6 +11,10 @@ import android.support.wearable.view.WatchViewStub;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
+
+import com.habitkick.shared.R;
+import com.habitkick.shared.Utils;
+import com.habitkick.shared.core.SocketActivity;
 
 import java.util.ArrayList;
 import java.util.List;

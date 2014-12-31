@@ -7,7 +7,7 @@ import android.graphics.drawable.StateListDrawable;
 import android.support.wearable.view.WatchViewStub;
 import android.view.View;
 
-import com.habitkick.shared.UI;
+import com.habitkick.shared.style.UI;
 import com.habitkick.shared.Utils;
 
 /**

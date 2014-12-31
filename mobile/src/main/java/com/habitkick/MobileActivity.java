@@ -2,8 +2,8 @@ package com.habitkick;
 
 import android.os.Bundle;
 
-import com.habitkick.shared.SocketActivity;
-import com.habitkick.shared.Theme;
+import com.habitkick.shared.core.SocketActivity;
+import com.habitkick.shared.style.Theme;
 
 public abstract class MobileActivity<T extends MobileUI> extends SocketActivity {
 

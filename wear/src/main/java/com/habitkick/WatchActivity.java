@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.wearable.view.WatchViewStub;
 
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.habitkick.shared.SocketActivity;
-import com.habitkick.shared.Theme;
+import com.habitkick.shared.core.SocketActivity;
+import com.habitkick.shared.style.Theme;
 
 public abstract class WatchActivity<T extends WatchUI> extends SocketActivity implements
         GoogleApiClient.ConnectionCallbacks,

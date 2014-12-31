@@ -3,7 +3,7 @@ package com.habitkick;
 import android.content.Intent;
 
 import com.habitkick.home.HomeActivity;
-import com.habitkick.shared.ListenerService;
+import com.habitkick.shared.core.ListenerService;
 
 /**
  * Created by Mathew on 12/30/2014.

@@ -1,4 +1,4 @@
-package com.habitkick.shared;
+package com.habitkick.shared.style;
 
 /**
  * Created by Mathew on 12/30/2014.

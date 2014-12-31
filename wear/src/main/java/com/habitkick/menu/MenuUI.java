@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.habitkick.R;
 import com.habitkick.WatchUI;
 import com.habitkick.calibrate.CalibrateActivity;
-import com.habitkick.shared.SocketActivity;
+import com.habitkick.shared.core.SocketActivity;
 
 public class MenuUI extends WatchUI {
 
