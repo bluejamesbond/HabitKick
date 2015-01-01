@@ -18,7 +18,7 @@
         android:paddingLeft="40dp"
         android:paddingTop="45dp">
 
-        <com.habitkick.shared.common.view.text.ProximaNovaBoldTextView
+        <com.habitkick.shared.common.view.text.font.ProximaNovaBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left"
@@ -28,7 +28,7 @@
             android:textSize="17dp"
             android:textStyle="bold" />
 
-        <com.habitkick.shared.common.view.text.ProximaNovaBoldTextView
+        <com.habitkick.shared.common.view.text.font.ProximaNovaBoldTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="left"
@@ -46,7 +46,7 @@
         android:background="@drawable/calibrate_activity__midsection"
         android:elevation="1dp">
 
-        <com.habitkick.shared.common.view.text.FontelloTextView
+        <com.habitkick.shared.common.view.text.font.FontelloTextView
             android:id="@+id/mobile_button"
             android:layout_width="50dp"
             android:layout_height="50dp"

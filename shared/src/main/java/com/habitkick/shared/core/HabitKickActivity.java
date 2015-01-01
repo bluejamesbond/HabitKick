@@ -1,6 +1,8 @@
 package com.habitkick.shared.core;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.StateListDrawable;
@@ -20,6 +22,7 @@ import java.util.List;
 public abstract class HabitKickActivity extends SocketActivity {
 
     protected final static boolean GRADIENT_BACKGROUND_ENABLED = true;
+
     protected static DisplayMetrics mMetrics = null;
     protected static float mHue = 0;
 
@@ -42,8 +45,39 @@ public abstract class HabitKickActivity extends SocketActivity {
 
     public final void setTheme(float theme) {
         mHue = theme;
+
+
+        int bgStartColor = Utils.shiftHue(getResources().getColor(com.habitkick.shared.R.color.app__background_startcolor), theme);
+        int bgCenterColor = Utils.shiftHue(getResources().getColor(com.habitkick.shared.R.color.app__background_centercolor), theme);
+        int bgEndColor = Utils.shiftHue(getResources().getColor(com.habitkick.shared.R.color.app__background_endcolor), theme);
+
+        final Drawable bgDrawable;
+
+        if (GRADIENT_BACKGROUND_ENABLED) {
+            float bgCenterX = getResources().getFraction(com.habitkick.shared.R.fraction.app__background_centerx, 1, 1);
+            float bgCenterY = getResources().getFraction(com.habitkick.shared.R.fraction.app__background_centery, 1, 1);
+            float bgGradientRadius = getResources().getFraction(com.habitkick.shared.R.fraction.app__background_radius, 1, 1) * mMetrics.widthPixels;
+
+            GradientDrawable bgGradientDrawable = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{bgStartColor, bgCenterColor, bgEndColor});
+            bgGradientDrawable.setGradientType(GradientDrawable.RADIAL_GRADIENT);
+            bgGradientDrawable.setGradientRadius(bgGradientRadius);
+            bgGradientDrawable.setGradientCenter(bgCenterX, bgCenterY);
+            bgDrawable = bgGradientDrawable;
+        } else {
+            bgDrawable = new ColorDrawable(getResources().getColor(com.habitkick.shared.R.color.dark_grey));
+        }
+
+        _runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                getBackgroundView().setBackground(bgDrawable);
+            }
+        });
+
         onThemeChange(Utils.shiftHue(getRootView().getResources().getColor(R.color.universal__appcolor), theme), theme);
     }
+
+    public abstract View getBackgroundView();
 
     protected StateListDrawable createStateList(final int appColor, final int pressed, final int def, final int presid, final int defid) {
 
@@ -65,6 +99,11 @@ public abstract class HabitKickActivity extends SocketActivity {
         stateListDrawable.addState(new int[]{}, layerDrawable);
 
         return stateListDrawable;
+    }
+
+    protected StateListDrawable createBigButtonStateList(final int appColor) {
+        return createStateList(appColor, R.drawable.big_button__background_pressed, R.drawable.big_button__background_default, R.id.big_button__background_pressed_backgrounditem,
+                R.id.big_button__background_default_backgrounditem);
     }
 
     @Override

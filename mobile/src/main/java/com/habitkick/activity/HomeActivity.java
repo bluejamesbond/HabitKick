@@ -1,12 +1,20 @@
 package com.habitkick.activity;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.habitkick.R;
 import com.habitkick.core.MobileActivity;
+import com.habitkick.shared.common.view.HueShiftImageView;
 import com.habitkick.shared.core.MessageConstants;
+
+import org.w3c.dom.Text;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HomeActivity extends MobileActivity {
 
@@ -18,6 +26,7 @@ public class HomeActivity extends MobileActivity {
         _runOnUiThread(new Runnable() {
             @Override
             public void run() {
+
                 findViewById(R.id.calibrate_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -58,9 +67,9 @@ public class HomeActivity extends MobileActivity {
         _runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                findViewById(R.id.center_banner).setBackgroundColor(appColor);
+                ((TextView)findViewById(R.id.tagline)).setTextColor(appColor);
+                ((HueShiftImageView)findViewById(R.id.logo)).shiftHue(hue);
                 findViewById(R.id.calibrate_button).setBackground(createBigButtonStateList(appColor));
-                //    stub.findViewById(R.id.calibrate_next_button).setBackground(createBigButtonLowRadStateList(appColor));
             }
         });
     }

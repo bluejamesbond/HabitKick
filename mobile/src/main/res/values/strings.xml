@@ -7,5 +7,5 @@
     <string name="intro_calibrate">First we have to remember your arm position. Hit the calibrate
     button on your wearable device and then wait until you feel it vibrate.</string>
     <string name="timeout">You will be alerted if your arm is in this position for 3 seconds</string>
-
+    <string name="calibrate_text"><Data><![CDATA[ <b><font color=#cc0029>START</font> CALIBRATION</b> ]]> </Data></string>
 </resources>
