@@ -1,6 +1,5 @@
 package com.habitkick.core;
 
-import android.graphics.drawable.StateListDrawable;
 import android.view.View;
 
 import com.habitkick.R;

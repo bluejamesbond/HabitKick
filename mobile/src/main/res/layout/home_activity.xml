@@ -42,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/stroke_label__background"
             android:text="Android Wear Detected"
             android:textAllCaps="true"
             android:textColor="@android:color/white"
@@ -59,7 +60,7 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <com.habitkick.shared.common.view.layout.VerticalHalfWhiteLinearLayout
+    <com.habitkick.shared.common.view.VerticalHalfWhiteLinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -98,7 +99,7 @@
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
         </LinearLayout>
-    </com.habitkick.shared.common.view.layout.VerticalHalfWhiteLinearLayout>
+    </com.habitkick.shared.common.view.VerticalHalfWhiteLinearLayout>
 
     <FrameLayout
         android:layout_width="fill_parent"
@@ -106,7 +107,8 @@
         android:layout_above="@+id/linearLayout2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:paddingTop="20dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -127,18 +129,18 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:textAlignment="center">
 
                 <com.habitkick.shared.common.view.text.font.ProximaNovaRegularTextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:letterSpacing="0.1"
                     android:text="@string/app_name_first"
                     android:textAllCaps="true"
-                    android:letterSpacing="0.1"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@android:color/white" />
 
@@ -147,9 +149,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
+                    android:letterSpacing="0.05"
                     android:text="@string/app_name_second"
                     android:textAllCaps="true"
-                    android:letterSpacing="0.05"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@android:color/white" />
             </LinearLayout>

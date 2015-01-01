@@ -1,4 +1,4 @@
-package com.habitkick.shared.common.view.layout;
+package com.habitkick.shared.common.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;

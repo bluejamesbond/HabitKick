@@ -91,7 +91,8 @@ public abstract class HabitKickActivity extends SocketActivity {
         layerDrawable = (LayerDrawable) getResources().getDrawable(pressed);
         gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(presid);
         gradientDrawable.setColor(appColor);
-        stateListDrawable.addState(new int[]{android.R.attr.state_pressed, android.R.attr.state_selected}, layerDrawable);
+        stateListDrawable.addState(new int[]{android.R.attr.state_pressed }, layerDrawable);
+        stateListDrawable.addState(new int[]{android.R.attr.state_selected }, layerDrawable);
 
         layerDrawable = (LayerDrawable) getResources().getDrawable(def);
         gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(defid);

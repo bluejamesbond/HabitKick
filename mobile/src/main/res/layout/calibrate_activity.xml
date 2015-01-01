@@ -1,0 +1,187 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context=".MainActivity">
+
+    <View
+        android:id="@+id/bg"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:alpha="0.5"
+        android:background="@drawable/app__background" />
+
+    <com.habitkick.shared.common.view.VerticalHalfWhiteLinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:clipToPadding="false"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:id="@+id/calibrate_next_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/big_button__background"
+            android:clickable="true"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:padding="20dp">
+
+            <com.habitkick.shared.common.view.text.font.ProximaNovaBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:text="Next"
+                android:textAllCaps="true"
+                android:textColor="#50000000"
+                android:textSize="20sp" />
+
+            <com.habitkick.shared.common.view.text.font.ProximaNovaBoldTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Position"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </com.habitkick.shared.common.view.VerticalHalfWhiteLinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:gravity="center_horizontal|top"
+            android:orientation="vertical"
+            android:paddingTop="40sp">
+
+            <com.habitkick.shared.common.view.HueShiftImageView
+                android:id="@+id/logo"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_horizontal"
+                android:elevation="2dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/logo" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/linearLayout"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_weight="30"
+                android:orientation="vertical"
+                android:paddingBottom="40dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:paddingTop="30dp">
+
+                <com.habitkick.shared.common.view.text.font.ProximaNovaBoldTextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10dp"
+                    android:text="Android Wear Detected"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="13sp" />
+
+                <com.habitkick.shared.common.view.text.font.ProximaNovaRegularTextView
+                    android:id="@+id/editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:alpha="0.5"
+                    android:gravity="center"
+                    android:text="First you need to tell us where your arm will be will be doing whatever that is your want to stop. This process is called calibration."
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/_pad_"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/frameLayout">
+
+        <com.habitkick.shared.common.view.HoloCircularProgressBar xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/progress"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            app:marker_progress="0.0"
+            app:marker_visible="false"
+            app:progress="0.4"
+            app:progress_background_color="#44000000"
+            app:progress_color="@color/universal__appcolor"
+            app:stroke_width="20dp"
+            app:thumb_visible="false" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.habitkick.shared.common.view.text.font.ProximaNovaBoldTextView
+                android:id="@+id/point_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/textView3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="-5dp"
+                android:layout_marginTop="15dp"
+                android:text="Points"
+                android:textAllCaps="true"
+                android:textColor="@color/universal__appcolor"
+                android:textSize="16sp" />
+
+            <com.habitkick.shared.common.view.text.font.ProximaNovaRegularTextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="-5dp"
+                android:text="50"
+                android:textColor="@android:color/white"
+                android:textSize="120dp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/_pad_"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:layout_above="@+id/linearLayout" />
+
+</RelativeLayout>
