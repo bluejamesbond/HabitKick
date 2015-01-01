@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
  */
 public class VerticalHalfWhiteLinearLayout extends LinearLayout {
     private Paint mPaint;
+
     public VerticalHalfWhiteLinearLayout(Context context) {
         super(context);
         init();
@@ -35,7 +36,7 @@ public class VerticalHalfWhiteLinearLayout extends LinearLayout {
         init();
     }
 
-    public void init(){
+    public void init() {
         mPaint = new Paint();
         mPaint.setColor(Color.WHITE);
         mPaint.setStyle(Paint.Style.FILL);

@@ -30,6 +30,10 @@ public class HueShiftImageView extends ImageView {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
+    private static float cleanValue(float p_val, float p_limit) {
+        return Math.min(p_limit, Math.max(-p_limit, p_val));
+    }
+
     public void shiftHue(float value) {
 
         value = value > 180 ? -(360f - value) : value;
@@ -56,9 +60,5 @@ public class HueShiftImageView extends ImageView {
         cm.postConcat(new ColorMatrix(mat));
         setColorFilter(new ColorMatrixColorFilter(cm));
         postInvalidate();
-    }
-
-    private static float cleanValue(float p_val, float p_limit) {
-        return Math.min(p_limit, Math.max(-p_limit, p_val));
     }
 }

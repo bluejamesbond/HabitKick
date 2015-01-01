@@ -18,7 +18,7 @@ import com.habitkick.shared.R;
 
 /**
  * HoloCircularProgressBar custom view.
- *
+ * <p/>
  * https://github.com/passsy/android-HoloCircularProgressBar
  *
  * @author Pascal.Welsch
@@ -90,7 +90,7 @@ public class HoloCircularProgressBar extends View {
 
     /**
      * The gravity of the view. Where should the Circle be drawn within the given bounds
-     *
+     * <p/>
      * {@link #computeInsets(int, int)}
      */
     private int mGravity = Gravity.CENTER;
@@ -154,7 +154,7 @@ public class HoloCircularProgressBar extends View {
 
     /**
      * Radius of the circle
-     *
+     * <p/>
      * <p> Note: (Re)calculated in {@link #onMeasure(int, int)}. </p>
      */
     private float mRadius;
@@ -166,7 +166,7 @@ public class HoloCircularProgressBar extends View {
 
     /**
      * The Thumb pos x.
-     *
+     * <p/>
      * Care. the position is not the position of the rotated thumb. The position is only calculated
      * in {@link #onMeasure(int, int)}
      */
@@ -174,7 +174,7 @@ public class HoloCircularProgressBar extends View {
 
     /**
      * The Thumb pos y.
-     *
+     * <p/>
      * Care. the position is not the position of the rotated thumb. The position is only calculated
      * in {@link #onMeasure(int, int)}
      */
@@ -429,48 +429,6 @@ public class HoloCircularProgressBar extends View {
     }
 
     /**
-     * gives the current progress of the ProgressBar. Value between 0..1 if you set the progress to
-     * >1 you'll get progress % 1 as return value
-     *
-     * @return the progress
-     */
-    public float getProgress() {
-        return mProgress;
-    }
-
-    /**
-     * Gets the progress color.
-     *
-     * @return the progress color
-     */
-    public int getProgressColor() {
-        return mProgressColor;
-    }
-
-    /**
-     * @return true if the marker is visible
-     */
-    public boolean isMarkerEnabled() {
-        return mIsMarkerEnabled;
-    }
-
-    /**
-     * @return true if the marker is visible
-     */
-    public boolean isThumbEnabled() {
-        return mIsThumbEnabled;
-    }
-
-    /**
-     * Sets the marker enabled.
-     *
-     * @param enabled the new marker enabled
-     */
-    public void setMarkerEnabled(final boolean enabled) {
-        mIsMarkerEnabled = enabled;
-    }
-
-    /**
      * Sets the marker progress.
      *
      * @param progress the new marker progress
@@ -478,6 +436,16 @@ public class HoloCircularProgressBar extends View {
     public void setMarkerProgress(final float progress) {
         mIsMarkerEnabled = true;
         mMarkerProgress = progress;
+    }
+
+    /**
+     * gives the current progress of the ProgressBar. Value between 0..1 if you set the progress to
+     * >1 you'll get progress % 1 as return value
+     *
+     * @return the progress
+     */
+    public float getProgress() {
+        return mProgress;
     }
 
     /**
@@ -510,15 +478,12 @@ public class HoloCircularProgressBar extends View {
     }
 
     /**
-     * Sets the progress background color.
+     * Gets the progress color.
      *
-     * @param color the new progress background color
+     * @return the progress color
      */
-    public void setProgressBackgroundColor(final int color) {
-        mProgressBackgroundColor = color;
-
-        updateMarkerColor();
-        updateBackgroundColor();
+    public int getProgressColor() {
+        return mProgressColor;
     }
 
     /**
@@ -533,12 +498,47 @@ public class HoloCircularProgressBar extends View {
     }
 
     /**
+     * @return true if the marker is visible
+     */
+    public boolean isMarkerEnabled() {
+        return mIsMarkerEnabled;
+    }
+
+    /**
+     * Sets the marker enabled.
+     *
+     * @param enabled the new marker enabled
+     */
+    public void setMarkerEnabled(final boolean enabled) {
+        mIsMarkerEnabled = enabled;
+    }
+
+    /**
+     * @return true if the marker is visible
+     */
+    public boolean isThumbEnabled() {
+        return mIsThumbEnabled;
+    }
+
+    /**
      * shows or hides the thumb of the progress bar
      *
      * @param enabled true to show the thumb
      */
     public void setThumbEnabled(final boolean enabled) {
         mIsThumbEnabled = enabled;
+    }
+
+    /**
+     * Sets the progress background color.
+     *
+     * @param color the new progress background color
+     */
+    public void setProgressBackgroundColor(final int color) {
+        mProgressBackgroundColor = color;
+
+        updateMarkerColor();
+        updateBackgroundColor();
     }
 
     /**
@@ -557,7 +557,7 @@ public class HoloCircularProgressBar extends View {
 
     /**
      * Compute insets.
-     *
+     * <p/>
      * <pre>
      *  ______________________
      * |_________dx/2_________|
