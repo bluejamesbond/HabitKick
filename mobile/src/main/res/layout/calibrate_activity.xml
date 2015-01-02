@@ -11,8 +11,16 @@
         android:id="@+id/bg"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:alpha="0.5"
+        android:alpha="0.3"
         android:background="@drawable/app__background" />
+
+    <ImageView
+        android:id="@+id/hero"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:alpha="0.1"
+        android:scaleType="centerCrop"
+        android:src="@drawable/hero_3" />
 
     <com.habitkick.shared.common.view.VerticalHalfWhiteLinearLayout
         android:id="@+id/linearLayout"
@@ -129,9 +137,20 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/frameLayout">
 
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="332dp"
+            android:background="@drawable/calibrate_activity__progress_background"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/progress"
+            android:layout_alignStart="@+id/progress"
+            android:layout_alignRight="@+id/progress"
+            android:layout_alignEnd="@+id/progress" />
+
         <com.habitkick.shared.common.view.HoloCircularProgressBar xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/progress"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
@@ -140,8 +159,10 @@
             app:progress="0.4"
             app:progress_background_color="#44000000"
             app:progress_color="@color/universal__appcolor"
-            app:stroke_width="20dp"
-            app:thumb_visible="false" />
+            app:stroke_width="18dp"
+            app:thumb_visible="false">
+
+        </com.habitkick.shared.common.view.HoloCircularProgressBar>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -151,31 +172,30 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <com.habitkick.shared.common.view.text.font.ProximaNovaBoldTextView
-                android:id="@+id/point_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/textView3"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="-5dp"
-                android:layout_marginTop="15dp"
-                android:text="Points"
-                android:textAllCaps="true"
-                android:textColor="@color/universal__appcolor"
-                android:textSize="16sp" />
-
-            <com.habitkick.shared.common.view.text.font.ProximaNovaRegularTextView
+            <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="-5dp"
                 android:text="50"
                 android:textColor="@android:color/white"
                 android:textSize="120dp" />
 
+            <com.habitkick.shared.common.view.text.font.ProximaNovaBoldTextView
+                android:id="@+id/progress_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/textView3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="-15dp"
+                android:text="Points"
+                android:textAllCaps="true"
+                android:textColor="@color/universal__appcolor"
+                android:textSize="20sp" />
+
         </LinearLayout>
+
     </RelativeLayout>
 
     <View

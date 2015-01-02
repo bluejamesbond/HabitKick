@@ -54,7 +54,7 @@ public class CalibrateActivity extends MobileActivity {
             public void run() {
                 ((HueShiftImageView) findViewById(R.id.logo)).shiftHue(hue);
                 findViewById(R.id.calibrate_next_button).setBackground(createBigButtonStateList(appColor));
-                ((TextView) findViewById(R.id.point_count)).setTextColor(appColor);
+                ((TextView) findViewById(R.id.progress_label)).setTextColor(appColor);
                 ((HoloCircularProgressBar) findViewById(R.id.progress)).setProgressColor(appColor);
             }
         });
