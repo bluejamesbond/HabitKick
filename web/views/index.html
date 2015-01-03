@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="light hue">
+<html class="light">
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
@@ -29,29 +29,21 @@
       }
 
   .light {
-        background: #eee;
         height:100%;
-        width:100%;
         overflow: hidden;
-        background: #eeeeee; /* Old browsers */
-        background: -moz-linear-gradient(top,  #eeeeee 0%, #ffffff 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top,  #eeeeee 0%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top,  #eeeeee 0%,#ffffff 100%); /* Opera 11.10+ */
-        background: -ms-linear-gradient(top,  #eeeeee 0%,#ffffff 100%); /* IE10+ */
-        background: linear-gradient(to bottom,  #eeeeee 0%,#ffffff 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+        background: #FFF; /* Old browsers */
       }
       .light * {
         font-family: "proxima-nova", Arial;
         font-style: normal;
-        color:#222;
+        color:#FFF;
+        box-sizing: border-box;
       }
       .dark {
         height:100%;
-        width:100%;
         overflow: hidden;
         background: #222222; /* Old browsers */
+        box-sizing: border-box;
       }
       .dark * {
         font-family: "proxima-nova", Arial;
@@ -62,42 +54,43 @@
 </head>
 
 <body>
-    <div style="position:absolute;right:60%;left:0;top:0;bottom:0;">
-        <div style="width:100%;height:100%;display:table;padding-left:20%;">
-            <div style=
-            "font-size:80px;display:table-cell;vertical-align: middle;font-weight:100;">
-            <div style="display:inline-block;height:80px;">
-                    <div style=
-                    "display:inline-block;height:80px;width:80px;background:url(img/logo-1.png) center center no-repeat;background-size:cover;vertical-align:top;">
-                    </div>
-                </div>
+    <div class="dark" style="position:absolute;right:50%;left:0;top:0;bottom:0;">
+        <div style="width:100%;height:100%;position:absolute;left:0;right:0;opacity:0.3;background:url(img/moto-360-2.jpg) center center no-repeat;background-size:cover;z-index:1;"></div>
+        <div style="position:absolute;left:0;right:0;top:0;bottom:0;z-index:2;">
+          <div style="width:100%;height:100%;display:table;padding-left:20%;padding-right:20%;">
+              <div style=
+              "font-size:80px;display:table-cell;vertical-align: middle;font-weight:100;">
+              <div style="display:inline-block;height:80px;">
+                      <div style=
+                      "display:inline-block;height:80px;width:80px;background:url(img/logo-1.png) center center no-repeat;background-size:cover;vertical-align:top;">
+                      </div>
+                  </div>
 
-                <div style=
-                "font-size:50px;font-weight:100;font-family:'Open Sans';line-height: 65px;">
-                We are human
-                </div>
+                  <div style=
+                  "font-size:50px;font-weight:100;font-family:'Open Sans';line-height: 65px;">
+                  We are human
+                  </div>
 
-                <div style=
-                "font-size:18px;font-weight:100;font-family:'Open Sans'">
-                    Use your Android Wear device to break your bad habits.
-                </div>
+                  <div style=
+                  "font-size:18px;font-weight:100;font-family:'Open Sans'">
+                      Use your Android Wear device to break your bad habits.
+                  </div>
 
-                <div style=
-                "display:inline-block;font-size:18px;font-weight:700;padding:10px 20px;border-radius:5px;letter-spacing:3px;text-transform:uppercase;font-family:'Open Sans';position: relative;top: -20px;background:#05c6f9;cursor:pointer;color:#FFF;">
-                <span style=
-                "font-family:'Open Sans';font-weight:100;vertical-align:top;color:#FFF;">
-                    GET </span>HabitKick
-                </div>
-            </div>
+                  <div style=
+                  "display:inline-block;font-size:18px;font-weight:700;padding:10px 20px;border-radius:5px;letter-spacing:3px;text-transform:uppercase;font-family:'Open Sans';position: relative;top: -20px;background:#05c6f9;cursor:pointer;color:#FFF;">
+                  <span style=
+                  "font-family:'Open Sans';font-weight:100;vertical-align:top;color:#FFF;">
+                      GET </span>HabitKick
+                  </div>
+              </div>
+          </div>
         </div>
     </div>
 
-    <div style="position:absolute;right:0;width:50%;top:0;bottom:0;">
-        <div style="width:100%;height:100%;display:table;">
-            <div style=
-            "height:40%;background:url(img/moto-360-3.png) center center no-repeat;background-size:60%;display:table-cell;vertical-align: middle;">
-            </div>
-        </div>
+    <div style="position:absolute;right:0;width:50%%;top:0;bottom:0;background:url(img/nexus-5-1.png) center center no-repeat;background-size: 50%;">
     </div>
+
+<!--     <div style="position:absolute;right:33%%;width:33%%;top:0;bottom:0;background:url(img/moto-360-3.png) center center no-repeat;background-size: 50%;background-color:#EEE;">
+    </div> -->
 </body>
 </html>

@@ -1,0 +1,1 @@
+{"type":"log","show":{"tags":false,"location":false,"time":true,"date":false},"context":{"tags":[],"file":false,"time":1420315784996,"location":{"filename":"app.js","line":30}},"args":{"0":"Server listening at port 5000"},"contextString":"2015-01-03T20:09:44.996Z ","argsString":"Server listening at port 5000","message":"2015-01-03T20:09:44.996Z Server listening at port 5000"}
