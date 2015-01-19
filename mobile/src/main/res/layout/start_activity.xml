@@ -37,13 +37,13 @@
         android:paddingTop="40dp">
 
         <com.habitkick.shared.common.view.text.font.ProximaNovaBoldTextView
-            android:id="@+id/textView"
+            android:id="@+id/connection_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:background="@drawable/stroke_label__background"
-            android:text="Android Wear Detected"
+            android:text="@string/three_dots"
             android:textAllCaps="true"
             android:textColor="@android:color/white"
             android:textSize="13sp"/>
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/big_button__background"
             android:clickable="true"
-            android:elevation="2dp"
+            android:elevation="1dp"
             android:gravity="center"
             android:padding="15dp">
 

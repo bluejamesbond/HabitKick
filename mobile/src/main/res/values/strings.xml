@@ -8,4 +8,7 @@
     button on your wearable device and then wait until you feel it vibrate.</string>
     <string name="timeout">You will be alerted if your arm is in this position for 3 seconds</string>
     <string name="calibrate_text"><Data><![CDATA[ <b><font color=#cc0029>START</font> CALIBRATION</b> ]]> </Data></string>
+    <string name="three_dots">• • •</string>
+    <string name="wear_connected">android wear connected</string>
+    <string name="wear_disconnected">android ear disconnected</string>
 </resources>

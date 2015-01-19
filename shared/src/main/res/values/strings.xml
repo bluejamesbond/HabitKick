@@ -6,8 +6,8 @@
 
     <!-- icons -->
     <string name="icon_menu"></string>
-    <string name="icon_left"></string>
-    <string name="icon_right"></string>
+    <string name="icon_left">◀</string>
+    <string name="icon_right">▶</string>
     <string name="icon_lasttime"></string>
     <string name="icon_home"></string>
     <string name="icon_pause"></string>

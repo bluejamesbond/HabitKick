@@ -16,30 +16,35 @@ public class StartActivity extends MobileActivity {
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        sendMessage("App opened");
 
         _runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
                 findViewById(R.id.calibrate_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(StartActivity.this, CalibrateActivity.class));
+                        startActivity(CalibrateActivity.class);
                         sendMessage(MessageConstants.OPEN_CALIBRATION_MSG);
                         sendMessage(MessageConstants.START_CALIBRATION_SERVICE_MSG);
                     }
                 });
-
-//                findViewById(R.id.calibrate_next_button).setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        sendMessage(MessageConstants.NEXT_CALIBRATION_POSITION_MSG);
-//                        setNextPositionEnabled(HomeActivity.this, false);
-//                    }
-//                });
             }
         });
+    }
+
+    @Override
+    protected void onConnectionChange(final boolean connected) {
+        super.onConnectionChange(connected);
+        _runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                updateConnectionStatus(connected);
+            }
+        });
+    }
+
+    protected void updateConnectionStatus(boolean status) {
+        ((TextView) findViewById(R.id.connection_status)).setText(getResources().getText(status ? R.string.wear_connected : R.string.wear_disconnected));
     }
 
     @Override

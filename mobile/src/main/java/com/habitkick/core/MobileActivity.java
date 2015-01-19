@@ -1,6 +1,6 @@
 package com.habitkick.core;
 
-import android.content.pm.ActivityInfo;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -8,11 +8,17 @@ import com.habitkick.R;
 import com.habitkick.shared.core.HabitKickActivity;
 
 public abstract class MobileActivity extends HabitKickActivity {
+
+    public static final boolean DEBUG = true;
+
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+    }
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    protected void startActivity(Class act) {
+        startActivity(new Intent(this, act));
+        finish();
     }
 
     @Override

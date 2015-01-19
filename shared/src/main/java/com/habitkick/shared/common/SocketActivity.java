@@ -29,18 +29,27 @@ public abstract class SocketActivity extends ReferencedActivity implements
         return (SocketActivity) ReferencedActivity.getActive(context);
     }
 
+    public boolean isWearConnected(){
+        return  Wearable.NodeApi.getConnectedNodes(mGoogleClient).await().getNodes().size() > 0;
+    }
+
     // Send a message when the data layer connection is successful.
     @Override
     public void onConnected(Bundle connectionHint) {
+        onConnectionChange(true);
     }
 
     @Override
     public void onConnectionSuspended(int i) {
+        onConnectionChange(false);
     }
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
+        onConnectionChange(false);
     }
+
+    protected void onConnectionChange(boolean connected){}
 
     @Override
     protected void onStart() {
