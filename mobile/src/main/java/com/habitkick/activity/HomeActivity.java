@@ -1,46 +1,17 @@
 package com.habitkick.activity;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.habitkick.R;
 import com.habitkick.core.MobileActivity;
+import com.habitkick.shared.common.view.HoloCircularProgressBar;
 import com.habitkick.shared.common.view.HueShiftImageView;
-import com.habitkick.shared.core.MessageConstants;
 
+/**
+ * Created by Mathew on 1/15/2015.
+ */
 public class HomeActivity extends MobileActivity {
-
-    @Override
-    protected void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        sendMessage("App opened");
-
-        _runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-
-                findViewById(R.id.calibrate_button).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(HomeActivity.this, CalibrateActivity.class));
-                        sendMessage(MessageConstants.OPEN_CALIBRATION_MSG);
-                        sendMessage(MessageConstants.START_CALIBRATION_SERVICE_MSG);
-                    }
-                });
-
-//                findViewById(R.id.calibrate_next_button).setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        sendMessage(MessageConstants.NEXT_CALIBRATION_POSITION_MSG);
-//                        setNextPositionEnabled(HomeActivity.this, false);
-//                    }
-//                });
-            }
-        });
-    }
 
     @Override
     protected int getContentViewId() {
@@ -48,29 +19,22 @@ public class HomeActivity extends MobileActivity {
     }
 
     @Override
-    protected void onMessageReceived(int id, String message) {
-        switch (id) {
-            case MessageConstants.STORED_CALIBRATION_POSITION_ID: {
-                setNextPositionEnabled(this, true);
-            }
-        }
-    }
-
-
-    @Override
     protected void onThemeChange(final int appColor, final float hue) {
         super.onThemeChange(appColor, hue);
         _runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ((TextView) findViewById(R.id.tagline)).setTextColor(appColor);
-                ((HueShiftImageView) findViewById(R.id.logo)).shiftHue(hue);
-                findViewById(R.id.calibrate_button).setBackground(createBigButtonStateList(appColor));
+               // ((HueShiftImageView) findViewById(R.id.logo)).shiftHue(hue);
+                ((TextView) findViewById(R.id.wear_button__icon)).setTextColor(appColor);
+                ((TextView) findViewById(R.id.auto_text)).setTextColor(appColor);
+                ((TextView) findViewById(R.id.progress_label)).setTextColor(appColor);
+                ((HoloCircularProgressBar) findViewById(R.id.progress)).setProgressColor(appColor);
+
+                findViewById(R.id.date_button).setBackground(createBigButtonStateList(appColor));
+                findViewById(R.id.recalibrate_ok_button).setBackground(createBigButtonStateList(appColor));
+                findViewById(R.id.reset_ok_button).setBackground(createBigButtonStateList(appColor));
+                ((View)findViewById(R.id.goal_item)).setBackgroundColor(appColor);
             }
         });
-    }
-
-    public void setNextPositionEnabled(final Activity activity, final boolean enable) {
-        //    activity.findViewById(R.id.calibrate_next_button).setEnabled(enable)
     }
 }

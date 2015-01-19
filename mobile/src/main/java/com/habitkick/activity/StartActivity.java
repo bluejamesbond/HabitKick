@@ -1,5 +1,6 @@
 package com.habitkick.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,11 +8,10 @@ import android.widget.TextView;
 
 import com.habitkick.R;
 import com.habitkick.core.MobileActivity;
-import com.habitkick.shared.common.view.HoloCircularProgressBar;
 import com.habitkick.shared.common.view.HueShiftImageView;
 import com.habitkick.shared.core.MessageConstants;
 
-public class CalibrateActivity extends MobileActivity {
+public class StartActivity extends MobileActivity {
 
     @Override
     protected void onCreate(Bundle bundle) {
@@ -21,28 +21,37 @@ public class CalibrateActivity extends MobileActivity {
         _runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                findViewById(R.id.calibrate_next_button).setOnClickListener(new View.OnClickListener() {
+
+                findViewById(R.id.calibrate_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(CalibrateActivity.this, HomeActivity.class));
-                        sendMessage(MessageConstants.NEXT_CALIBRATION_POSITION_MSG);
-                        setNextPositionEnabled(false);
+                        startActivity(new Intent(StartActivity.this, CalibrateActivity.class));
+                        sendMessage(MessageConstants.OPEN_CALIBRATION_MSG);
+                        sendMessage(MessageConstants.START_CALIBRATION_SERVICE_MSG);
                     }
                 });
+
+//                findViewById(R.id.calibrate_next_button).setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        sendMessage(MessageConstants.NEXT_CALIBRATION_POSITION_MSG);
+//                        setNextPositionEnabled(HomeActivity.this, false);
+//                    }
+//                });
             }
         });
     }
 
     @Override
     protected int getContentViewId() {
-        return R.layout.calibrate_activity;
+        return R.layout.start_activity;
     }
 
     @Override
     protected void onMessageReceived(int id, String message) {
         switch (id) {
             case MessageConstants.STORED_CALIBRATION_POSITION_ID: {
-                setNextPositionEnabled(true);
+                setNextPositionEnabled(this, true);
             }
         }
     }
@@ -54,16 +63,14 @@ public class CalibrateActivity extends MobileActivity {
         _runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                ((TextView) findViewById(R.id.tagline)).setTextColor(appColor);
                 ((HueShiftImageView) findViewById(R.id.logo)).shiftHue(hue);
-                findViewById(R.id.calibrate_next_button).setBackground(createBigButtonStateList(appColor));
-                ((TextView) findViewById(R.id.progress_label)).setTextColor(appColor);
-                ((HoloCircularProgressBar) findViewById(R.id.progress)).setProgressColor(appColor);
+                findViewById(R.id.calibrate_button).setBackground(createBigButtonStateList(appColor));
             }
         });
     }
 
-    public void setNextPositionEnabled(final boolean enable) {
-        findViewById(R.id.calibrate_next_button).setSelected(enable);
-        findViewById(R.id.calibrate_next_button).setEnabled(enable);
+    public void setNextPositionEnabled(final Activity activity, final boolean enable) {
+        //    activity.findViewById(R.id.calibrate_next_button).setEnabled(enable)
     }
 }

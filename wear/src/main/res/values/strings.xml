@@ -10,19 +10,6 @@
     <string name="detail_value">6 Hrs</string>
     <string name="detail_label">Last Time</string>
 
-    <!-- icons -->
-    <string name="icon_menu"></string>
-    <string name="icon_left"></string>
-    <string name="icon_right"></string>
-    <string name="icon_lasttime"></string>
-    <string name="icon_home"></string>
-    <string name="icon_pause"></string>
-    <string name="icon_silent"></string>
-    <string name="icon_calibrate"></string>
-    <string name="icon_info"></string>
-    <string name="icon_mobile"></string>
-    <string name="icon_logo"></string>
-
     <string name="calibrate_message">Calibrating</string>
     <string name="calibrate_finished">Calibration successful</string>
 
