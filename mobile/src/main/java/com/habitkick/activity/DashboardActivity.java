@@ -29,7 +29,7 @@ public class DashboardActivity extends MobileActivity {
         _runOnUiThread(new Runnable() {
             @Override
             public void run() {
-               // ((HueShiftImageView) findViewById(R.id.logo)).shiftHue(hue);
+                
                 ((TextView) findViewById(R.id.wear_button__icon)).setTextColor(appColor);
                 ((TextView) findViewById(R.id.avg_text)).setTextColor(appColor);
                 ((TextView) findViewById(R.id.progress_label)).setTextColor(appColor);
@@ -38,7 +38,7 @@ public class DashboardActivity extends MobileActivity {
                 findViewById(R.id.date_button).setBackground(createBigButtonStateList(appColor));
                 findViewById(R.id.recalibrate_ok_button).setBackground(createBigButtonStateList(appColor));
                 findViewById(R.id.reset_ok_button).setBackground(createBigButtonStateList(appColor));
-                ((View)findViewById(R.id.goal_item)).setBackgroundColor(appColor);
+                findViewById(R.id.goal_item).setBackgroundColor(appColor);
             }
         });
     }
