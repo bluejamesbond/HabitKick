@@ -1,12 +1,12 @@
-NailSafe
+![Logo](mobile/src/main/res/drawable-xhdpi/ic_launcher.png)
 ========
 
 ![Image](wear/models/moto-360-2-cropped.jpg)
 
-#Primary
+##Primary
 - [ ] Update and store onto mobile from phone
 
-#Secondary
+##Secondary
 - [ ] Set minimum height on mobile phones of the root view so as to not compress with the circular progress views
 - [ ] Adding animations
 - [ ] StartActivity.java on mobile has an error sensing if the mobile wear is connected
@@ -15,5 +15,5 @@ NailSafe
 - [ ] Improve average calculation
 - [ ] Normalize datastore keys i.e. CalibrationPosition, CalibrationFinished
 
-#Note
+##Note
 - Renamed packaged due to a compatibility issues on my pc
