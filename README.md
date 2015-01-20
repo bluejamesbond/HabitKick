@@ -1,6 +1,8 @@
 NailSafe
 ========
 
+![Image](wear/models/moto-360-2-cropped.jpg)
+
 #Primary
 - [ ] Update and store onto mobile from phone
 
