@@ -9,6 +9,7 @@ import com.habitkick.shared.core.HabitKickActivity;
 
 public abstract class MobileActivity extends HabitKickActivity {
 
+    public static final String CALIBRATED_KEY = "calibrated";
     public static final boolean DEBUG = true;
 
     @Override

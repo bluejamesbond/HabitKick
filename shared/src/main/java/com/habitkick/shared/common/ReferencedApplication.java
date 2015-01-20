@@ -3,9 +3,6 @@ package com.habitkick.shared.common;
 import android.app.Activity;
 import android.app.Application;
 
-/**
- * Created by Mathew on 12/30/2014.
- */
 public class ReferencedApplication extends Application {
     private Activity mCurrentActivity = null;
 

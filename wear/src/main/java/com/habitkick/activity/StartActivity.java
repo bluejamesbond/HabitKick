@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.habitkick.R;
 import com.habitkick.core.WatchActivity;
-import com.habitkick.shared.core.MessageConstants;
+import com.habitkick.shared.core.MessageId;
 
 public class StartActivity extends WatchActivity {
 
@@ -34,7 +34,7 @@ public class StartActivity extends WatchActivity {
                 getRootView().findViewById(R.id.mobile_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        sendMessage(MessageConstants.OPEN_HOME_ACTIVITY_MSG);
+                        sendMessage(MessageId.OPEN_HOME_ACTIVITY);
                     }
                 });
             }

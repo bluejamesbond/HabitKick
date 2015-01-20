@@ -1,15 +1,15 @@
 package com.habitkick.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.habitkick.R;
 import com.habitkick.core.MobileActivity;
+import com.habitkick.shared.common.Utils;
 import com.habitkick.shared.common.view.HueShiftImageView;
-import com.habitkick.shared.core.MessageConstants;
+import com.habitkick.shared.core.MessageId;
 
 public class StartActivity extends MobileActivity {
 
@@ -23,11 +23,33 @@ public class StartActivity extends MobileActivity {
                 findViewById(R.id.calibrate_button).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(CalibrateActivity.class);
-                        sendMessage(MessageConstants.OPEN_CALIBRATION_MSG);
-                        sendMessage(MessageConstants.START_CALIBRATION_SERVICE_MSG);
+
+//                        if(MobileActivity.DEBUG){
+//                            Utils.putStore(StartActivity.this, MobileActivity.CALIBRATED_KEY, true);
+//                        }
+
+                        if(Utils.getStore(StartActivity.this, MobileActivity.CALIBRATED_KEY, true)){
+                            startActivity(DashboardActivity.class);
+                        } else {
+                            startActivity(CalibrateActivity.class);
+                            sendMessage(MessageId.OPEN_CALIBRATION);
+                            sendMessage(MessageId.START_CALIBRATION_SERVICE);
+                        }
                     }
                 });
+            }
+        });
+    }
+
+    @Override
+    protected void onThemeChange(final int appColor, final float hue) {
+        super.onThemeChange(appColor, hue);
+        _runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ((TextView) findViewById(R.id.tagline)).setTextColor(appColor);
+                ((HueShiftImageView) findViewById(R.id.logo)).shiftHue(hue);
+                findViewById(R.id.calibrate_button).setBackground(createBigButtonStateList(appColor));
             }
         });
     }
@@ -43,36 +65,22 @@ public class StartActivity extends MobileActivity {
         });
     }
 
-    protected void updateConnectionStatus(boolean status) {
-        ((TextView) findViewById(R.id.connection_status)).setText(getResources().getText(status ? R.string.wear_connected : R.string.wear_disconnected));
-    }
-
     @Override
     protected int getContentViewId() {
         return R.layout.start_activity;
     }
 
     @Override
-    protected void onMessageReceived(int id, String message) {
+    protected void onMessageReceived(MessageId id, String message) {
         switch (id) {
-            case MessageConstants.STORED_CALIBRATION_POSITION_ID: {
+            case STORED_CALIBRATION_POSITION: {
                 setNextPositionEnabled(this, true);
             }
         }
     }
 
-
-    @Override
-    protected void onThemeChange(final int appColor, final float hue) {
-        super.onThemeChange(appColor, hue);
-        _runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                ((TextView) findViewById(R.id.tagline)).setTextColor(appColor);
-                ((HueShiftImageView) findViewById(R.id.logo)).shiftHue(hue);
-                findViewById(R.id.calibrate_button).setBackground(createBigButtonStateList(appColor));
-            }
-        });
+    protected void updateConnectionStatus(boolean status) {
+        ((TextView) findViewById(R.id.connection_status)).setText(getResources().getText(status ? R.string.wear_connected : R.string.wear_disconnected));
     }
 
     public void setNextPositionEnabled(final Activity activity, final boolean enable) {

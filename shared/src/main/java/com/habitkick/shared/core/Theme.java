@@ -1,9 +1,5 @@
 package com.habitkick.shared.core;
 
-/**
- * Created by Mathew on 12/30/2014.
- */
-
 @SuppressWarnings("unused")
 public class Theme {
     public static final float RED = 160f;

@@ -1,26 +1,80 @@
 package com.habitkick.activity;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.gms.common.ConnectionResult;
 import com.habitkick.R;
+import com.habitkick.core.HabitLog;
 import com.habitkick.core.MobileActivity;
 import com.habitkick.shared.common.view.HoloCircularProgressBar;
-import com.habitkick.shared.common.view.HueShiftImageView;
+
+import java.util.Iterator;
+import java.util.List;
 
 public class DashboardActivity extends MobileActivity {
 
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        updateAverage();
     }
 
     @Override
     protected int getContentViewId() {
-        return R.layout.home_activity;
+        return R.layout.dashboard_activity;
+    }
+
+    public void setGoal(int goal){
+        ((TextView) findViewById(R.id.goal_value)).setText(Integer.toString(goal));
+    }
+
+    public int getGoal(){
+        try {
+            return Integer.parseInt(((TextView) findViewById(R.id.goal_value)).getText().toString());
+        } catch (NumberFormatException e){
+            return 0;
+        }
+    }
+
+    public int updateAverage(){
+        new AsyncTask<Void, Void, Integer>(){
+
+            @Override
+            protected Integer doInBackground(Void... params) {
+                Integer total = 0;
+                Integer count = 0;
+                Iterator<HabitLog> habitLogList = HabitLog.findAll(HabitLog.class);
+
+                while (habitLogList.hasNext()){
+                    total += habitLogList.next().getTouches();
+                    count ++;
+                }
+
+                try {
+                    return total / count;
+                } catch (ArithmeticException e) {
+                    return 0;
+                }
+            }
+
+            @Override
+            protected void onPostExecute(Integer integer) {
+                super.onPostExecute(integer);
+                setAverage(integer);
+            }
+        };
+
+        return 0;
+    }
+
+    public void setProgress(int touches, int goal){
+        ((TextView) findViewById(R.id.progress_value)).setText(Integer.toString(touches));
+        ((HoloCircularProgressBar) findViewById(R.id.progress)).setProgress((float) touches / (float) goal);
+    }
+
+    public void setAverage(int avg){
+        ((TextView) findViewById(R.id.goal_value)).setText(Integer.toString(avg));
     }
 
     @Override
@@ -29,7 +83,7 @@ public class DashboardActivity extends MobileActivity {
         _runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                
+
                 ((TextView) findViewById(R.id.wear_button__icon)).setTextColor(appColor);
                 ((TextView) findViewById(R.id.avg_text)).setTextColor(appColor);
                 ((TextView) findViewById(R.id.progress_label)).setTextColor(appColor);

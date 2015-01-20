@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.habitkick.R;
 import com.habitkick.core.WatchActivity;
 import com.habitkick.shared.common.Utils;
-import com.habitkick.shared.core.MessageConstants;
+import com.habitkick.shared.core.MessageId;
 
 public class CalibrateActivity extends WatchActivity {
 
@@ -16,9 +16,9 @@ public class CalibrateActivity extends WatchActivity {
     }
 
     @Override
-    protected void onMessageReceived(int id, String message) {
+    protected void onMessageReceived(MessageId id, String message) {
         switch (id) {
-            case MessageConstants.NEXT_CALIBRATION_POSITION_ID: {
+            case NEXT_CALIBRATION_POSITION: {
                 setPosition(Utils.getStore(this, "CalibrationPosition", 0));
             }
         }

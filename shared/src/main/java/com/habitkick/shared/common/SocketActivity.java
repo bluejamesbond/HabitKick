@@ -15,10 +15,8 @@ import com.google.android.gms.wearable.MessageApi;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
+import com.habitkick.shared.core.MessageId;
 
-/**
- * Created by Mathew on 12/30/2014.
- */
 public abstract class SocketActivity extends ReferencedActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
@@ -29,8 +27,8 @@ public abstract class SocketActivity extends ReferencedActivity implements
         return (SocketActivity) ReferencedActivity.getActive(context);
     }
 
-    public boolean isWearConnected(){
-        return  Wearable.NodeApi.getConnectedNodes(mGoogleClient).await().getNodes().size() > 0;
+    public boolean isWearConnected() {
+        return Wearable.NodeApi.getConnectedNodes(mGoogleClient).await().getNodes().size() > 0;
     }
 
     // Send a message when the data layer connection is successful.
@@ -49,7 +47,8 @@ public abstract class SocketActivity extends ReferencedActivity implements
         onConnectionChange(false);
     }
 
-    protected void onConnectionChange(boolean connected){}
+    protected void onConnectionChange(boolean connected) {
+    }
 
     @Override
     protected void onStart() {
@@ -66,8 +65,12 @@ public abstract class SocketActivity extends ReferencedActivity implements
         super.onStop();
     }
 
-    public void sendMessage(String message) {
-        new SendMessage("/message_path", message).start();
+    public void sendMessage(MessageId messageId) {
+        new SendMessage("/message_path", messageId, "").start();
+    }
+
+    public void sendMessage(MessageId messageId, String message) {
+        new SendMessage("/message_path", messageId, message).start();
     }
 
     @Override
@@ -91,35 +94,38 @@ public abstract class SocketActivity extends ReferencedActivity implements
     protected abstract int getContentViewId();
 
     @SuppressWarnings("unused")
-    protected void onMessageReceived(int id, String message) {
+    protected void onMessageReceived(MessageId id, String message) {
     }
 
 
     private class MessageReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            MessageId id = MessageId.valueOf(intent.getStringExtra("id"));
             String message = intent.getStringExtra("message");
-            onMessageReceived(message.hashCode(), message);
-            Toast.makeText(context, "[0x" + Integer.toHexString(message.hashCode()) + "]\n" + message, Toast.LENGTH_SHORT).show();
+            onMessageReceived(id, message);
+            Toast.makeText(context, "[" + id + "]\n" + message, Toast.LENGTH_SHORT).show();
         }
     }
 
     private class SendMessage extends Thread {
 
         String path;
+        MessageId messageId;
         String message;
         int id;
 
         // Constructor to send a message to the data layer
-        SendMessage(String p, String msg) {
+        SendMessage(String p, MessageId msgId, String msg) {
             path = p;
+            messageId = msgId;
             message = msg;
         }
 
         public void run() {
             NodeApi.GetConnectedNodesResult nodes = Wearable.NodeApi.getConnectedNodes(mGoogleClient).await();
             for (Node node : nodes.getNodes()) {
-                MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(mGoogleClient, node.getId(), path, message.getBytes()).await();
+                MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(mGoogleClient, node.getId(), path, (messageId + "|" + message).getBytes()).await();
                 if (result.getStatus().isSuccess()) {
                     Log.v("myTag", "Message: {" + message + "} sent to: " + node.getDisplayName());
                 } else {

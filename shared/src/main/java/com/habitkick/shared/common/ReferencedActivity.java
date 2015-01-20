@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
-/**
- * Created by Mathew on 12/30/2014.
- */
 public class ReferencedActivity extends Activity {
     protected ReferencedApplication mApp;
 

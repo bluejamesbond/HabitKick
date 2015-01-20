@@ -267,6 +267,10 @@ public class PositionMonitor implements SensorEventListener {
         this.mMeasurementDuration = mMeasurementDuration * 1000;
     }
 
+    public Vibrator getVibratorService() {
+        return mVibratorService;
+    }
+
     public void setVibratorService(Vibrator vibratorService) {
         mVibratorService = vibratorService;
     }
