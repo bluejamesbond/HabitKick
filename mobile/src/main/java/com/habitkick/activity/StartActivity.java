@@ -2,7 +2,6 @@ package com.habitkick.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -26,11 +25,11 @@ public class StartActivity extends MobileActivity {
                     @Override
                     public void onClick(View v) {
 
-                        if(Global.DEBUG){
+                        if (Global.DEBUG) {
                             Utils.putStore(StartActivity.this, Global.CALIBRATED_FLAG_STORE_KEY, false);
                         }
 
-                        if(Utils.getStore(StartActivity.this, Global.CALIBRATED_FLAG_STORE_KEY, false)){
+                        if (Utils.getStore(StartActivity.this, Global.CALIBRATED_FLAG_STORE_KEY, false)) {
                             startActivity(DashboardActivity.class);
                         } else {
                             startActivity(CalibrateActivity.class);

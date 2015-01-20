@@ -323,6 +323,50 @@ public class HoloCircularProgressBar extends View {
     }
 
     @Override
+    protected Parcelable onSaveInstanceState() {
+        final Bundle bundle = new Bundle();
+        bundle.putParcelable(INSTANCE_STATE_SAVEDSTATE, super.onSaveInstanceState());
+        bundle.putFloat(INSTANCE_STATE_PROGRESS, mProgress);
+        bundle.putFloat(INSTANCE_STATE_MARKER_PROGRESS, mMarkerProgress);
+        bundle.putInt(INSTANCE_STATE_PROGRESS_COLOR, mProgressColor);
+        bundle.putInt(INSTANCE_STATE_PROGRESS_BACKGROUND_COLOR, mProgressBackgroundColor);
+        bundle.putBoolean(INSTANCE_STATE_THUMB_VISIBLE, mIsThumbEnabled);
+        bundle.putBoolean(INSTANCE_STATE_MARKER_VISIBLE, mIsMarkerEnabled);
+        return bundle;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(final Parcelable state) {
+        if (state instanceof Bundle) {
+            final Bundle bundle = (Bundle) state;
+            setProgress(bundle.getFloat(INSTANCE_STATE_PROGRESS));
+            setMarkerProgress(bundle.getFloat(INSTANCE_STATE_MARKER_PROGRESS));
+
+            final int progressColor = bundle.getInt(INSTANCE_STATE_PROGRESS_COLOR);
+            if (progressColor != mProgressColor) {
+                mProgressColor = progressColor;
+                updateProgressColor();
+            }
+
+            final int progressBackgroundColor = bundle
+                    .getInt(INSTANCE_STATE_PROGRESS_BACKGROUND_COLOR);
+            if (progressBackgroundColor != mProgressBackgroundColor) {
+                mProgressBackgroundColor = progressBackgroundColor;
+                updateBackgroundColor();
+            }
+
+            mIsThumbEnabled = bundle.getBoolean(INSTANCE_STATE_THUMB_VISIBLE);
+
+            mIsMarkerEnabled = bundle.getBoolean(INSTANCE_STATE_MARKER_VISIBLE);
+
+            super.onRestoreInstanceState(bundle.getParcelable(INSTANCE_STATE_SAVEDSTATE));
+            return;
+        }
+
+        super.onRestoreInstanceState(state);
+    }
+
+    @Override
     protected void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
         final int height = getDefaultSize(
                 getSuggestedMinimumHeight() + getPaddingTop() + getPaddingBottom(),
@@ -371,50 +415,6 @@ public class HoloCircularProgressBar extends View {
         mTranslationOffsetX = halfWidth + mHorizontalInset;
         mTranslationOffsetY = halfWidth + mVerticalInset;
 
-    }
-
-    @Override
-    protected void onRestoreInstanceState(final Parcelable state) {
-        if (state instanceof Bundle) {
-            final Bundle bundle = (Bundle) state;
-            setProgress(bundle.getFloat(INSTANCE_STATE_PROGRESS));
-            setMarkerProgress(bundle.getFloat(INSTANCE_STATE_MARKER_PROGRESS));
-
-            final int progressColor = bundle.getInt(INSTANCE_STATE_PROGRESS_COLOR);
-            if (progressColor != mProgressColor) {
-                mProgressColor = progressColor;
-                updateProgressColor();
-            }
-
-            final int progressBackgroundColor = bundle
-                    .getInt(INSTANCE_STATE_PROGRESS_BACKGROUND_COLOR);
-            if (progressBackgroundColor != mProgressBackgroundColor) {
-                mProgressBackgroundColor = progressBackgroundColor;
-                updateBackgroundColor();
-            }
-
-            mIsThumbEnabled = bundle.getBoolean(INSTANCE_STATE_THUMB_VISIBLE);
-
-            mIsMarkerEnabled = bundle.getBoolean(INSTANCE_STATE_MARKER_VISIBLE);
-
-            super.onRestoreInstanceState(bundle.getParcelable(INSTANCE_STATE_SAVEDSTATE));
-            return;
-        }
-
-        super.onRestoreInstanceState(state);
-    }
-
-    @Override
-    protected Parcelable onSaveInstanceState() {
-        final Bundle bundle = new Bundle();
-        bundle.putParcelable(INSTANCE_STATE_SAVEDSTATE, super.onSaveInstanceState());
-        bundle.putFloat(INSTANCE_STATE_PROGRESS, mProgress);
-        bundle.putFloat(INSTANCE_STATE_MARKER_PROGRESS, mMarkerProgress);
-        bundle.putInt(INSTANCE_STATE_PROGRESS_COLOR, mProgressColor);
-        bundle.putInt(INSTANCE_STATE_PROGRESS_BACKGROUND_COLOR, mProgressBackgroundColor);
-        bundle.putBoolean(INSTANCE_STATE_THUMB_VISIBLE, mIsThumbEnabled);
-        bundle.putBoolean(INSTANCE_STATE_MARKER_VISIBLE, mIsMarkerEnabled);
-        return bundle;
     }
 
     public int getCircleStrokeWidth() {

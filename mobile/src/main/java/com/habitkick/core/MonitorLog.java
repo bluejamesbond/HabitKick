@@ -25,11 +25,23 @@ public class MonitorLog extends SugarRecord {
         this.date = new Date();
     }
 
+    public static MonitorLog getRecent(Context context) {
+        List<MonitorLog> entries = MonitorLog.find(MonitorLog.class, null, null, null, "date DESC", "1");
+
+        if (entries.size() == 0 || !Utils.isSameDay(entries.get(0).date, new Date())) {
+            MonitorLog monitorLog = new MonitorLog(1, Utils.getStore(context, Global.GOAL_COUNT_STORE_KEY, -1));
+            monitorLog.save();
+            return monitorLog;
+        } else {
+            return entries.get(0);
+        }
+    }
+
     public Date getDate() {
         return date;
     }
 
-    public void incrementAlerts(){
+    public void incrementAlerts() {
         alerts++;
     }
 
@@ -47,17 +59,5 @@ public class MonitorLog extends SugarRecord {
 
     public void setGoal(int goal) {
         this.goal = goal;
-    }
-
-    public static MonitorLog getRecent(Context context){
-        List<MonitorLog> entries = MonitorLog.find(MonitorLog.class, null, null, null, "date DESC", "1");
-
-        if (entries.size() == 0 || !Utils.isSameDay(entries.get(0).date, new Date())) {
-            MonitorLog monitorLog = new MonitorLog(1, Utils.getStore(context, Global.GOAL_COUNT_STORE_KEY, -1));
-            monitorLog.save();
-            return monitorLog;
-        } else {
-            return entries.get(0);
-        }
     }
 }

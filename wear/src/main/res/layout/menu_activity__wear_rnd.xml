@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/bg"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/app__background"
-    android:orientation="vertical"
-    android:weightSum="100"
-    tools:context=".WearActivity"
-    tools:deviceIds="wear_round">
+<LinearLayout android:id="@+id/bg"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/app__background"
+              android:orientation="vertical"
+              android:weightSum="100"
+              tools:context=".WearActivity"
+              tools:deviceIds="wear_round">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -29,7 +29,7 @@
             android:gravity="center"
             android:text="@string/icon_pause"
             android:textAlignment="center"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -56,7 +56,7 @@
                 android:text="@string/icon_calibrate"
                 android:textColor="@color/universal__appcolor"
                 android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <com.habitkick.shared.common.view.text.font.ProximaNovaBoldTextView
                 android:layout_width="wrap_content"
@@ -66,14 +66,14 @@
                 android:text="Calibrate"
                 android:textAllCaps="true"
                 android:textColor="@color/dark_grey"
-                android:textSize="13dp" />
+                android:textSize="13dp"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="1px"
             android:layout_weight="1"
-            android:background="#ddffffff" />
+            android:background="#ddffffff"/>
 
         <LinearLayout
             android:id="@+id/mobile_button"
@@ -92,7 +92,7 @@
                 android:text="@string/icon_mobile"
                 android:textColor="@color/universal__appcolor"
                 android:textSize="15dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <com.habitkick.shared.common.view.text.font.ProximaNovaBoldTextView
                 android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
                 android:text="Mobile"
                 android:textAllCaps="true"
                 android:textColor="@color/dark_grey"
-                android:textSize="13dp" />
+                android:textSize="13dp"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

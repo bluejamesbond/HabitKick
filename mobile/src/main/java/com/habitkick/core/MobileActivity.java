@@ -9,11 +9,6 @@ import com.habitkick.shared.core.HabitKickActivity;
 
 public abstract class MobileActivity extends HabitKickActivity {
 
-    @Override
-    protected void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-    }
-
     protected void startActivity(Class act) {
         startActivity(new Intent(this, act));
         finish();
@@ -27,5 +22,10 @@ public abstract class MobileActivity extends HabitKickActivity {
     @Override
     public View getBackgroundView() {
         return findViewById(R.id.bg);
+    }
+
+    @Override
+    protected void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
     }
 }

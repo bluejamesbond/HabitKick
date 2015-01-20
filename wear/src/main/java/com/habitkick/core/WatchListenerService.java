@@ -102,7 +102,7 @@ public class WatchListenerService extends ListenerService implements IMonitorEve
         // get system vibrator service
         Vibrator vibrator = (Vibrator) this.getSystemService(Activity.VIBRATOR_SERVICE);
 
-        PositionMonitor positionMonitor  = new PositionMonitor(sensorManager, getSharedPreferences(Utils.PREFERENCE_NAME, 0), this);
+        PositionMonitor positionMonitor = new PositionMonitor(sensorManager, getSharedPreferences(Utils.PREFERENCE_NAME, 0), this);
         positionMonitor.setVibratorService(vibrator);
         positionMonitor.setState(PositionMonitor.NO_STATE);
 
@@ -115,7 +115,7 @@ public class WatchListenerService extends ListenerService implements IMonitorEve
             case START_MONITOR_SERVICE:
                 if (positionMonitor == null) {
                     positionMonitor = createPositionMonitor();
-                } else if (positionMonitor.isRegistered()){
+                } else if (positionMonitor.isRegistered()) {
                     destroyPositionMonitor();
                     positionMonitor = createPositionMonitor();
                 }
@@ -132,7 +132,7 @@ public class WatchListenerService extends ListenerService implements IMonitorEve
             case START_CALIBRATION_SERVICE:
                 if (positionMonitor == null) {
                     positionMonitor = createPositionMonitor();
-                } else if (positionMonitor.isRegistered()){
+                } else if (positionMonitor.isRegistered()) {
                     destroyPositionMonitor();
                     positionMonitor = createPositionMonitor();
                 }

@@ -1,12 +1,10 @@
 package com.habitkick.activity;
 
 import android.graphics.Color;
-import android.graphics.LightingColorFilter;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.habitkick.R;
 import com.habitkick.core.MobileActivity;
@@ -114,7 +112,7 @@ public class CalibrateActivity extends MobileActivity {
         calibrateButton.setSelected(enable);
         calibrateButton.setEnabled(enable);
 
-        if(enable) {
+        if (enable) {
             calibrateButton.getBackground().clearColorFilter();
         } else {
             calibrateButton.getBackground().setColorFilter(Color.parseColor("#999999"), PorterDuff.Mode.MULTIPLY);

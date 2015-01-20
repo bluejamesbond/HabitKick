@@ -50,15 +50,15 @@
     <!-- Background -->
     <item android:id="@+id/big_button__background_pressed_backgrounditem">
         <shape>
-            <solid android:color="@color/universal__appcolor" />
-            <corners android:radius="900dp" />
+            <solid android:color="@color/universal__appcolor"/>
+            <corners android:radius="900dp"/>
         </shape>
     </item>
 
     <item>
         <shape>
-            <solid android:color="#33000000" />
-            <corners android:radius="900dp" />
+            <solid android:color="#33000000"/>
+            <corners android:radius="900dp"/>
         </shape>
     </item>
 </layer-list>

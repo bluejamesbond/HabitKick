@@ -6,17 +6,17 @@
         android:right="-26dp"
         android:top="25dp">
         <shape>
-            <solid android:color="@android:color/transparent" />
+            <solid android:color="@android:color/transparent"/>
             <stroke
                 android:width="20dp"
-                android:color="#ffffff" />
+                android:color="#ffffff"/>
         </shape>
     </item>
     <item
         android:right="85dp"
         android:top="25dp">
         <shape>
-            <solid android:color="@android:color/white" />
+            <solid android:color="@android:color/white"/>
         </shape>
     </item>
 </layer-list>

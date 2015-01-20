@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 
-import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -132,7 +131,7 @@ public class Utils {
     }
 
     public static void cancelTimout(Object timeoutEvent) {
-        if(timeoutEvent != null && timeoutEvent instanceof TimeoutEvent) {
+        if (timeoutEvent != null && timeoutEvent instanceof TimeoutEvent) {
             ((TimeoutEvent) timeoutEvent).cancelTimeout();
         }
     }
@@ -153,7 +152,7 @@ public class Utils {
             }, delay);
         }
 
-        private void cancelTimeout(){
+        private void cancelTimeout() {
             runnable = null;
         }
     }

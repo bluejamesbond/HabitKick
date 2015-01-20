@@ -13,12 +13,12 @@ public abstract class WatchActivity extends HabitKickActivity {
     }
 
     @Override
-    public View getBackgroundView() {
-        return getRootView().findViewById(R.id.bg);
+    protected View getRootView() {
+        return findViewById(R.id.watch_view_stub);
     }
 
     @Override
-    protected View getRootView() {
-        return findViewById(R.id.watch_view_stub);
+    public View getBackgroundView() {
+        return getRootView().findViewById(R.id.bg);
     }
 }

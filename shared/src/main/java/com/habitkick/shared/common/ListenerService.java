@@ -42,11 +42,11 @@ public abstract class ListenerService extends WearableListenerService {
         }
     }
 
-    protected void sendMessage(MessageId id){
+    protected void sendMessage(MessageId id) {
         SocketActivity.getActive(this).sendMessage(id);
     }
 
-    protected void sendMessage(MessageId id, String msg){
+    protected void sendMessage(MessageId id, String msg) {
         SocketActivity.getActive(this).sendMessage(id, msg);
     }
 
