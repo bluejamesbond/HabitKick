@@ -50,5 +50,11 @@ public abstract class ListenerService extends WearableListenerService {
         SocketActivity.getActive(this).sendMessage(id, msg);
     }
 
+    public void startActivity(Class actvity){
+        Intent intent = new Intent(this, actvity);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
     protected abstract void handleMessage(MessageId id, String msg);
 }

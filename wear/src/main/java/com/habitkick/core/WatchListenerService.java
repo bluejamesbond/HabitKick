@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.habitkick.R;
 import com.habitkick.activity.CalibrateActivity;
+import com.habitkick.activity.HomeActivity;
 import com.habitkick.alert.AlertNotificationReceiver;
 import com.habitkick.shared.common.ListenerService;
 import com.habitkick.shared.common.Utils;
@@ -124,10 +125,11 @@ public class WatchListenerService extends ListenerService implements IMonitorEve
                 positionMonitor.registerListeners();
 
                 break;
+            case OPEN_HOME_ACTIVITY:
+                startActivity(HomeActivity.class);
+                break;
             case OPEN_CALIBRATION:
-                Intent intent = new Intent(this, CalibrateActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                this.startActivity(intent);
+                startActivity(CalibrateActivity.class);
                 break;
             case START_CALIBRATION_SERVICE:
                 if (positionMonitor == null) {

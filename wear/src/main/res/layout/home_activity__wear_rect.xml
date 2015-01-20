@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@+id/bg"
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@drawable/app__background"
-              android:orientation="vertical"
-              android:weightSum="100"
-              tools:context=".WearActivity"
-              tools:deviceIds="wear_round">
+<LinearLayout
+    android:id="@+id/bg"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app__background"
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context=".WearActivity"
+    tools:deviceIds="wear_round">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -51,7 +52,7 @@
             android:clickable="true"
             android:gravity="center"
             android:text="@string/icon_left"
-            android:textSize="12dp"/>
+            android:textSize="14sp"/>
 
         <com.habitkick.shared.common.view.text.font.FontelloTextView
             android:id="@+id/textView2"
@@ -64,7 +65,7 @@
             android:clickable="true"
             android:gravity="center"
             android:text="@string/icon_right"
-            android:textSize="12dp"/>
+            android:textSize="14sp"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -86,6 +87,7 @@
                 android:layout_marginLeft="5dp"
                 android:background="@drawable/big_button__background"
                 android:clickable="true"
+                android:elevation="2dp"
                 android:gravity="center"
                 android:text="@string/icon_menu"
                 android:textAlignment="center"
@@ -97,6 +99,7 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="2dp"
                 android:background="@drawable/big_button__background_default"
+                android:elevation="2dp"
                 android:gravity="center_vertical|left"
                 android:paddingLeft="15dp">
 

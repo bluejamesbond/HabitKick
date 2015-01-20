@@ -35,6 +35,7 @@ public class CalibrateActivity extends MobileActivity {
                     public void onClick(View v) {
                         if (storedSteps >= maxSteps) {
                             startActivity(DashboardActivity.class);
+                            sendMessage(MessageId.OPEN_HOME_ACTIVITY);
                         } else {
                             sendMessage(MessageId.NEXT_CALIBRATION_POSITION);
                             setNextPositionEnabled(false);
@@ -114,6 +115,7 @@ public class CalibrateActivity extends MobileActivity {
 
         if (enable) {
             calibrateButton.getBackground().clearColorFilter();
+            calibrateButton.postInvalidate();
         } else {
             calibrateButton.getBackground().setColorFilter(Color.parseColor("#BBBBBB"), PorterDuff.Mode.MULTIPLY);
         }
