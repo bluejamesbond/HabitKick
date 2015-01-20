@@ -4,7 +4,8 @@
 ![Image](wear/models/moto-360-2-cropped.jpg)
 
 ##Primary
-- [ ] Update and store onto mobile from phone
+- [ ] Update and store onto wear from mobile
+- [ ] Load any saved data from mobile from wear
 
 ##Secondary
 - [ ] Set minimum height on mobile phones of the root view so as to not compress with the circular progress views
