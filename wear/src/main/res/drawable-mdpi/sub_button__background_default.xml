@@ -5,14 +5,14 @@
             <solid android:color="@color/sub_button__background_default_backgroundcolor"/>
         </shape>
     </item>
-    <!--<item android:bottom="25dp">-->
-    <!--<shape android:shape="rectangle">-->
-    <!--<gradient-->
-    <!--android:angle="270"-->
-    <!--android:centerColor="@android:color/transparent"-->
-    <!--android:centerY="10%p"-->
-    <!--android:endColor="@android:color/transparent"-->
-    <!--android:startColor="#29000000" />-->
-    <!--</shape>-->
-    <!--</item>-->
+    <item android:bottom="25dp">
+    <shape android:shape="rectangle">
+    <gradient
+    android:angle="270"
+    android:centerColor="@android:color/transparent"
+    android:centerY="10%p"
+    android:endColor="@android:color/transparent"
+    android:startColor="#29000000" />
+    </shape>
+    </item>
 </layer-list>

@@ -1,5 +1,6 @@
 package com.habitkick.shared.common;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
@@ -43,11 +44,15 @@ public abstract class ListenerService extends WearableListenerService {
     }
 
     protected void sendMessage(MessageId id) {
-        SocketActivity.getActive(this).sendMessage(id);
+        getActivity().sendMessage(id);
+    }
+
+    protected SocketActivity getActivity(){
+        return SocketActivity.getActive(this);
     }
 
     protected void sendMessage(MessageId id, String msg) {
-        SocketActivity.getActive(this).sendMessage(id, msg);
+        getActivity().sendMessage(id, msg);
     }
 
     public void startActivity(Class actvity){

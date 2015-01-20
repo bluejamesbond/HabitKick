@@ -39,13 +39,13 @@
             android:taskAffinity=""
             android:theme="@android:style/Theme.DeviceDefault.Light"></activity>
 
-        <receiver
-            android:name="com.habitkick.alert.AlertNotificationReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.fiftyeightmorris.nailbiter.SHOW_NOTIFICATION"/>
-            </intent-filter>
-        </receiver>
+        <!--<receiver-->
+            <!--android:name="com.habitkick.alert.AlertNotificationReceiver"-->
+            <!--android:exported="true">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.fiftyeightmorris.nailbiter.SHOW_NOTIFICATION"/>-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
 
         <service
             android:name=".core.WatchListenerService"
