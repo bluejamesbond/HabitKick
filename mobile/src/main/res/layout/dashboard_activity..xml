@@ -126,7 +126,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="-7dp"
-                    android:text="touches"
+                    android:text="alerts"
                     android:textAllCaps="true"
                     android:textColor="@color/universal__appcolor"
                     android:textSize="12sp"/>

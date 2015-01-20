@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.habitkick.activity.StartActivity;
+import com.habitkick.shared.common.Global;
 import com.habitkick.shared.common.ListenerService;
 import com.habitkick.shared.core.MessageId;
 
@@ -13,7 +14,7 @@ public class MobileListenerService extends ListenerService {
     @Override
     protected void handleMessage(MessageId id, String msg) {
 
-        if (MobileActivity.DEBUG) {
+        if (Global.DEBUG) {
             Toast.makeText(this, "Received message " + id, Toast.LENGTH_SHORT).show();
             Log.d("Message", "Received message " + id);
         }
@@ -24,6 +25,11 @@ public class MobileListenerService extends ListenerService {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 break;
+            }
+            case MONITOR_ALERT: {
+                MonitorLog monitorLog = MonitorLog.getRecent(this);
+                monitorLog.incrementAlerts();
+                monitorLog.save();
             }
         }
     }

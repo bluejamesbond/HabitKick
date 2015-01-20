@@ -2,12 +2,14 @@ package com.habitkick.activity;
 
 import android.graphics.Color;
 import android.graphics.LightingColorFilter;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import com.habitkick.R;
 import com.habitkick.core.MobileActivity;
+import com.habitkick.shared.common.Global;
 import com.habitkick.shared.common.Utils;
 import com.habitkick.shared.common.view.HoloCircularProgressBar;
 import com.habitkick.shared.common.view.HueShiftImageView;
@@ -18,6 +20,7 @@ public class CalibrateActivity extends MobileActivity {
     private static final int maxSteps = 40;
     private static final int incrementSteps = 10;
     private int storedSteps;
+    private Object timeout;
 
     @Override
     protected void onCreate(Bundle bundle) {
@@ -36,6 +39,14 @@ public class CalibrateActivity extends MobileActivity {
                         } else {
                             sendMessage(MessageId.NEXT_CALIBRATION_POSITION);
                             setNextPositionEnabled(false);
+
+                            Utils.setTimeout(new Runnable() {
+                                @Override
+                                public void run() {
+                                    setNextPositionEnabled(true);
+                                }
+                            }, 5000);
+
                         }
                     }
                 });
@@ -68,6 +79,9 @@ public class CalibrateActivity extends MobileActivity {
 
             case FINISHED_CALIBRATION_SERVICE:
             case STORED_CALIBRATION_POSITION: {
+
+                Utils.cancelTimout(timeout);
+
                 storedSteps += incrementSteps;
 
                 // update progress
@@ -77,7 +91,7 @@ public class CalibrateActivity extends MobileActivity {
                 if (storedSteps >= maxSteps) {
 
                     // store that a calibration is complete
-                    Utils.putStore(CalibrateActivity.this, MobileActivity.CALIBRATED_KEY, true);
+                    Utils.putStore(CalibrateActivity.this, Global.CALIBRATED_FLAG_STORE_KEY, true);
 
                     // change button text on done
                     ((TextView) findViewById(R.id.calibrate_next_button_left)).setText("view");
@@ -101,7 +115,7 @@ public class CalibrateActivity extends MobileActivity {
         if(enable) {
             calibrateButton.getBackground().clearColorFilter();
         } else {
-            calibrateButton.getBackground().setColorFilter(new LightingColorFilter(Color.argb(50, 0, 0, 0), 0));
+            calibrateButton.getBackground().setColorFilter(Color.parseColor("#888888"), PorterDuff.Mode.MULTIPLY);
         }
     }
 }

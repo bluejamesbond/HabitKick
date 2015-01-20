@@ -2,11 +2,13 @@ package com.habitkick.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.habitkick.R;
 import com.habitkick.core.MobileActivity;
+import com.habitkick.shared.common.Global;
 import com.habitkick.shared.common.Utils;
 import com.habitkick.shared.common.view.HueShiftImageView;
 import com.habitkick.shared.core.MessageId;
@@ -24,11 +26,11 @@ public class StartActivity extends MobileActivity {
                     @Override
                     public void onClick(View v) {
 
-//                        if(MobileActivity.DEBUG){
-//                            Utils.putStore(StartActivity.this, MobileActivity.CALIBRATED_KEY, true);
-//                        }
+                        if(Global.DEBUG){
+                            Utils.putStore(StartActivity.this, Global.CALIBRATED_FLAG_STORE_KEY, false);
+                        }
 
-                        if(Utils.getStore(StartActivity.this, MobileActivity.CALIBRATED_KEY, true)){
+                        if(Utils.getStore(StartActivity.this, Global.CALIBRATED_FLAG_STORE_KEY, false)){
                             startActivity(DashboardActivity.class);
                         } else {
                             startActivity(CalibrateActivity.class);

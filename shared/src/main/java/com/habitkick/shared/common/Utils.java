@@ -4,6 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Handler;
+
+import java.sql.Time;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Utils {
 
@@ -23,6 +28,15 @@ public class Utils {
         res |= "google_sdk".equals(Build.PRODUCT);
 
         IS_EMULATOR = res;
+    }
+
+    public static boolean isSameDay(Date date1, Date date2) {
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        cal1.setTime(date1);
+        cal2.setTime(date2);
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
     }
 
     public static <T> void putStore(Context context, String key, T value) {
@@ -111,6 +125,37 @@ public class Utils {
         }
 
         return Color.argb(A, R, G, B);
+    }
+
+    public static Object setTimeout(Runnable runnable, long delay) {
+        return new TimeoutEvent(runnable, delay);
+    }
+
+    public static void cancelTimout(Object timeoutEvent) {
+        if(timeoutEvent != null && timeoutEvent instanceof TimeoutEvent) {
+            ((TimeoutEvent) timeoutEvent).cancelTimeout();
+        }
+    }
+
+    private static class TimeoutEvent {
+        private static Handler handler = new Handler();
+        private volatile Runnable runnable;
+
+        private TimeoutEvent(Runnable task, long delay) {
+            runnable = task;
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (runnable != null) {
+                        runnable.run();
+                    }
+                }
+            }, delay);
+        }
+
+        private void cancelTimeout(){
+            runnable = null;
+        }
     }
 
 }
