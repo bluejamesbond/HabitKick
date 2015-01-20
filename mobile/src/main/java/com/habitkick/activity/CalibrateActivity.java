@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.habitkick.R;
 import com.habitkick.core.MobileActivity;
@@ -40,9 +41,10 @@ public class CalibrateActivity extends MobileActivity {
                             sendMessage(MessageId.NEXT_CALIBRATION_POSITION);
                             setNextPositionEnabled(false);
 
-                            Utils.setTimeout(new Runnable() {
+                            timeout = Utils.setTimeout(new Runnable() {
                                 @Override
                                 public void run() {
+                                    showToast("Are you sure your watch is connected?");
                                     setNextPositionEnabled(true);
                                 }
                             }, 5000);
@@ -115,7 +117,7 @@ public class CalibrateActivity extends MobileActivity {
         if(enable) {
             calibrateButton.getBackground().clearColorFilter();
         } else {
-            calibrateButton.getBackground().setColorFilter(Color.parseColor("#888888"), PorterDuff.Mode.MULTIPLY);
+            calibrateButton.getBackground().setColorFilter(Color.parseColor("#999999"), PorterDuff.Mode.MULTIPLY);
         }
     }
 }

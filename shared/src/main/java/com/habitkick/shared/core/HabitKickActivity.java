@@ -11,6 +11,7 @@ import android.support.wearable.view.WatchViewStub;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.habitkick.shared.R;
 import com.habitkick.shared.common.SocketActivity;
@@ -138,6 +139,10 @@ public abstract class HabitKickActivity extends SocketActivity {
         }
 
         setTheme(Theme.RANDOM);
+    }
+
+    public void showToast(String msg){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
     public void _runOnUiThread(Runnable action) {
