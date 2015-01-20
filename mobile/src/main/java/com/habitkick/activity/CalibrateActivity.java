@@ -115,7 +115,7 @@ public class CalibrateActivity extends MobileActivity {
         if (enable) {
             calibrateButton.getBackground().clearColorFilter();
         } else {
-            calibrateButton.getBackground().setColorFilter(Color.parseColor("#999999"), PorterDuff.Mode.MULTIPLY);
+            calibrateButton.getBackground().setColorFilter(Color.parseColor("#BBBBBB"), PorterDuff.Mode.MULTIPLY);
         }
     }
 }

@@ -111,26 +111,23 @@ public abstract class SocketActivity extends ReferencedActivity implements
     private class SendMessage extends Thread {
 
         String path;
-        MessageId messageId;
         String message;
-        int id;
 
         // Constructor to send a message to the data layer
         SendMessage(String p, MessageId msgId, String msg) {
             path = p;
-            messageId = msgId;
-            message = msg;
+            message = (msgId + "|" + msg);
         }
 
         public void run() {
             NodeApi.GetConnectedNodesResult nodes = Wearable.NodeApi.getConnectedNodes(mGoogleClient).await();
             for (Node node : nodes.getNodes()) {
-                MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(mGoogleClient, node.getId(), path, (messageId + "|" + message).getBytes()).await();
+                MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(mGoogleClient, node.getId(), path, message.getBytes()).await();
                 if (result.getStatus().isSuccess()) {
-                    Log.v("myTag", "Message: {" + message + "} sent to: " + node.getDisplayName());
+                    Log.w("SendMessage", "Message: {" + message + "} sent to: " + node.getDisplayName());
                 } else {
                     // Log an error
-                    Log.v("myTag", "ERROR: failed to send Message");
+                    Log.w("SendMessage", "ERROR: failed to send Message");
                 }
             }
         }
