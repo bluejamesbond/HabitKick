@@ -11,6 +11,7 @@ import com.habitkick.R;
 import com.habitkick.activity.CalibrateActivity;
 import com.habitkick.activity.HomeActivity;
 import com.habitkick.alert.AlertNotificationReceiver;
+import com.habitkick.shared.common.Global;
 import com.habitkick.shared.common.ListenerService;
 import com.habitkick.shared.common.Utils;
 import com.habitkick.shared.core.MessageId;
@@ -27,11 +28,25 @@ public class WatchListenerService extends ListenerService implements IMonitorEve
     @Override
     public void onCreate() {
         super.onCreate();
-        timer.scheduleAtFixedRate(
-                new TimerTask() {
-                    public void run() {
-                    }
-                }, 0, 1000);
+//        timer.scheduleAtFixedRate(
+//                new TimerTask() {
+//                    public void run() {
+//                    }
+//                }, 0, 1000);
+
+        if (Utils.IS_EMULATOR) {
+            generateAlerts();
+        }
+    }
+
+    public void generateAlerts(){
+        Utils.setTimeout(new Runnable() {
+            @Override
+            public void run() {
+                onMonitorAlert();
+                generateAlerts();
+            }
+        }, 10000);
     }
 
     @Override
@@ -49,20 +64,22 @@ public class WatchListenerService extends ListenerService implements IMonitorEve
 
         sendMessage(MessageId.MONITOR_ALERT);
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (System.currentTimeMillis() - lastVibrateTime > 5000) {
-                    positionMonitor.getVibratorService().vibrate(2000);
-                    lastVibrateTime = System.currentTimeMillis();
-                    Intent i = new Intent();
-                    i.setAction("com.habitkick.SHOW_NOTIFICATION");
-                    i.putExtra(AlertNotificationReceiver.CONTENT_KEY, getString(R.string.title));
-                    sendBroadcast(i);
-                    Toast.makeText(WatchListenerService.this, WatchListenerService.this.getString(R.string.alert_message), Toast.LENGTH_LONG).show();
+        if(!Utils.IS_EMULATOR) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (System.currentTimeMillis() - lastVibrateTime > 5000) {
+                        positionMonitor.getVibratorService().vibrate(2000);
+                        lastVibrateTime = System.currentTimeMillis();
+                        Intent i = new Intent();
+                        i.setAction("com.habitkick.SHOW_NOTIFICATION");
+                        i.putExtra(AlertNotificationReceiver.CONTENT_KEY, getString(R.string.title));
+                        sendBroadcast(i);
+                        Toast.makeText(WatchListenerService.this, WatchListenerService.this.getString(R.string.alert_message), Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
-        });
+            });
+        }
 
     }
 

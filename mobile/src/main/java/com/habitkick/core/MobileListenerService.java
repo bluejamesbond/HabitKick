@@ -14,11 +14,6 @@ public class MobileListenerService extends ListenerService {
     @Override
     protected void handleMessage(MessageId id, String msg) {
 
-        if (Global.DEBUG) {
-            Toast.makeText(this, "Received message " + id, Toast.LENGTH_SHORT).show();
-            Log.d("Message", "Received message " + id);
-        }
-
         switch (id) {
             case OPEN_HOME_ACTIVITY: {
                 Intent intent = new Intent(this, StartActivity.class);

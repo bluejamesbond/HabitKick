@@ -15,6 +15,7 @@ public class HomeActivity extends WatchActivity {
 
     @Override
     protected void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
 
         final Intent menuIntent = new Intent(this, MenuActivity.class);
 
@@ -36,6 +37,7 @@ public class HomeActivity extends WatchActivity {
     @Override
     protected void onThemeChange(final int appColor, final float hue) {
         super.onThemeChange(appColor, hue);
+
         _runOnUiThread(new Runnable() {
             @Override
             public void run() {

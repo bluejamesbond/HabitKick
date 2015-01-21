@@ -8,7 +8,6 @@
     android:background="@drawable/app__background"
     android:orientation="vertical"
     android:weightSum="100"
-    tools:context=".WearActivity"
     tools:deviceIds="wear_round">
 
     <RelativeLayout
@@ -79,7 +78,8 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:weightSum="100">
+            android:weightSum="100"
+            android:translationZ="10dp">
 
             <com.habitkick.shared.common.view.text.font.FontelloTextView
                 android:id="@+id/menu_button"
@@ -100,7 +100,7 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="2dp"
                 android:background="@drawable/big_button__background_default"
-                android:elevation="2dp"
+                android:elevation="3dp"
                 android:gravity="center_vertical|left"
                 android:paddingLeft="15dp">
 
@@ -135,7 +135,9 @@
             android:layout_marginTop="-3dp"
             android:layout_weight="50"
             android:orientation="horizontal"
-            android:weightSum="100">
+            android:weightSum="100"
+            android:translationZ="1dp"
+            android:elevation="1dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"

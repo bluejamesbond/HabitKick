@@ -36,8 +36,11 @@ public abstract class HabitKickActivity extends SocketActivity {
     public final void onDestroy() {
         super.onDestroy();
         mRoot = null;
-        mPreInflation.removeAll(mPreInflation);
-        mPreInflation = null;
+
+        if(mPreInflation != null){
+            mPreInflation.removeAll(mPreInflation);
+            mPreInflation = null;
+        }
     }
 
     protected View getRootView() {

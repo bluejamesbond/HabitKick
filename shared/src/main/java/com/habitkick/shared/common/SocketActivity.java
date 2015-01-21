@@ -104,7 +104,7 @@ public abstract class SocketActivity extends ReferencedActivity implements
             MessageId id = MessageId.valueOf(intent.getStringExtra("id"));
             String message = intent.getStringExtra("message");
             onMessageReceived(id, message);
-            Toast.makeText(context, "[" + id + "]\n" + message, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, id + (message.length() == 0 ? "" : ": " + message), Toast.LENGTH_SHORT).show();
         }
     }
 

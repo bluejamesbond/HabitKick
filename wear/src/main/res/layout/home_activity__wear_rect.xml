@@ -8,7 +8,6 @@
     android:background="@drawable/app__background"
     android:orientation="vertical"
     android:weightSum="100"
-    tools:context=".WearActivity"
     tools:deviceIds="wear_round">
 
     <RelativeLayout
@@ -134,7 +133,8 @@
             android:layout_marginTop="-3dp"
             android:layout_weight="50"
             android:orientation="horizontal"
-            android:weightSum="100">
+            android:weightSum="100"
+            android:elevation="0dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"

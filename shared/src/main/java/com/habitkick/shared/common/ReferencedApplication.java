@@ -3,7 +3,9 @@ package com.habitkick.shared.common;
 import android.app.Activity;
 import android.app.Application;
 
-public class ReferencedApplication extends Application {
+import com.orm.SugarApp;
+
+public class ReferencedApplication extends SugarApp {
     private Activity mCurrentActivity = null;
 
     public void onCreate() {

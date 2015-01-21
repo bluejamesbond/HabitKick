@@ -1,6 +1,5 @@
 package com.habitkick.shared.common;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
@@ -29,7 +28,7 @@ public abstract class ListenerService extends WearableListenerService {
             final String raw = new String(messageEvent.getData());
             int separator = raw.indexOf('|');
             final MessageId id = MessageId.valueOf(raw.substring(0, separator));
-            final String msg = raw.substring(separator);
+            final String msg = raw.substring(separator + 1);
 
             handleMessage(id, msg);
 
@@ -47,7 +46,7 @@ public abstract class ListenerService extends WearableListenerService {
         getActivity().sendMessage(id);
     }
 
-    protected SocketActivity getActivity(){
+    protected SocketActivity getActivity() {
         return SocketActivity.getActive(this);
     }
 
@@ -55,7 +54,7 @@ public abstract class ListenerService extends WearableListenerService {
         getActivity().sendMessage(id, msg);
     }
 
-    public void startActivity(Class actvity){
+    public void startActivity(Class actvity) {
         Intent intent = new Intent(this, actvity);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
