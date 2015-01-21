@@ -22,10 +22,33 @@ public class CalibrateActivity extends MobileActivity {
     private Object timeout;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        reset();
+    }
+
+    public void reset(){
+
+        storedSteps = 0;
+
+        _runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                // change button text on done
+                ((TextView) findViewById(R.id.calibrate_next_button_left)).setText("next");
+                ((TextView) findViewById(R.id.calibrate_next_button_right)).setText("position");
+                ((TextView) findViewById(R.id.progress_value)).setText(Integer.toString(0));
+            }
+        });
+
+    }
+
+    @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        storedSteps = 0;
+        reset();
 
         _runOnUiThread(new Runnable() {
             @Override

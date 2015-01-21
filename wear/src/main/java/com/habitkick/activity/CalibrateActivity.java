@@ -1,5 +1,6 @@
 package com.habitkick.activity;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,6 +23,27 @@ public class CalibrateActivity extends WatchActivity {
                 setPosition(Utils.getStore(this, "CalibrationPosition", 0));
             }
         }
+    }
+
+    public void reset() {
+        _runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                setPosition(0);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        reset();
+    }
+
+    @Override
+    protected void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        reset();
     }
 
     @Override

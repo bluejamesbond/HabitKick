@@ -11,13 +11,11 @@ import com.habitkick.R;
 import com.habitkick.activity.CalibrateActivity;
 import com.habitkick.activity.HomeActivity;
 import com.habitkick.alert.AlertNotificationReceiver;
-import com.habitkick.shared.common.Global;
 import com.habitkick.shared.common.ListenerService;
 import com.habitkick.shared.common.Utils;
 import com.habitkick.shared.core.MessageId;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class WatchListenerService extends ListenerService implements IMonitorEventListener {
 
@@ -39,16 +37,6 @@ public class WatchListenerService extends ListenerService implements IMonitorEve
         }
     }
 
-    public void generateAlerts(){
-        Utils.setTimeout(new Runnable() {
-            @Override
-            public void run() {
-                onMonitorAlert();
-                generateAlerts();
-            }
-        }, 10000);
-    }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -60,11 +48,22 @@ public class WatchListenerService extends ListenerService implements IMonitorEve
         }
     }
 
+    public void generateAlerts() {
+        Utils.setTimeout(new Runnable() {
+            @Override
+            public void run() {
+                onMonitorAlert();
+                generateAlerts();
+            }
+        }, 10000);
+    }
+
     public void onMonitorAlert() {
 
-        sendMessage(MessageId.MONITOR_ALERT);
+        if (!Utils.IS_EMULATOR) {
 
-        if(!Utils.IS_EMULATOR) {
+            sendMessage(MessageId.MONITOR_ALERT);
+
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
