@@ -18,6 +18,10 @@ public class StartActivity extends MobileActivity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
+        if (Utils.getStore(this, Global.GOAL_COUNT_STORE_KEY, -1) < 0) {
+            Utils.putStore(this, Global.GOAL_COUNT_STORE_KEY, Global.DEFAULT_GOAL_COUNT);
+        }
+
         _runOnUiThread(new Runnable() {
             @Override
             public void run() {

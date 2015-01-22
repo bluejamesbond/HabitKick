@@ -2,6 +2,10 @@ package com.habitkick.activity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.TypedValue;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.habitkick.R;
@@ -16,14 +20,49 @@ import java.util.Iterator;
 
 public class DashboardActivity extends MobileActivity {
 
+    private Object lastGoalInput;
+
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        // default goal
+        final int alerts = MonitorLog.getRecent(this).getAlerts();
 
         updateAverage();
         updateGoal();
+
+        _runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                setProgress(alerts, getGoal());
+            }
+        });
+
+        final EditText editText = ((EditText)findViewById(R.id.goal_value));
+
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Utils.clearTimout(lastGoalInput);
+                lastGoalInput = Utils.setTimeout(new Runnable() {
+                    @Override
+                    public void run() {
+                        int alerts = MonitorLog.getRecent(DashboardActivity.this).getAlerts();
+                        int goal = Math.abs(Integer.parseInt(editText.getText().toString()));
+                        setProgress(alerts, goal);
+                        Utils.getStore(DashboardActivity.this, Global.GOAL_COUNT_STORE_KEY, goal);
+                    }
+                }, 1000);
+            }
+        });
     }
 
     @Override
@@ -65,10 +104,6 @@ public class DashboardActivity extends MobileActivity {
     }
 
     public int getGoal() {
-        if (Utils.getStore(this, Global.GOAL_COUNT_STORE_KEY, -1) < 0) {
-            Utils.putStore(this, Global.GOAL_COUNT_STORE_KEY, Global.DEFAULT_GOAL_COUNT);
-        }
-
         return Utils.getStore(this, Global.GOAL_COUNT_STORE_KEY, Global.DEFAULT_GOAL_COUNT);
     }
 
@@ -103,9 +138,12 @@ public class DashboardActivity extends MobileActivity {
         return 0;
     }
 
-    public void setProgress(int touches, int goal) {
-        ((TextView) findViewById(R.id.progress_value)).setText(Integer.toString(touches));
-        ((HoloCircularProgressBar) findViewById(R.id.progress)).setProgress((float) touches / (float) goal);
+    public void setProgress(int alerts, int goal) {
+        String alertStr = Integer.toString(alerts);
+        TextView progressText = (TextView) findViewById(R.id.progress_value);
+        progressText.setTextSize(TypedValue.COMPLEX_UNIT_SP, new int []{ 90, 90, 85, 60, 55, 45 }[alertStr.length()]);
+        progressText.setText(Integer.toString(alerts));
+        ((HoloCircularProgressBar) findViewById(R.id.progress)).setProgress((float) alerts / (float) goal);
     }
 
     public void setAverage(int avg) {

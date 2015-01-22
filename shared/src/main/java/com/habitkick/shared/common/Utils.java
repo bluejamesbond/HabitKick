@@ -130,7 +130,7 @@ public class Utils {
         return new TimeoutEvent(runnable, delay);
     }
 
-    public static void cancelTimout(Object timeoutEvent) {
+    public static void clearTimout(Object timeoutEvent) {
         if (timeoutEvent != null && timeoutEvent instanceof TimeoutEvent) {
             ((TimeoutEvent) timeoutEvent).cancelTimeout();
         }

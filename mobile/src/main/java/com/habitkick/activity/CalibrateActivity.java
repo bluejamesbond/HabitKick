@@ -1,7 +1,5 @@
 package com.habitkick.activity;
 
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -104,7 +102,7 @@ public class CalibrateActivity extends MobileActivity {
             case FINISHED_CALIBRATION_SERVICE:
             case STORED_CALIBRATION_POSITION: {
 
-                Utils.cancelTimout(timeout);
+                Utils.clearTimout(timeout);
 
                 storedSteps += incrementSteps;
 
