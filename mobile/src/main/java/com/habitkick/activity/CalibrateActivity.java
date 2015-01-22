@@ -132,15 +132,8 @@ public class CalibrateActivity extends MobileActivity {
 
     public void setNextPositionEnabled(final boolean enable) {
         View calibrateButton = findViewById(R.id.calibrate_next_button);
-
-        calibrateButton.setSelected(enable);
         calibrateButton.setEnabled(enable);
 
-        if (enable) {
-            calibrateButton.getBackground().clearColorFilter();
-            calibrateButton.postInvalidate();
-        } else {
-            calibrateButton.getBackground().setColorFilter(Color.parseColor("#BBBBBB"), PorterDuff.Mode.MULTIPLY);
-        }
+        findViewById(R.id.calibrate_next_button_right).setAlpha(enable ? 1.0f : 0.7f);
     }
 }

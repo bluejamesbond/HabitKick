@@ -37,7 +37,7 @@ public abstract class HabitKickActivity extends SocketActivity {
         super.onDestroy();
         mRoot = null;
 
-        if(mPreInflation != null){
+        if (mPreInflation != null) {
             mPreInflation.removeAll(mPreInflation);
             mPreInflation = null;
         }
@@ -68,7 +68,7 @@ public abstract class HabitKickActivity extends SocketActivity {
             bgGradientDrawable.setGradientCenter(bgCenterX, bgCenterY);
             bgDrawable = bgGradientDrawable;
         } else {
-            bgDrawable = new ColorDrawable(getResources().getColor(com.habitkick.shared.R.color.dark_grey));
+            bgDrawable = new ColorDrawable(getResources().getColor(R.color.dark_grey));
         }
 
         _runOnUiThread(new Runnable() {
@@ -96,7 +96,7 @@ public abstract class HabitKickActivity extends SocketActivity {
         gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(presid);
         gradientDrawable.setColor(appColor);
         stateListDrawable.addState(new int[]{android.R.attr.state_pressed}, layerDrawable);
-        stateListDrawable.addState(new int[]{android.R.attr.state_selected}, layerDrawable);
+        stateListDrawable.addState(new int[]{-android.R.attr.state_enabled}, layerDrawable);
 
         layerDrawable = (LayerDrawable) getResources().getDrawable(def);
         gradientDrawable = (GradientDrawable) layerDrawable.findDrawableByLayerId(defid);

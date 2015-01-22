@@ -32,9 +32,7 @@ public class WatchListenerService extends ListenerService implements IMonitorEve
 //                    }
 //                }, 0, 1000);
 
-        if (Utils.IS_EMULATOR) {
-            generateAlerts();
-        }
+        generateAlerts();
     }
 
     @Override
@@ -60,9 +58,9 @@ public class WatchListenerService extends ListenerService implements IMonitorEve
 
     public void onMonitorAlert() {
 
-        if (!Utils.IS_EMULATOR) {
+        sendMessage(MessageId.MONITOR_ALERT);
 
-            sendMessage(MessageId.MONITOR_ALERT);
+        if (!Utils.IS_EMULATOR) {
 
             runOnUiThread(new Runnable() {
                 @Override

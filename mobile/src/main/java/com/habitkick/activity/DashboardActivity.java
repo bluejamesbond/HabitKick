@@ -41,7 +41,7 @@ public class DashboardActivity extends MobileActivity {
                 findViewById(R.id.date_button).setBackground(createBigButtonStateList(appColor));
                 findViewById(R.id.recalibrate_ok_button).setBackground(createBigButtonStateList(appColor));
                 findViewById(R.id.reset_ok_button).setBackground(createBigButtonStateList(appColor));
-                findViewById(R.id.goal_item).setBackgroundColor(appColor);
+                findViewById(R.id.goal_item).setBackground(createBigButtonStateList(appColor));
             }
         });
     }
